@@ -70,3 +70,7 @@ yarn-error.log
 /assets/vendor/
 ###< symfony/asset-mapper ###
 .claude/
+
+deploy_key
+
+deploy_key.pub
