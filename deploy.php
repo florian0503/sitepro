@@ -26,9 +26,9 @@ set('writable_dirs', ['var', 'var/cache', 'var/log', 'var/sessions', 'public/upl
 // ============================================================================
 
 host('production')
-    ->set('hostname', getenv('HOST')) // Lit le secret HOST
-    ->set('remote_user', getenv('USER')) // Lit le secret USER
-    ->set('port', getenv('PORT')) // Lit le secret PORT
+    ->set('hostname', getenv('DEPLOY_HOST')) // Lit le secret HOST
+    ->set('remote_user', getenv('DEPLOY_USER')) // Lit le secret USER
+    ->set('port', (int) getenv('DEPLOY_PORT')) // Lit le secret PORT
 
     // CORRECTION ICI : Chemin propre sans https, avec un sous-dossier /application
     ->set('deploy_path', '~/domains/blue-swan-296877.hostingersite.com/application')

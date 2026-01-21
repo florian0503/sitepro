@@ -167,10 +167,12 @@ jobs:
       # 6. Déploiement avec Deployer
       - name: Deploy to Hostinger
         env:
-          HOST: ${{ secrets.HOST }}
-          USER: ${{ secrets.USER }}
-          PORT: ${{ secrets.PORT }}
-        run: dep deploy production -vvv
+          DEPLOY_HOST: ${{ secrets.HOST }}
+          DEPLOY_USER: ${{ secrets.USER }}
+          DEPLOY_PORT: ${{ secrets.PORT }}
+        run: |
+          echo "Testing connection to $DEPLOY_HOST:$DEPLOY_PORT"
+          dep deploy production -vvv
 
       # 7. Notification de succès
       - name: Deployment Success
