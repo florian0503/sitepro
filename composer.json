@@ -1,4 +1,6 @@
 {
+    "name": "florian0503/sitepro",
+    "description": "Site professionnel Symfony avec architecture DevOps",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "stable",
@@ -12,7 +14,7 @@
         "symfony/flex": "^2",
         "symfony/framework-bundle": "7.4.*",
         "symfony/runtime": "7.4.*",
-        "symfony/webapp-pack": "*",
+        "symfony/webapp-pack": "^1.0",
         "symfony/yaml": "7.4.*"
     },
     "config": {
@@ -69,12 +71,12 @@
         }
     },
     "require-dev": {
-        "deployer/deployer": "*",
-        "friendsofphp/php-cs-fixer": "*",
-        "phpstan/extension-installer": "*",
-        "phpstan/phpstan": "*",
-        "phpstan/phpstan-symfony": "*",
-        "symfony/requirements-checker": "*",
-        "vincentlanglet/twig-cs-fixer": "*"
+        "deployer/deployer": "^7.0",
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "phpstan/extension-installer": "^1.0",
+        "phpstan/phpstan": "^2.0",
+        "phpstan/phpstan-symfony": "^2.0",
+        "symfony/requirements-checker": "^2.0",
+        "vincentlanglet/twig-cs-fixer": "^3.0"
     }
 }
