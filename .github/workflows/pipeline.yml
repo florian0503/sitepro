@@ -166,13 +166,12 @@ jobs:
 
       # 6. Déploiement avec Deployer
       - name: Deploy to Hostinger
-        env:
-          DEPLOY_HOST: ${{ secrets.HOST }}
-          DEPLOY_USER: ${{ secrets.USER }}
-          DEPLOY_PORT: ${{ secrets.PORT }}
         run: |
-          echo "Deploying to $DEPLOY_HOST:$DEPLOY_PORT as $DEPLOY_USER"
-          dep deploy production -vvv -o hostname=$DEPLOY_HOST -o remote_user=$DEPLOY_USER -o port=$DEPLOY_PORT
+          echo "Deploying to ${{ secrets.HOST }}:${{ secrets.PORT }}"
+          export DEPLOY_HOST="${{ secrets.HOST }}"
+          export DEPLOY_USER="${{ secrets.USER }}"
+          export DEPLOY_PORT="${{ secrets.PORT }}"
+          dep deploy production -vvv
 
       # 7. Notification de succès
       - name: Deployment Success
