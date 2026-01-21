@@ -172,7 +172,7 @@ jobs:
           sed -i "s/__DEPLOY_USER__/${{ secrets.USER }}/g" deploy.php
           sed -i "s/__DEPLOY_PORT__/${{ secrets.PORT }}/g" deploy.php
           cat deploy.php | head -40
-          dep deploy production -vvv
+          dep deploy -vvv
 
       # 7. Notification de succès
       - name: Deployment Success

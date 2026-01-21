@@ -25,17 +25,14 @@ set('writable_dirs', ['var', 'var/cache', 'var/log', 'var/sessions', 'public/upl
 // CONFIGURATION SERVEUR (Via Secrets GitHub)
 // ============================================================================
 
-host('production')
-    ->set('hostname', '__DEPLOY_HOST__')
-    ->set('remote_user', '__DEPLOY_USER__')
-    ->set('port', __DEPLOY_PORT__)
-
-    // CORRECTION ICI : Chemin propre sans https, avec un sous-dossier /application
+host('__DEPLOY_HOST__')
+    ->setRemoteUser('__DEPLOY_USER__')
+    ->setPort(__DEPLOY_PORT__)
+    ->setLabels(['stage' => 'production'])
     ->set('deploy_path', '~/domains/blue-swan-296877.hostingersite.com/application')
-
-    ->set('http_user', getenv('USER'))
+    ->set('http_user', '__DEPLOY_USER__')
     ->set('writable_mode', 'chmod')
-    ->set('ssh_multiplexing', false); // Plus stable sur mutualisé
+    ->set('ssh_multiplexing', false);
 
 // ============================================================================
 // TÂCHES SPÉCIFIQUES HOSTINGER
