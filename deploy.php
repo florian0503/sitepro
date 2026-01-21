@@ -54,7 +54,7 @@ host('production')
 // TÂCHES PERSONNALISÉES
 // ============================================================================
 
-/**
+/*
  * Vérifier la version PHP sur le serveur
  */
 task('deploy:check_php', function () {
@@ -62,21 +62,21 @@ task('deploy:check_php', function () {
     writeln("📋 Version PHP sur le serveur : \n$phpVersion");
 });
 
-/**
+/*
  * Installation des dépendances Composer (production only)
  */
 task('deploy:vendors', function () {
     run('cd {{release_path}} && composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist');
 });
 
-/**
+/*
  * Exécuter les migrations Doctrine
  */
 task('deploy:migrate', function () {
     run('cd {{release_path}} && php bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration');
 });
 
-/**
+/*
  * Clear et warmup du cache Symfony
  */
 task('deploy:cache', function () {
@@ -84,7 +84,7 @@ task('deploy:cache', function () {
     run('cd {{release_path}} && php bin/console cache:warmup');
 });
 
-/**
+/*
  * Créer le symlink du public_html vers current/public
  * (Important pour Hostinger où public_html est le document root)
  */
@@ -97,17 +97,17 @@ task('deploy:symlink_public', function () {
     // Créer le symlink
     run("ln -sfn $deployPath/current/public $deployPath/public_html");
 
-    writeln("✅ Symlink public_html → current/public créé");
+    writeln('✅ Symlink public_html → current/public créé');
 });
 
-/**
+/*
  * Mettre les bonnes permissions
  */
 task('deploy:permissions', function () {
     run('chmod -R 755 {{release_path}}/var');
     run('chmod -R 755 {{release_path}}/public/uploads');
 
-    writeln("✅ Permissions configurées");
+    writeln('✅ Permissions configurées');
 });
 
 // ============================================================================
@@ -129,14 +129,14 @@ task('deploy', [
 // Après un déploiement réussi
 after('deploy:failed', 'deploy:unlock');
 after('deploy:success', function () {
-    writeln("🎉 Déploiement terminé avec succès !");
+    writeln('🎉 Déploiement terminé avec succès !');
 });
 
 // ============================================================================
 // TÂCHES UTILITAIRES
 // ============================================================================
 
-/**
+/*
  * Rollback vers la release précédente
  */
 desc('Rollback vers la release précédente');
@@ -144,10 +144,10 @@ task('rollback', function () {
     run('cd {{deploy_path}} && ln -sfn releases/$(ls -t releases | sed -n 2p) current');
     run('cd {{deploy_path}} && ln -sfn current/public public_html');
 
-    writeln("⏪ Rollback effectué");
+    writeln('⏪ Rollback effectué');
 });
 
-/**
+/*
  * Afficher les logs de production
  */
 desc('Afficher les logs de production');
@@ -155,12 +155,12 @@ task('logs:prod', function () {
     run('tail -n 50 {{deploy_path}}/shared/var/log/prod.log');
 });
 
-/**
+/*
  * Vider le cache de production
  */
 desc('Vider le cache de production');
 task('cache:clear', function () {
     run('cd {{deploy_path}}/current && php bin/console cache:clear --env=prod');
 
-    writeln("🧹 Cache vidé");
+    writeln('🧹 Cache vidé');
 });
