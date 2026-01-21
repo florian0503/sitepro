@@ -41,10 +41,9 @@ set('writable_chmod_mode', '0755');
 // ============================================================================
 
 host('production')
-    ->setHostname('VOTRE-SERVEUR.hostinger.com') // À MODIFIER : ex: srv123456.hostinger.com
-    ->setRemoteUser('u123456789') // À MODIFIER : votre username SSH
-    ->setDeployPath('/home/u123456789/domains/votredomaine.com/public_html') // À MODIFIER
-    ->setPort(65002) // Port SSH Hostinger (généralement 65002)
+    ->set('hostname', 'VOTRE-SERVEUR.hostinger.com') // À MODIFIER : ex: srv123456.hostinger.com
+    ->set('remote_user', 'u123456789') // À MODIFIER : votre username SSH
+    ->set('port', 65002) // Port SSH Hostinger (généralement 65002)
     ->set('branch', 'main')
     ->set('deploy_path', '/home/u123456789/domains/votredomaine.com') // À MODIFIER
     ->set('http_user', 'u123456789') // À MODIFIER
