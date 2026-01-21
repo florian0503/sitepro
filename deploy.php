@@ -72,13 +72,7 @@ task('deploy:symlink_public', function () {
 // ORCHESTRATION DU DÉPLOIEMENT
 // ============================================================================
 
-task('deploy', [
-    'deploy:prepare',
-    'deploy:vendors',
-    'deploy:cache',
-    'deploy:migrate',
-    'deploy:publish',
-    'deploy:symlink_public', // On relie le site à la fin
-]);
-
+// Utilise la tâche deploy par défaut de la recette symfony
+// et ajoute notre symlink personnalisé à la fin
+after('deploy:symlink', 'deploy:symlink_public');
 after('deploy:failed', 'deploy:unlock');
