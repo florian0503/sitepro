@@ -171,8 +171,8 @@ jobs:
           DEPLOY_USER: ${{ secrets.USER }}
           DEPLOY_PORT: ${{ secrets.PORT }}
         run: |
-          echo "Testing connection to $DEPLOY_HOST:$DEPLOY_PORT"
-          dep deploy production -vvv
+          echo "Deploying to $DEPLOY_HOST:$DEPLOY_PORT as $DEPLOY_USER"
+          dep deploy production -vvv -o hostname=$DEPLOY_HOST -o remote_user=$DEPLOY_USER -o port=$DEPLOY_PORT
 
       # 7. Notification de succès
       - name: Deployment Success
