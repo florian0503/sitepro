@@ -3,7 +3,7 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - '**'  # Toutes les branches
+      - '**'
   pull_request:
     branches:
       - develop
@@ -35,11 +35,9 @@ jobs:
           --health-retries=5
 
     steps:
-      # 1. Checkout du code
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2. Setup PHP
       - name: Setup PHP ${{ env.PHP_VERSION }}
         uses: shivammathur/setup-php@v2
         with:
@@ -48,11 +46,9 @@ jobs:
           coverage: none
           tools: composer:v2
 
-      # 3. Validation du composer.json
       - name: Validate composer.json
         run: composer validate --strict
 
-      # 4. Cache Composer
       - name: Cache Composer dependencies
         uses: actions/cache@v4
         with:
@@ -61,36 +57,29 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-composer-
 
-      # 5. Installation des dépendances
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-interaction
 
-      # 6. Vérification du code style (PHP-CS-Fixer)
       - name: Check Code Style (PHP-CS-Fixer)
         run: vendor/bin/php-cs-fixer fix --dry-run --diff --verbose
 
-      # 7. Vérification de la syntaxe Twig (TwigCS)
       - name: Check Twig Syntax (TwigCS)
         run: vendor/bin/twig-cs-fixer lint templates/
 
-      # 8. Vérification "No JS in Twig" (Script custom)
       - name: Check No JS in Twig Templates
         run: |
           chmod +x bin/check-no-js-in-twig.sh
           bash bin/check-no-js-in-twig.sh
 
-      # 9. Analyse statique (PHPStan)
       - name: Static Analysis (PHPStan)
         run: |
           php bin/console cache:clear --env=test
           php bin/console cache:warmup --env=test
           vendor/bin/phpstan analyse --memory-limit=1G
 
-      # 10. Vérification de la configuration Symfony
       - name: Check Symfony requirements
         run: vendor/bin/requirements-checker
 
-      # 11. Lint YAML, Twig, Container
       - name: Lint YAML files
         run: php bin/console lint:yaml config --parse-tags
 
@@ -100,7 +89,6 @@ jobs:
       - name: Lint Symfony Container
         run: php bin/console lint:container
 
-      # 12. Setup de la base de données de test
       - name: Setup Test Database
         env:
           DATABASE_URL: mysql://root:root@127.0.0.1:3306/symfony
@@ -108,16 +96,14 @@ jobs:
           php bin/console doctrine:database:create --env=test --if-not-exists
           php bin/console doctrine:schema:create --env=test
 
-      # 13. Exécution des tests (PHPUnit)
       - name: Run Tests (PHPUnit)
         env:
           DATABASE_URL: mysql://root:root@127.0.0.1:3306/symfony
         run: vendor/bin/phpunit
 
-      # 14. Notification de succès
       - name: Integration Success
         if: success()
-        run: echo "✅ All quality checks passed successfully!"
+        run: echo "All quality checks passed successfully!"
 
   # ============================================================================
   # JOB 2 : DEPLOYMENT (Uniquement sur main)
@@ -129,11 +115,9 @@ jobs:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
 
     steps:
-      # 1. Checkout du code
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2. Setup PHP
       - name: Setup PHP ${{ env.PHP_VERSION }}
         uses: shivammathur/setup-php@v2
         with:
@@ -141,50 +125,39 @@ jobs:
           extensions: mbstring, xml, ctype, iconv, intl, pdo, pdo_mysql
           tools: composer:v2
 
-      # 3. Installation de Deployer
-      - name: Install Deployer
-        run: |
-          curl -LO https://deployer.org/deployer.phar
-          chmod +x deployer.phar
-          sudo mv deployer.phar /usr/local/bin/dep
-
-      # 4. Configuration de la clé SSH
       - name: Setup SSH Key
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
         run: |
           mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
 
-      # 5. Installation des dépendances Composer (pour Deployer)
-      - name: Install Composer dependencies
-        run: composer install --no-dev --optimize-autoloader --prefer-dist --no-interaction
-
-      # 6. Déploiement avec Deployer
-      - name: Deploy to Hostinger
+      - name: Test SSH Connection
         run: |
-          echo "Deploying to ${{ secrets.HOST }}:${{ secrets.PORT }}"
+          ssh -o StrictHostKeyChecking=no -p ${{ secrets.PORT }} ${{ secrets.USER }}@${{ secrets.HOST }} "echo 'SSH OK'"
+
+      - name: Install Deployer (dev dependencies)
+        run: composer install --prefer-dist --no-progress --no-interaction
+
+      - name: Prepare deploy.php
+        run: |
           sed -i "s/__DEPLOY_HOST__/${{ secrets.HOST }}/g" deploy.php
           sed -i "s/__DEPLOY_USER__/${{ secrets.USER }}/g" deploy.php
           sed -i "s/__DEPLOY_PORT__/${{ secrets.PORT }}/g" deploy.php
-          cat deploy.php | head -40
-          dep deploy -vvv
 
-      # 7. Notification de succès
+      - name: Deploy to Hostinger
+        run: vendor/bin/dep deploy -vvv
+
       - name: Deployment Success
         if: success()
         run: |
-          echo "🚀 Deployment to production completed successfully!"
-          echo "📅 Deployed at: $(date)"
-          echo "🔗 Commit: ${{ github.sha }}"
+          echo "Deployment completed successfully!"
+          echo "Deployed at: $(date)"
+          echo "Commit: ${{ github.sha }}"
 
-      # 8. Notification d'échec
       - name: Deployment Failed
         if: failure()
         run: |
-          echo "❌ Deployment failed!"
-          echo "Please check the logs and rollback if necessary: dep rollback production"
+          echo "Deployment failed!"
+          echo "Check logs and rollback if needed: vendor/bin/dep rollback"
