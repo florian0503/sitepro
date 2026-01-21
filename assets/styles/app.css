@@ -1,3 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    background-color: skyblue;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #fff;
+    color: #333;
+}
+
+.site-header {
+    background-color: #fff;
+    padding: 1rem 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+body {
+    padding-top: 84px;
+}
+
+.scroll-progress-container {
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background-color: #e5e5e5;
+    z-index: 1001;
+}
+
+.scroll-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 100%);
+    width: 0%;
+    transition: width 0.1s ease;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    flex-shrink: 0;
+}
+
+.logo-link {
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.logo-primary {
+    color: #0066ff;
+}
+
+.logo-secondary {
+    color: #333;
+}
+
+.main-nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    margin: 0 2rem;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-item {
+    display: inline-block;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #666;
+    font-size: 1rem;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: #0066ff;
+}
+
+.nav-link.active {
+    color: #0066ff;
+}
+
+.header-cta {
+    flex-shrink: 0;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #0066ff;
+    color: #fff;
+    border-color: #0066ff;
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    color: #0066ff;
+    border-color: #0066ff;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
 }

@@ -1,0 +1,36 @@
+<header class="site-header">
+    <div class="header-container">
+        <div class="logo">
+            <a href="{{ path('app_home') }}" class="logo-link">
+                <span class="logo-primary">WebDesign</span><span class="logo-secondary">Pro</span>
+            </a>
+        </div>
+
+        <nav class="main-nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="{{ path('app_home') }}" class="nav-link {% if app.request.get('_route') == 'app_home' %}active{% endif %}">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('app_offers') }}" class="nav-link {% if app.request.get('_route') == 'app_offers' %}active{% endif %}">Offres</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('app_portfolio') }}" class="nav-link {% if app.request.get('_route') == 'app_portfolio' %}active{% endif %}">Réalisations</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('app_about') }}" class="nav-link {% if app.request.get('_route') == 'app_about' %}active{% endif %}">À propos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('app_contact') }}" class="nav-link {% if app.request.get('_route') == 'app_contact' %}active{% endif %}">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('app_faq') }}" class="nav-link {% if app.request.get('_route') == 'app_faq' %}active{% endif %}">FAQ</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="header-cta">
+            <a href="{{ path('app_quote') }}" class="btn btn-primary">Devis gratuit</a>
+        </div>
+    </div>
+</header>

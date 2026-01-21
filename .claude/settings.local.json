@@ -13,7 +13,11 @@
       "Bash(git config:*)",
       "Bash(git add:*)",
       "Bash(FILTER_BRANCH_SQUELCH_WARNING=1 git filter-branch:*)",
-      "Bash(git reset:*)"
+      "Bash(git reset:*)",
+      "Bash(git checkout:*)",
+      "Bash(symfony serve:*)",
+      "Bash(php -S:*)",
+      "Bash(php bin/console:*)"
     ]
   }
 }
