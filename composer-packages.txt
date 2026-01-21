@@ -1,0 +1,39 @@
+# ================================================================
+# PACKAGES COMPOSER À INSTALLER
+# ================================================================
+
+# ── Outils de Qualité (Dev) ────────────────────────────────────
+
+composer require --dev friendsofphp/php-cs-fixer
+# → Linting et formatage du code PHP selon PSR-12
+
+composer require --dev phpstan/phpstan
+# → Analyse statique du code PHP
+
+composer require --dev phpstan/phpstan-symfony
+# → Extension PHPStan pour Symfony
+
+composer require --dev phpstan/extension-installer
+# → Installation automatique des extensions PHPStan
+
+composer require --dev vincentlanglet/twig-cs-fixer
+# → Linting et formatage des templates Twig
+
+composer require --dev symfony/requirements-checker
+# → Vérification des requirements Symfony
+
+# ── Deployer ────────────────────────────────────────────────────
+
+composer require --dev deployer/deployer
+# → Outil de déploiement automatisé
+
+# ── Installation en une seule commande ─────────────────────────
+
+composer require --dev \
+    friendsofphp/php-cs-fixer \
+    phpstan/phpstan \
+    phpstan/phpstan-symfony \
+    phpstan/extension-installer \
+    vincentlanglet/twig-cs-fixer \
+    symfony/requirements-checker \
+    deployer/deployer

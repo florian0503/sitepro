@@ -1,0 +1,23 @@
+parameters:
+    level: 6
+    paths:
+        - src
+        - tests
+    excludePaths:
+        - var/*
+        - vendor/*
+        - docker/*
+
+    # Symfony spécifique
+    symfony:
+        container_xml_path: var/cache/dev/App_KernelDevDebugContainer.xml
+        console_application_loader: tests/console-application.php
+
+    # Ignorer certaines erreurs spécifiques (ajuster selon vos besoins)
+    ignoreErrors:
+        # Exemple : ignorer les erreurs sur les propriétés dynamiques de Doctrine
+        # - '#Access to an undefined property [a-zA-Z0-9\\_]+::\$[a-zA-Z0-9_]+\.#'
+
+    # Performance
+    checkMissingIterableValueType: false
+    checkGenericClassInNonGenericObjectType: false
