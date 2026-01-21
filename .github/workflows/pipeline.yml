@@ -145,6 +145,7 @@ jobs:
           sed -i "s/__DEPLOY_HOST__/${{ secrets.HOST }}/g" deploy.php
           sed -i "s/__DEPLOY_USER__/${{ secrets.USER }}/g" deploy.php
           sed -i "s/__DEPLOY_PORT__/${{ secrets.PORT }}/g" deploy.php
+          sed -i "s/__GITHUB_TOKEN__/${{ secrets.TOKEN_DEPLOY }}/g" deploy.php
 
       - name: Deploy to Hostinger
         run: vendor/bin/dep deploy -vvv

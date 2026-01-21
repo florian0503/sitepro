@@ -9,7 +9,7 @@ require 'recipe/symfony.php';
 // ============================================================================
 
 set('application', 'symfony-app');
-set('repository', 'git@github.com:florian0503/sitepro.git');
+set('repository', 'https://__GITHUB_TOKEN__@github.com/florian0503/sitepro.git');
 set('git_tty', false);
 set('keep_releases', 3);
 
