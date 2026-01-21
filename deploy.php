@@ -47,6 +47,12 @@ task('deploy:cache', function () {
     run('cd {{release_path}} && php bin/console cache:warmup');
 });
 
+task('deploy:assets', function () {
+    run('cd {{release_path}} && php bin/console assets:install');
+    run('cd {{release_path}} && php bin/console importmap:install');
+    run('cd {{release_path}} && php bin/console asset-map:compile');
+});
+
 // Symlink public_html vers le dossier public de Symfony
 task('deploy:symlink_public', function () {
     $domainPath = '~/domains/blue-swan-296877.hostingersite.com';
@@ -59,5 +65,6 @@ task('deploy:symlink_public', function () {
 // DEPLOIEMENT
 // ============================================================================
 
+after('deploy:vendors', 'deploy:assets');
 after('deploy:symlink', 'deploy:symlink_public');
 after('deploy:failed', 'deploy:unlock');
