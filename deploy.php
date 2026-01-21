@@ -26,7 +26,7 @@ set('writable_dirs', ['var', 'var/cache', 'var/log', 'var/sessions', 'public/upl
 // ============================================================================
 
 host('production')
-    ->setHostname(getenv('HOST')) // Lit le secret HOST
+    ->set('hostname', getenv('HOST')) // Lit le secret HOST
     ->set('remote_user', getenv('USER')) // Lit le secret USER
     ->set('port', getenv('PORT')) // Lit le secret PORT
 
