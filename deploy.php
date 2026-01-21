@@ -35,7 +35,7 @@ host('__DEPLOY_HOST__')
 // ============================================================================
 
 task('deploy:vendors', function () {
-    run('cd {{release_path}} && composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist');
+    run('cd {{release_path}} && composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist --ignore-platform-reqs');
 });
 
 task('deploy:migrate', function () {
