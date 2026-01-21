@@ -45,11 +45,10 @@ function Ensure-DockerMySql {
 
 Ensure-DockerMySql
 
-if (-not $env:DATABASE_URL) {
-    $env:DATABASE_URL = "mysql://root:root@127.0.0.1:3306/symfony_test"
-    Write-Host ""
-    Write-Host "==> DATABASE_URL auto-définie: $env:DATABASE_URL"
-}
+# Forcer DATABASE_URL pour la CI locale (ignore la variable d'environnement existante)
+$env:DATABASE_URL = "mysql://root:root@127.0.0.1:3306/symfony"
+Write-Host ""
+Write-Host "==> DATABASE_URL définie pour CI locale: $env:DATABASE_URL"
 
 Run-Step "Validate composer.json" "composer validate --strict"
 Run-Step "Install dependencies (no-scripts)" "composer install --prefer-dist --no-progress --no-interaction --no-scripts"
@@ -95,6 +94,16 @@ if (-not $env:DATABASE_URL) {
     Write-Host "❌ DATABASE_URL non défini. Le pipeline CI l'utilise."
     Write-Host "   Ex: `$env:DATABASE_URL='mysql://root:root@127.0.0.1:3306/symfony_test'"
     exit 1
+}
+
+# Créer la base de données via Docker MySQL
+Write-Host ""
+Write-Host "==> Création de la base de données de test via Docker"
+docker exec symfony_mysql mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS symfony_test;" 2>$null
+if ($LASTEXITCODE -eq 0) {
+    Write-Host "✅ Base de données symfony_test créée ou déjà existante."
+} else {
+    Write-Host "⚠️  Impossible de créer la base via Docker, tentative via Doctrine..."
 }
 
 Run-Step "Setup test database" "php bin/console doctrine:database:create --env=test --if-not-exists"

@@ -103,7 +103,7 @@ jobs:
       # 12. Setup de la base de données de test
       - name: Setup Test Database
         env:
-          DATABASE_URL: mysql://root:root@127.0.0.1:3306/symfony_test
+          DATABASE_URL: mysql://root:root@127.0.0.1:3306/symfony
         run: |
           php bin/console doctrine:database:create --env=test --if-not-exists
           php bin/console doctrine:schema:create --env=test
@@ -111,7 +111,7 @@ jobs:
       # 13. Exécution des tests (PHPUnit)
       - name: Run Tests (PHPUnit)
         env:
-          DATABASE_URL: mysql://root:root@127.0.0.1:3306/symfony_test
+          DATABASE_URL: mysql://root:root@127.0.0.1:3306/symfony
         run: vendor/bin/phpunit
 
       # 14. Notification de succès
