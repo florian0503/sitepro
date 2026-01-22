@@ -1,4 +1,5 @@
-<header class="site-header">
+<header class="site-header" data-controller="scroll-progress mobile-menu">
+    <div class="scroll-progress-bar"></div>
     <div class="header-container">
         <div class="logo">
             <a href="{{ path('app_home') }}" class="logo-link">
@@ -6,7 +7,13 @@
             </a>
         </div>
 
-        <nav class="main-nav">
+        <button class="menu-burger" data-action="click->mobile-menu#toggle" aria-label="Menu">
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+        </button>
+
+        <nav class="main-nav" data-mobile-menu-target="menu">
             <ul class="nav-list">
                 <li class="nav-item">
                     <a href="{{ path('app_home') }}" class="nav-link {% if app.request.get('_route') == 'app_home' %}active{% endif %}">Accueil</a>
