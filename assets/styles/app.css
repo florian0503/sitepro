@@ -904,10 +904,12 @@ body {
     z-index: 999;
 }
 
-.scroll-top:hover {
-    background-color: #fff;
-    color: #0066ff;
-    transform: translateY(-4px);
+@media (hover: hover) {
+    .scroll-top:hover {
+        background-color: #fff;
+        color: #0066ff;
+        transform: translateY(-4px);
+    }
 }
 
 .scroll-top--visible {
@@ -941,10 +943,12 @@ body {
     z-index: 999;
 }
 
-.floating-cta:hover {
-    background-color: #fff;
-    color: #0066ff;
-    transform: translateY(-4px);
+@media (hover: hover) {
+    .floating-cta:hover {
+        background-color: #fff;
+        color: #0066ff;
+        transform: translateY(-4px);
+    }
 }
 
 .floating-cta svg {
