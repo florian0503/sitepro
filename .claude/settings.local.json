@@ -17,7 +17,9 @@
       "Bash(git checkout:*)",
       "Bash(symfony serve:*)",
       "Bash(php -S:*)",
-      "Bash(php bin/console:*)"
+      "Bash(php bin/console:*)",
+      "Bash(php -i:*)",
+      "Bash(php -d max_execution_time=300 -S localhost:8000 -t public)"
     ]
   }
 }

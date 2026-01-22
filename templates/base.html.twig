@@ -14,12 +14,28 @@
     </head>
     <body>
         {% include '_partials/header.html.twig' %}
-        {% include '_partials/scroll_progress.html.twig' %}
         
         <main>
             {% block body %}{% endblock %}
         </main>
 
         {% include '_partials/footer.html.twig' %}
+
+        <a href="{{ path('app_quote') }}" class="floating-cta">
+            <span class="floating-cta-badge">Gratuit</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+            </svg>
+            Devis gratuit
+        </a>
+
+        <button class="scroll-top" data-controller="scroll-top" data-action="click->scroll-top#scrollToTop" aria-label="Retour en haut">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="18 15 12 9 6 15"></polyline>
+            </svg>
+        </button>
     </body>
 </html>
