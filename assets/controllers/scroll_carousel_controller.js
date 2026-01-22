@@ -4,7 +4,6 @@ export default class extends Controller {
     static targets = ['track'];
 
     connect() {
-        console.log('Scroll carousel connected');
         this.onWheel = this.onWheel.bind(this);
         document.addEventListener('wheel', this.onWheel, { passive: false });
     }
