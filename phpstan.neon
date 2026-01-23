@@ -14,7 +14,7 @@ parameters:
 
     # Ignorer certaines erreurs spécifiques (ajuster selon vos besoins)
     ignoreErrors:
-        # Exemple : ignorer les erreurs sur les propriétés dynamiques de Doctrine
-        # - '#Access to an undefined property [a-zA-Z0-9\\_]+::\$[a-zA-Z0-9_]+\.#'
         # Ignorer le check de bootEnv (compatibilité Symfony)
         - '#Call to function method_exists\(\) with .* and .bootEnv. will always evaluate to true\.#'
+        # Ignorer les erreurs sur les propriétés $id auto-générées par Doctrine
+        - '#Property App\\Entity\\[a-zA-Z]+::\$id \(int\|null\) is never assigned int#'

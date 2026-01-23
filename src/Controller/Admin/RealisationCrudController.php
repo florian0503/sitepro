@@ -20,6 +20,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Filter\BooleanFilter;
 use EasyCorp\Bundle\EasyAdminBundle\Filter\EntityFilter;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
+/**
+ * @extends AbstractCrudController<Realisation>
+ */
 class RealisationCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
