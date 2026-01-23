@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Entity\ContactMessage;
 use App\Repository\CategoryRepository;
 use App\Repository\RealisationRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -46,9 +49,25 @@ final class MainController extends AbstractController
         return $this->render('pages/about.html.twig');
     }
 
-    #[Route('/contact', name: 'app_contact')]
-    public function contact(): Response
+    #[Route('/contact', name: 'app_contact', methods: ['GET', 'POST'])]
+    public function contact(Request $request, EntityManagerInterface $entityManager): Response
     {
+        if ($request->isMethod('POST')) {
+            $contactMessage = new ContactMessage();
+            $contactMessage->setName($request->request->getString('name'));
+            $contactMessage->setEmail($request->request->getString('email'));
+            $contactMessage->setProjectType($request->request->getString('project_type'));
+            $contactMessage->setBudget($request->request->getString('budget'));
+            $contactMessage->setMessage($request->request->getString('message'));
+
+            $entityManager->persist($contactMessage);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'contact_sent');
+
+            return $this->redirectToRoute('app_contact');
+        }
+
         return $this->render('pages/contact.html.twig');
     }
 
