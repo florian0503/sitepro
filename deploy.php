@@ -35,22 +35,22 @@ host('__DEPLOY_HOST__')
 // ============================================================================
 
 task('deploy:vendors', function () {
-    run('cd {{release_path}} && composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist --ignore-platform-reqs');
+    run('cd {{release_path}} && APP_ENV=prod composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist --ignore-platform-reqs');
 });
 
 task('deploy:migrate', function () {
-    run('cd {{release_path}} && php bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration');
+    run('cd {{release_path}} && APP_ENV=prod php bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration');
 });
 
 task('deploy:cache', function () {
-    run('cd {{release_path}} && php bin/console cache:clear --no-warmup');
-    run('cd {{release_path}} && php bin/console cache:warmup');
+    run('cd {{release_path}} && APP_ENV=prod php bin/console cache:clear --no-warmup');
+    run('cd {{release_path}} && APP_ENV=prod php bin/console cache:warmup');
 });
 
 task('deploy:assets', function () {
-    run('cd {{release_path}} && php bin/console assets:install');
-    run('cd {{release_path}} && php bin/console importmap:install');
-    run('cd {{release_path}} && php bin/console asset-map:compile');
+    run('cd {{release_path}} && APP_ENV=prod php bin/console assets:install');
+    run('cd {{release_path}} && APP_ENV=prod php bin/console importmap:install');
+    run('cd {{release_path}} && APP_ENV=prod php bin/console asset-map:compile');
 });
 
 // Symlink public_html vers le dossier public de Symfony
