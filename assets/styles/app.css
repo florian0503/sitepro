@@ -11,6 +11,20 @@ body {
     padding-top: 76px;
 }
 
+.section-divider {
+    height: 1px;
+    background: #e5e7eb;
+}
+
+.swiss-expand {
+    width: 0;
+    transition: width 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.swiss-expand.is-visible {
+    width: 100%;
+}
+
 .swiss-fade-up {
     opacity: 0;
     transform: translateY(40px);
@@ -2316,5 +2330,409 @@ html, body {
 
     .btn-contact-submit {
         width: 100%;
+    }
+}
+
+.about-hero {
+    background: linear-gradient(135deg, #f0f4f8 0%, #e0e7ff 100%);
+    padding: 80px 24px;
+}
+
+.about-hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.about-hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.about-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #fff;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #0066ff;
+    width: fit-content;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.about-badge svg {
+    color: #0066ff;
+}
+
+.about-title {
+    font-size: 48px;
+    font-weight: 400;
+    color: #1a1a1a;
+    line-height: 1.1;
+    margin: 0;
+}
+
+.about-description {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #4a5568;
+    margin: 0;
+}
+
+.about-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 1rem;
+}
+
+.about-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.about-stat-value {
+    font-size: 36px;
+    font-weight: 400;
+    color: #0066ff;
+}
+
+.about-stat-label {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.about-hero-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    align-items: start;
+}
+
+.about-hero-cards .about-card:nth-child(1),
+.about-hero-cards .about-card:nth-child(3) {
+    transform: translateY(-16px);
+}
+
+
+.about-card {
+    padding: 1.25rem;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.about-card-blue {
+    background: linear-gradient(135deg, #0066ff 0%, #3b82f6 100%);
+    color: #fff;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.about-card-blue:hover {
+    border-color: #fff;
+}
+
+.about-card-purple {
+    background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+    color: #fff;
+}
+
+.about-card-light {
+    background: #fff;
+    border: 2px solid #e5e7eb;
+    color: #1a1a1a;
+    transition: border-color 0.3s ease;
+}
+
+.about-card-light:hover {
+    border-color: #0066ff;
+}
+
+.about-card-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-card-light .about-card-icon {
+    color: #0066ff;
+}
+
+.about-card-title {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.about-card-desc {
+    font-size: 14px;
+    margin: 0;
+    opacity: 0.9;
+}
+
+.about-card-light .about-card-desc {
+    color: #6b7280;
+}
+
+.why-choose {
+    padding: 80px 24px;
+    background: #fff;
+}
+
+.why-choose-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.why-choose-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.why-choose-title {
+    font-size: 36px;
+    font-weight: 400;
+    color: #1a1a1a;
+    margin: 0 0 1rem;
+}
+
+.why-choose-subtitle {
+    font-size: 18px;
+    color: #6b7280;
+    margin: 0;
+}
+
+.why-choose-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.why-choose-card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 16px;
+    border: 2px solid #e5e7eb;
+    transition: border-color 0.3s ease;
+}
+
+.why-choose-card:hover {
+    border-color: #0066ff;
+}
+
+.why-choose-icon {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0066ff;
+    margin-bottom: 1.5rem;
+}
+
+.why-choose-card-title {
+    font-size: 20px;
+    font-weight: 500;
+    color: #1a1a1a;
+    margin: 0 0 0.75rem;
+}
+
+.why-choose-card-desc {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #6b7280;
+    margin: 0;
+}
+
+.team-section {
+    padding: 80px 24px;
+    background: #f9fafb;
+}
+
+.team-container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.team-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.team-title {
+    font-size: 36px;
+    font-weight: 400;
+    color: #1a1a1a;
+    margin: 0 0 1rem;
+}
+
+.team-subtitle {
+    font-size: 18px;
+    color: #6b7280;
+    margin: 0;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.team-card {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.team-card:hover {
+    border-color: #0066ff;
+}
+
+.team-card-image {
+    height: 650px;
+    background-size: cover;
+    background-position: center top;
+    position: relative;
+}
+
+.team-card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 70%, transparent 100%);
+    color: #fff;
+}
+
+.team-card-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-bottom: 0.75rem;
+}
+
+.team-card-name {
+    font-size: 32px;
+    font-weight: 400;
+    margin: 0 0 0.25rem;
+}
+
+.team-card-role {
+    font-size: 14px;
+    color: #60a5fa;
+    margin: 0 0 1rem;
+}
+
+.team-card-quote {
+    font-size: 15px;
+    font-style: italic;
+    line-height: 1.5;
+    margin: 0 0 1rem;
+    opacity: 0.9;
+}
+
+.team-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.team-card-tag {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+@media (max-width: 900px) {
+    .about-hero-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .why-choose-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-hero-cards {
+        order: -1;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-hero {
+        padding: 48px 16px;
+    }
+
+    .about-title {
+        font-size: 32px;
+    }
+
+    .about-description {
+        font-size: 16px;
+    }
+
+    .about-stats {
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+
+    .about-stat-value {
+        font-size: 28px;
+    }
+
+    .about-hero-cards {
+        display: none;
+    }
+
+    .why-choose {
+        padding: 48px 16px;
+    }
+
+    .why-choose-title {
+        font-size: 28px;
+    }
+
+    .why-choose-subtitle {
+        font-size: 16px;
+    }
+
+    .team-section {
+        padding: 48px 16px;
+    }
+
+    .team-title {
+        font-size: 28px;
+    }
+
+    .team-card-image {
+        height: 550px;
+    }
+
+    .team-card-name {
+        font-size: 28px;
     }
 }

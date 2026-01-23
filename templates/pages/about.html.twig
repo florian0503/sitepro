@@ -3,7 +3,187 @@
 {% block title %}À propos - WebDesignPro{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <h1>À propos</h1>
-    </div>
+<div data-controller="scroll-animation">
+    <section class="about-hero">
+        <div class="about-hero-container">
+            <div class="about-hero-content">
+                <span class="about-badge swiss-fade-left" data-scroll-animation-target="item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+                        <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+                        <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+                        <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+                    </svg>
+                    Deux experts, une vision commune
+                </span>
+                <h1 class="about-title swiss-fade-up" data-scroll-animation-target="item" data-delay="100">Des Sites Web Qui Boostent Votre Business</h1>
+                <p class="about-description swiss-fade-up" data-scroll-animation-target="item" data-delay="200">
+                    Nous sommes Florian et Emilien, fondateurs de WebDesignPro. Notre mission ? 
+                    Transformer votre présence en ligne en véritable levier de croissance pour votre entreprise. 
+                    Nous créons des sites web performants qui attirent des clients et génèrent des résultats concrets.
+                </p>
+                <div class="about-stats" data-controller="counter">
+                    <div class="about-stat swiss-fade-up" data-scroll-animation-target="item" data-delay="300">
+                        <span class="about-stat-value" data-counter-target="number">50+</span>
+                        <span class="about-stat-label">Sites Livrés</span>
+                    </div>
+                    <div class="about-stat swiss-fade-up" data-scroll-animation-target="item" data-delay="400">
+                        <span class="about-stat-value" data-counter-target="number">98%</span>
+                        <span class="about-stat-label">Clients Satisfaits</span>
+                    </div>
+                    <div class="about-stat swiss-fade-up" data-scroll-animation-target="item" data-delay="500">
+                        <span class="about-stat-value" data-counter-target="number">15j</span>
+                        <span class="about-stat-label">Délai Moyen</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-hero-cards swiss-fade-right" data-scroll-animation-target="item" data-delay="300">
+                <div class="about-card about-card-blue">
+                    <div class="about-card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="16 18 22 12 16 6"/>
+                            <polyline points="8 6 2 12 8 18"/>
+                        </svg>
+                    </div>
+                    <span class="about-card-title">Technologies</span>
+                    <span class="about-card-desc">Robustes & Sécurisées</span>
+                </div>
+                <div class="about-card about-card-light">
+                    <div class="about-card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                        </svg>
+                    </div>
+                    <span class="about-card-title">Rapide</span>
+                    <span class="about-card-desc">Performance optimale</span>
+                </div>
+                <div class="about-card about-card-light">
+                    <div class="about-card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                            <line x1="9" y1="9" x2="9.01" y2="9"/>
+                            <line x1="15" y1="9" x2="15.01" y2="9"/>
+                        </svg>
+                    </div>
+                    <span class="about-card-title">Design</span>
+                    <span class="about-card-desc">Moderne & Intuitif</span>
+                </div>
+                <div class="about-card about-card-blue">
+                    <div class="about-card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                    </div>
+                    <span class="about-card-title">Qualité</span>
+                    <span class="about-card-desc">Standards élevés</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider swiss-expand" data-scroll-animation-target="item"></div>
+
+    <section class="why-choose">
+        <div class="why-choose-container">
+            <div class="why-choose-header swiss-fade-up" data-scroll-animation-target="item">
+                <h2 class="why-choose-title">Pourquoi Nous Choisir ?</h2>
+                <p class="why-choose-subtitle">L'agilité d'un freelance, l'expertise d'une agence, la transparence en bonus</p>
+            </div>
+            <div class="why-choose-grid">
+                <div class="why-choose-card swiss-fade-up" data-scroll-animation-target="item" data-delay="100">
+                    <div class="why-choose-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <circle cx="12" cy="12" r="6"/>
+                            <circle cx="12" cy="12" r="2"/>
+                        </svg>
+                    </div>
+                    <h3 class="why-choose-card-title">Focus sur vos Objectifs</h3>
+                    <p class="why-choose-card-desc">Nous ne vendons pas du code, nous vendons des résultats. Chaque site est pensé pour générer plus de clients, plus de visibilité et plus de ventes pour votre entreprise.</p>
+                </div>
+                <div class="why-choose-card swiss-fade-up" data-scroll-animation-target="item" data-delay="200">
+                    <div class="why-choose-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                    <h3 class="why-choose-card-title">Contact Direct</h3>
+                    <p class="why-choose-card-desc">Vous travaillez directement avec les créateurs de votre site, pas avec un intermédiaire. Communication transparente, réponses rapides, et véritable écoute de vos besoins.</p>
+                </div>
+                <div class="why-choose-card swiss-fade-up" data-scroll-animation-target="item" data-delay="300">
+                    <div class="why-choose-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+                            <polyline points="16 7 22 7 22 13"/>
+                        </svg>
+                    </div>
+                    <h3 class="why-choose-card-title">Tarifs Transparents</h3>
+                    <p class="why-choose-card-desc">Pas de frais cachés, pas de surprises en fin de projet. Des forfaits clairs et adaptés à votre budget. Vous savez exactement ce que vous payez et ce que vous recevez.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider swiss-expand" data-scroll-animation-target="item"></div>
+
+    <section class="team-section">
+        <div class="team-container">
+            <div class="team-header swiss-fade-up" data-scroll-animation-target="item">
+                <h2 class="team-title">Rencontrez l'Équipe</h2>
+                <p class="team-subtitle">Deux expertises complémentaires pour des sites complets</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card swiss-fade-up" data-scroll-animation-target="item" data-delay="100">
+                    <div class="team-card-image" style="background-image: url('/images/equipe.jpeg');">
+                        <div class="team-card-overlay">
+                            <span class="team-card-badge">Ingénierie d'excellence</span>
+                            <h3 class="team-card-name">Florian</h3>
+                            <p class="team-card-role">Co-fondateur & Lead Technique</p>
+                            <p class="team-card-quote">"Garant de la solidité et de la performance de votre site"</p>
+                            <div class="team-card-tags">
+                                <span class="team-card-tag">Architecture web</span>
+                                <span class="team-card-tag">Sécurité</span>
+                                <span class="team-card-tag">Performance</span>
+                                <span class="team-card-tag">Haute disponibilité</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-card swiss-fade-up" data-scroll-animation-target="item" data-delay="200">
+                    <div class="team-card-image" style="background-image: url('/images/equipe.jpeg');">
+                        <div class="team-card-overlay">
+                            <span class="team-card-badge">Expert UX/Design</span>
+                            <h3 class="team-card-name">Emilien</h3>
+                            <p class="team-card-role">Co-fondateur & Développeur Full-Stack</p>
+                            <p class="team-card-quote">"Spécialiste de l'expérience utilisateur et du design fluide"</p>
+                            <div class="team-card-tags">
+                                <span class="team-card-tag">Design moderne</span>
+                                <span class="team-card-tag">Ergonomie</span>
+                                <span class="team-card-tag">Mobile-first</span>
+                                <span class="team-card-tag">Interface intuitive</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider swiss-expand" data-scroll-animation-target="item"></div>
+
+    <section class="cta swiss-scale" data-scroll-animation-target="item">
+        <div class="cta-container">
+            <h2 class="cta-title">Prêt à travailler avec nous ?</h2>
+            <p class="cta-description">
+                Discutons de votre projet et voyons comment nous pouvons vous aider.
+            </p>
+            <a href="{{ path('app_contact') }}" class="btn btn-formule btn-formule-primary">Nous contacter</a>
+        </div>
+    </section>
+</div>
 {% endblock %}
