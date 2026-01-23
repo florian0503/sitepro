@@ -1755,3 +1755,133 @@ html, body {
     color: #0066ff;
     border-color: #fff;
 }
+
+.error-page {
+    min-height: calc(100vh - 76px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f0f4f8 0%, #e0e7ff 100%);
+    padding: 48px 24px;
+}
+
+.error-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.error-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.error-code {
+    font-size: 120px;
+    font-weight: 700;
+    color: #0066ff;
+    line-height: 1;
+    opacity: 0.15;
+    position: absolute;
+    top: -20px;
+    left: -10px;
+}
+
+.error-content {
+    position: relative;
+}
+
+.error-title {
+    font-size: 36px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.error-description {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #4a5568;
+    margin: 0;
+}
+
+.error-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+}
+
+.error-actions .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.error-actions .btn svg {
+    flex-shrink: 0;
+}
+
+.error-illustration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.error-illustration svg {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .error-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .error-illustration {
+        order: -1;
+    }
+
+    .error-illustration svg {
+        max-width: 280px;
+    }
+
+    .error-code {
+        font-size: 80px;
+        position: relative;
+        top: auto;
+        left: auto;
+        display: block;
+        text-align: center;
+    }
+
+    .error-title {
+        font-size: 28px;
+    }
+
+    .error-description {
+        font-size: 16px;
+    }
+
+    .error-actions {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .error-actions {
+        flex-direction: column;
+    }
+
+    .error-actions .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
