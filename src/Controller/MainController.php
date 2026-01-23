@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Repository\CategoryRepository;
+use App\Repository\RealisationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -11,9 +13,13 @@ use Symfony\Component\Routing\Attribute\Route;
 final class MainController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function home(): Response
+    public function home(RealisationRepository $realisationRepository): Response
     {
-        return $this->render('pages/home.html.twig');
+        $realisations = $realisationRepository->findPublished();
+
+        return $this->render('pages/home.html.twig', [
+            'realisations' => array_slice($realisations, 0, 4),
+        ]);
     }
 
     #[Route('/offres', name: 'app_offers')]
@@ -23,9 +29,15 @@ final class MainController extends AbstractController
     }
 
     #[Route('/realisations', name: 'app_portfolio')]
-    public function portfolio(): Response
+    public function portfolio(RealisationRepository $realisationRepository, CategoryRepository $categoryRepository): Response
     {
-        return $this->render('pages/portfolio.html.twig');
+        $realisations = $realisationRepository->findPublished();
+        $categories = $categoryRepository->findAllOrderedByName();
+
+        return $this->render('pages/portfolio.html.twig', [
+            'realisations' => $realisations,
+            'categories' => $categories,
+        ]);
     }
 
     #[Route('/a-propos', name: 'app_about')]
