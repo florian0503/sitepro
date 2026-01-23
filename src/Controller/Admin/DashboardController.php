@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Entity\Category;
+use App\Entity\ContactMessage;
 use App\Entity\Realisation;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -35,6 +36,7 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        yield MenuItem::linkToCrud('Messages', 'fa fa-envelope', ContactMessage::class);
         yield MenuItem::linkToCrud('Réalisations', 'fa fa-images', Realisation::class);
         yield MenuItem::linkToCrud('Catégories', 'fa fa-folder', Category::class);
         yield MenuItem::linkToRoute('Voir le site', 'fa fa-eye', 'app_home');
