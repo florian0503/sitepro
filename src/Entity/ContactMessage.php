@@ -133,6 +133,6 @@ class ContactMessage
 
     public function __toString(): string
     {
-        return $this->name . ' - ' . $this->email;
+        return $this->name.' - '.$this->email;
     }
 }
