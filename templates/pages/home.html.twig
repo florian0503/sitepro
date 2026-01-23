@@ -218,7 +218,7 @@
     </section>
 
     <section class="portfolio">
-        <div class="portfolio-container" data-controller="portfolio-show-more">
+        <div class="portfolio-container">
             <div class="portfolio-header swiss-fade-up" data-scroll-animation-target="item">
                 <h2 class="portfolio-title">Nos dernières réalisations</h2>
                 <p class="portfolio-description">
@@ -226,38 +226,24 @@
                 </p>
             </div>
             <div class="portfolio-cards">
-                <div class="portfolio-card swiss-fade-up" data-scroll-animation-target="item" data-delay="0" data-portfolio-show-more-target="card">
+                {% for realisation in realisations %}
+                <div class="portfolio-card swiss-fade-up" data-scroll-animation-target="item" data-delay="{{ loop.index0 * 100 }}" data-portfolio-show-more-target="card">
                     <div class="portfolio-card-image">
-                        <img src="https://via.placeholder.com/400x300?text=Agence+Consulting" alt="Agence Consulting" class="portfolio-image">
+                        {% if realisation.imageName %}
+                            <img src="{{ asset('uploads/realisations/' ~ realisation.imageName) }}" alt="{{ realisation.title }}" class="portfolio-image">
+                        {% else %}
+                            <img src="https://via.placeholder.com/400x300?text={{ realisation.title|url_encode }}" alt="{{ realisation.title }}" class="portfolio-image">
+                        {% endif %}
                     </div>
-                    <h3 class="portfolio-card-title">Agence Consulting</h3>
-                    <a href="#" class="portfolio-card-category">Site vitrine</a>
+                    <h3 class="portfolio-card-title">{{ realisation.title }}</h3>
+                    <span class="portfolio-card-category">{{ realisation.category.name }}</span>
                 </div>
-                <div class="portfolio-card swiss-fade-up" data-scroll-animation-target="item" data-delay="100" data-portfolio-show-more-target="card">
-                    <div class="portfolio-card-image">
-                        <img src="https://via.placeholder.com/400x300?text=Boutique+Mode" alt="Boutique Mode" class="portfolio-image">
-                    </div>
-                    <h3 class="portfolio-card-title">Boutique Mode</h3>
-                    <a href="#" class="portfolio-card-category">E-commerce</a>
-                </div>
-                <div class="portfolio-card swiss-fade-up" data-scroll-animation-target="item" data-delay="200" data-portfolio-show-more-target="card">
-                    <div class="portfolio-card-image">
-                        <img src="https://via.placeholder.com/400x300?text=Restaurant+Le+Gourmet" alt="Restaurant Le Gourmet" class="portfolio-image">
-                    </div>
-                    <h3 class="portfolio-card-title">Restaurant Le Gourmet</h3>
-                    <a href="#" class="portfolio-card-category">Site restaurant</a>
-                </div>
-                <div class="portfolio-card swiss-fade-up" data-scroll-animation-target="item" data-delay="300" data-portfolio-show-more-target="card">
-                    <div class="portfolio-card-image">
-                        <img src="https://via.placeholder.com/400x300?text=Portfolio+Créatif" alt="Portfolio Créatif" class="portfolio-image">
-                    </div>
-                    <h3 class="portfolio-card-title">Portfolio Créatif</h3>
-                    <a href="#" class="portfolio-card-category">Site portfolio</a>
-                </div>
+                {% else %}
+                <p class="portfolio-empty">Aucune réalisation pour le moment.</p>
+                {% endfor %}
             </div>
             <div class="portfolio-actions">
-                <button class="btn btn-portfolio-show-more" data-portfolio-show-more-target="buttonMore" data-action="click->portfolio-show-more#showMore">Voir plus</button>
-                <button class="btn btn-portfolio-show-less" data-portfolio-show-more-target="buttonLess" data-action="click->portfolio-show-more#showLess">Voir moins</button>
+                <a href="{{ path('app_portfolio') }}" class="btn btn-portfolio-show-more">Voir toutes les réalisations</a>
             </div>
         </div>
     </section>

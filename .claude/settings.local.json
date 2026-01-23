@@ -19,7 +19,19 @@
       "Bash(php -S:*)",
       "Bash(php bin/console:*)",
       "Bash(php -i:*)",
-      "Bash(php -d max_execution_time=300 -S localhost:8000 -t public)"
+      "Bash(php -d max_execution_time=300 -S localhost:8000 -t public)",
+      "Bash(findstr:*)",
+      "Bash(more:*)",
+      "Bash(taskkill:*)",
+      "Bash(git restore:*)",
+      "Bash(composer require:*)",
+      "Bash(docker compose:*)",
+      "Bash(docker ps:*)",
+      "Bash(docker rm:*)",
+      "Bash(docker inspect:*)",
+      "Bash(docker exec:*)",
+      "Bash(php -l:*)",
+      "Bash(php:*)"
     ]
   }
 }
