@@ -1,0 +1,116 @@
+<div class="cookie-consent" data-controller="cookie-consent">
+    {# Bandeau Cookie #}
+    <div class="cookie-banner" data-cookie-consent-target="banner">
+        <div class="cookie-banner__content">
+            <div class="cookie-banner__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+            </div>
+            <div class="cookie-banner__text">
+                <h3 class="cookie-banner__title">Nous respectons votre vie privee</h3>
+                <p class="cookie-banner__description">
+                    Nous utilisons des cookies pour ameliorer votre experience, analyser le trafic et personnaliser le contenu.
+                    Vous pouvez accepter tous les cookies ou personnaliser vos preferences.
+                </p>
+            </div>
+        </div>
+        <div class="cookie-banner__actions">
+            <button type="button" class="cookie-btn cookie-btn--outline" data-action="cookie-consent#openSettings">
+                Personnaliser
+            </button>
+            <button type="button" class="cookie-btn cookie-btn--secondary" data-action="cookie-consent#refuseAll">
+                Refuser
+            </button>
+            <button type="button" class="cookie-btn cookie-btn--primary" data-action="cookie-consent#acceptAll">
+                Accepter tout
+            </button>
+        </div>
+    </div>
+
+    {# Modal Parametres #}
+    <div class="cookie-modal" data-cookie-consent-target="modal">
+        <div class="cookie-modal__backdrop" data-action="click->cookie-consent#closeModal"></div>
+        <div class="cookie-modal__container">
+            <div class="cookie-modal__header">
+                <h2 class="cookie-modal__title">Parametres des cookies</h2>
+                <button type="button" class="cookie-modal__close" data-action="cookie-consent#closeModal" aria-label="Fermer">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="cookie-modal__body">
+                <p class="cookie-modal__intro">
+                    Gerez vos preferences de cookies. Les cookies essentiels sont necessaires au fonctionnement du site et ne peuvent pas etre desactives.
+                </p>
+
+                {# Cookie Essentiel #}
+                <div class="cookie-option">
+                    <div class="cookie-option__header">
+                        <div class="cookie-option__info">
+                            <h3 class="cookie-option__title">Cookies essentiels</h3>
+                            <p class="cookie-option__description">
+                                Ces cookies sont necessaires au fonctionnement du site (session, securite, preferences de base).
+                            </p>
+                        </div>
+                        <div class="cookie-option__toggle">
+                            <label class="cookie-toggle cookie-toggle--disabled">
+                                <input type="checkbox" checked disabled>
+                                <span class="cookie-toggle__slider"></span>
+                            </label>
+                            <span class="cookie-option__badge">Requis</span>
+                        </div>
+                    </div>
+                </div>
+
+                {# Cookie Analytics #}
+                <div class="cookie-option">
+                    <div class="cookie-option__header">
+                        <div class="cookie-option__info">
+                            <h3 class="cookie-option__title">Cookies analytiques</h3>
+                            <p class="cookie-option__description">
+                                Ces cookies nous permettent de mesurer l'audience et d'analyser le trafic pour ameliorer nos services.
+                            </p>
+                        </div>
+                        <div class="cookie-option__toggle">
+                            <label class="cookie-toggle">
+                                <input type="checkbox" data-cookie-consent-target="analyticsCheckbox">
+                                <span class="cookie-toggle__slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                {# Cookie Marketing #}
+                <div class="cookie-option">
+                    <div class="cookie-option__header">
+                        <div class="cookie-option__info">
+                            <h3 class="cookie-option__title">Cookies marketing</h3>
+                            <p class="cookie-option__description">
+                                Ces cookies sont utilises pour vous proposer des publicites personnalisees et mesurer leur efficacite.
+                            </p>
+                        </div>
+                        <div class="cookie-option__toggle">
+                            <label class="cookie-toggle">
+                                <input type="checkbox" data-cookie-consent-target="marketingCheckbox">
+                                <span class="cookie-toggle__slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cookie-modal__footer">
+                <button type="button" class="cookie-btn cookie-btn--outline" data-action="cookie-consent#refuseAll">
+                    Tout refuser
+                </button>
+                <button type="button" class="cookie-btn cookie-btn--primary" data-action="cookie-consent#saveSettings">
+                    Sauvegarder mes choix
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
