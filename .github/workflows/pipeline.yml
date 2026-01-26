@@ -110,28 +110,23 @@ jobs:
   # ============================================================================
   deployment:
     name: Deploy to Production
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: integration
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    defaults:
+      run:
+        shell: bash
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Setup PHP ${{ env.PHP_VERSION }}
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ env.PHP_VERSION }}
-          extensions: mbstring, xml, ctype, iconv, intl, pdo, pdo_mysql
-          tools: composer:v2
 
       - name: Setup SSH Key
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          echo "${{ secrets.SSH_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
-          chmod 644 ~/.ssh/known_hosts
+          ssh-keyscan -p ${{ secrets.PORT }} ${{ secrets.HOST }} >> ~/.ssh/known_hosts
 
       - name: Test SSH Connection
         run: |
