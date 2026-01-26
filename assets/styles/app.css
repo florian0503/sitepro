@@ -1105,6 +1105,15 @@ body {
     color: #0066ff;
 }
 
+.footer-contact a[href^="tel"] {
+    color: #9ca3af;
+    text-decoration: none;
+}
+
+.footer-contact a[href^="tel"]:hover {
+    color: #0066ff;
+}
+
 .footer-contact li {
     display: flex;
     align-items: center;
@@ -1301,12 +1310,23 @@ body {
     border: 1px solid transparent;
     transition: all 0.3s ease;
     cursor: pointer;
+    text-decoration: none !important;
+    color: inherit;
+}
+
+.portfolio-card,
+.portfolio-card:hover,
+.portfolio-card:focus,
+.portfolio-card:visited,
+.portfolio-card * {
+    text-decoration: none !important;
 }
 
 .portfolio-card:hover {
     transform: translateY(-6px) scale(1.02);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
     border-color: #0066ff;
+    text-decoration: none;
 }
 
 .portfolio-card-image {
@@ -1390,6 +1410,10 @@ body {
     }
 
     .portfolio-card--hidden {
+        display: none !important;
+    }
+
+    .portfolio-card--mobile-hidden {
         display: none !important;
     }
 
@@ -1694,7 +1718,7 @@ html, body {
 
     .footer-top {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 2.5rem;
         text-align: center;
     }
 
@@ -1706,16 +1730,69 @@ html, body {
         align-items: center;
     }
 
+    .footer-logo-img {
+        height: 40px;
+    }
+
+    .footer-tagline {
+        font-size: 0.9rem;
+    }
+
+    .footer-title {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+        position: relative;
+    }
+
+    .footer-title::after {
+        content: '';
+        display: block;
+        width: 40px;
+        height: 2px;
+        background-color: #0066ff;
+        margin: 0.5rem auto 0;
+    }
+
     .footer-list {
         align-items: center;
+        gap: 0.6rem;
+    }
+
+    .footer-link {
+        font-size: 0.9rem;
     }
 
     .footer-contact li {
         justify-content: center;
     }
+
+    .footer-divider {
+        margin: 1.5rem 0;
+    }
+
+    .footer-social {
+        gap: 1.25rem;
+    }
+
+    .social-link {
+        width: 44px;
+        height: 44px;
+    }
+
+    .footer-copyright {
+        font-size: 0.8rem;
+    }
 }
 
 @media (max-width: 768px) {
+    .site-footer {
+        padding: 2.5rem 0 1.5rem;
+    }
+
+    .footer-container {
+        padding: 0 1.5rem;
+    }
+
     .pricing-info-title,
     .formules-title,
     .references-title,

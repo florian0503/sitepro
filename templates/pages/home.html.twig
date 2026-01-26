@@ -218,6 +218,20 @@
     </section>
 
     <section class="portfolio">
+        <style>
+            @media (max-width: 768px) {
+                .portfolio-card--mobile-hidden {
+                    display: none !important;
+                }
+            }
+            .portfolio-card,
+            .portfolio-card:hover,
+            .portfolio-card *,
+            .portfolio-card h3,
+            .portfolio-card span {
+                text-decoration: none !important;
+            }
+        </style>
         <div class="portfolio-container">
             <div class="portfolio-header swiss-fade-up" data-scroll-animation-target="item">
                 <h2 class="portfolio-title">Nos dernières réalisations</h2>
@@ -227,7 +241,7 @@
             </div>
             <div class="portfolio-cards">
                 {% for realisation in realisations %}
-                <div class="portfolio-card swiss-fade-up" data-scroll-animation-target="item" data-delay="{{ loop.index0 * 100 }}" data-portfolio-show-more-target="card">
+                <a href="{{ path('app_portfolio') }}" class="portfolio-card swiss-fade-up{{ loop.index > 2 ? ' portfolio-card--mobile-hidden' : '' }}" data-scroll-animation-target="item" data-delay="{{ loop.index0 * 100 }}" data-portfolio-show-more-target="card">
                     <div class="portfolio-card-image">
                         {% if realisation.imageName %}
                             <img src="{{ asset('uploads/realisations/' ~ realisation.imageName) }}" alt="{{ realisation.title }}" class="portfolio-image">
@@ -237,7 +251,7 @@
                     </div>
                     <h3 class="portfolio-card-title">{{ realisation.title }}</h3>
                     <span class="portfolio-card-category">{{ realisation.category.name }}</span>
-                </div>
+                </a>
                 {% else %}
                 <p class="portfolio-empty">Aucune réalisation pour le moment.</p>
                 {% endfor %}
