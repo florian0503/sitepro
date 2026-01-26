@@ -44,7 +44,10 @@
       "Bash(git commit:*)",
       "Bash(git push)",
       "Bash(git push:*)",
-      "Bash(git merge:*)"
+      "Bash(git merge:*)",
+      "Bash(timeout:*)",
+      "Bash(symfony.exe server:start:*)",
+      "Bash(git pull:*)"
     ]
   }
 }
