@@ -77,7 +77,6 @@ final class MainController extends AbstractController
         return $this->render('pages/faq.html.twig');
     }
 
-
     #[Route('/mentions-legales', name: 'app_legal')]
     public function legal(): Response
     {
