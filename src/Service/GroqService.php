@@ -32,7 +32,7 @@ class GroqService
         try {
             $response = $this->httpClient->request('POST', self::API_URL, [
                 'headers' => [
-                    'Authorization' => 'Bearer ' . $this->apiKey,
+                    'Authorization' => 'Bearer '.$this->apiKey,
                     'Content-Type' => 'application/json',
                 ],
                 'json' => [
