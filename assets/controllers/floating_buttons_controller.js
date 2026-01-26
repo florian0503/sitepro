@@ -1,7 +1,7 @@
 import { Controller } from '@hotwired/stimulus';
 
 export default class extends Controller {
-    static targets = ['cta', 'scrollTop'];
+    static targets = ['cta', 'scrollTop', 'chatbot'];
 
     connect() {
         this.checkPosition = this.checkPosition.bind(this);
@@ -18,13 +18,16 @@ export default class extends Controller {
     }
 
     checkPosition() {
-        const blueSections = document.querySelectorAll('section.cta, .formule-card--selected');
+        const blueSections = document.querySelectorAll('section.cta, .formule-card--selected, .offer-card--selected');
 
         if (this.hasCtaTarget) {
             this.updateButtonStyle(this.ctaTarget, blueSections);
         }
         if (this.hasScrollTopTarget) {
             this.updateButtonStyle(this.scrollTopTarget, blueSections);
+        }
+        if (this.hasChatbotTarget) {
+            this.updateButtonStyle(this.chatbotTarget, blueSections);
         }
     }
 
