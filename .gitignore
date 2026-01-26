@@ -78,3 +78,7 @@ deploy_key.pub
 ###> Windows reserved names ###
 nul
 ###< Windows reserved names ###
+
+composer.phar
+/public/router.php
+/screenshots/
