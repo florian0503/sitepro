@@ -1,9 +1,249 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Offres - WebDesignPro{% endblock %}
+{% block title %}Nos Forfaits - WebDesignPro{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <h1>Offres</h1>
-    </div>
+<div data-controller="scroll-animation">
+    {# Section Hero - Forfaits #}
+    <section class="page-hero">
+        <div class="page-hero-inner">
+            <h1 class="page-hero-title swiss-fade-up is-visible" data-scroll-animation-target="item">Nos Forfaits Transparents</h1>
+            <p class="page-hero-description swiss-fade-up is-visible" data-scroll-animation-target="item">Des tarifs clairs, sans surprises. Choisissez la formule qui correspond parfaitement à vos besoins et à votre budget.</p>
+        </div>
+    </section>
+
+    {# Section Pricing Cards #}
+    <section class="offers-pricing">
+        <div class="offers-pricing-container">
+            <div class="offers-cards" data-controller="offer-selection">
+                {# Pack Démarrage #}
+                <div class="offer-card swiss-fade-up" data-scroll-animation-target="item" data-delay="0" data-offer-selection-target="card" data-action="click->offer-selection#select">
+                    <div class="offer-card-header">
+                        <h3 class="offer-card-title">Pack Démarrage</h3>
+                        <p class="offer-card-subtitle">Site vitrine simple</p>
+                        <div class="offer-card-price">
+                            <span class="price-amount">499€</span>
+                            <span class="price-type">Paiement unique</span>
+                        </div>
+                    </div>
+                    <div class="offer-card-body">
+                        <ul class="offer-features">
+                            <li><span class="offer-check"></span>Design moderne et professionnel</li>
+                            <li><span class="offer-check"></span>Site responsive (mobile/tablette)</li>
+                            <li><span class="offer-check"></span>1 page personnalisée</li>
+                            <li><span class="offer-check"></span>Formulaire de contact</li>
+                            <li><span class="offer-check"></span>Optimisation des images</li>
+                            <li><span class="offer-check"></span>Intégration Google Maps</li>
+                            <li><span class="offer-check"></span>Hébergement 1 an offert</li>
+                            <li><span class="offer-check"></span>Support technique 30 jours</li>
+                            <li><span class="offer-check"></span>Livraison en 7 jours</li>
+                        </ul>
+                    </div>
+                    <div class="offer-card-footer">
+                        <a href="{{ path('app_quote') }}" class="btn-offer btn-offer-primary">Choisir ce forfait</a>
+                    </div>
+                </div>
+
+                {# Pack Entreprise - Populaire #}
+                <div class="offer-card offer-card--selected swiss-fade-up" data-scroll-animation-target="item" data-delay="100" data-offer-selection-target="card" data-action="click->offer-selection#select">
+                    <div class="offer-card-badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        Le plus populaire
+                    </div>
+                    <div class="offer-card-header">
+                        <h3 class="offer-card-title">Pack Entreprise</h3>
+                        <p class="offer-card-subtitle">Solution complète PME</p>
+                        <div class="offer-card-price">
+                            <span class="price-amount">1290€</span>
+                            <span class="price-type">Paiement unique</span>
+                        </div>
+                    </div>
+                    <div class="offer-card-body">
+                        <p class="offer-includes">Tout du Starter Pack, plus :</p>
+                        <ul class="offer-features">
+                            <li><span class="offer-check"></span>Jusqu'à 5 pages personnalisées</li>
+                            <li><span class="offer-check"></span>Blog intégré avec CMS</li>
+                            <li><span class="offer-check"></span>SEO de base optimisé</li>
+                            <li><span class="offer-check"></span>Galerie photos/vidéos</li>
+                            <li><span class="offer-check"></span>Intégrations réseaux sociaux</li>
+                            <li><span class="offer-check"></span>Animations et interactions</li>
+                            <li><span class="offer-check"></span>Certificat SSL inclus</li>
+                            <li><span class="offer-check"></span>Support technique 90 jours</li>
+                            <li><span class="offer-check"></span>Formation à la gestion du site</li>
+                            <li><span class="offer-check"></span>Livraison en 14 jours</li>
+                        </ul>
+                    </div>
+                    <div class="offer-card-footer">
+                        <a href="{{ path('app_quote') }}" class="btn-offer btn-offer-primary">Choisir ce forfait</a>
+                    </div>
+                </div>
+
+                {# E-commerce & Sur-Mesure #}
+                <div class="offer-card swiss-fade-up" data-scroll-animation-target="item" data-delay="200" data-offer-selection-target="card" data-action="click->offer-selection#select">
+                    <div class="offer-card-header">
+                        <h3 class="offer-card-title">E-commerce & Sur-Mesure</h3>
+                        <p class="offer-card-subtitle">Boutique en ligne</p>
+                        <div class="offer-card-price">
+                            <span class="price-amount">Sur Devis</span>
+                            <span class="price-type">À partir de 2500€</span>
+                        </div>
+                    </div>
+                    <div class="offer-card-body">
+                        <p class="offer-includes">Tout du Professional Pack, plus :</p>
+                        <ul class="offer-features">
+                            <li><span class="offer-check"></span>Boutique en ligne complète</li>
+                            <li><span class="offer-check"></span>Jusqu'à 50 produits</li>
+                            <li><span class="offer-check"></span>Paiement sécurisé en ligne</li>
+                            <li><span class="offer-check"></span>Gestion des stocks automatisée</li>
+                            <li><span class="offer-check"></span>Tableau de bord vendeur</li>
+                            <li><span class="offer-check"></span>Options de livraison multiples</li>
+                            <li><span class="offer-check"></span>Système de promotion/coupons</li>
+                            <li><span class="offer-check"></span>Intégration comptabilité</li>
+                            <li><span class="offer-check"></span>Support prioritaire 6 mois</li>
+                            <li><span class="offer-check"></span>Formation complète incluse</li>
+                            <li><span class="offer-check"></span>Fonctionnalités sur mesure</li>
+                        </ul>
+                    </div>
+                    <div class="offer-card-footer">
+                        <a href="{{ path('app_quote') }}" class="btn-offer btn-offer-primary">Choisir ce forfait</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# Section Comparaison #}
+    <section class="offers-comparison">
+        <div class="offers-comparison-container">
+            <div class="offers-comparison-header swiss-fade-up" data-scroll-animation-target="item">
+                <h2 class="offers-comparison-title">Comparaison Détaillée des Forfaits</h2>
+                <p class="offers-comparison-subtitle">Tous les détails pour vous aider à faire le bon choix.</p>
+            </div>
+
+            <div class="comparison-table-wrapper swiss-fade-up" data-scroll-animation-target="item" data-delay="100">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th class="comparison-feature-col">Fonctionnalité</th>
+                            <th class="comparison-plan-col">Starter Pack</th>
+                            <th class="comparison-plan-col comparison-plan-col--active">Professional Pack</th>
+                            <th class="comparison-plan-col">E-commerce</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {# Hébergement & Domaine #}
+                        <tr class="comparison-category-row">
+                            <td colspan="4">Hébergement & Domaine</td>
+                        </tr>
+                        <tr>
+                            <td>Hébergement web (1 an)</td>
+                            <td><span class="comparison-check"></span></td>
+                            <td><span class="comparison-check"></span></td>
+                            <td><span class="comparison-check"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Nom de domaine (.fr ou .com)</td>
+                            <td><span class="comparison-dash"></span></td>
+                            <td><span class="comparison-check"></span></td>
+                            <td><span class="comparison-check"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Certificat SSL (HTTPS)</td>
+                            <td><span class="comparison-check"></span></td>
+                            <td><span class="comparison-check"></span></td>
+                            <td><span class="comparison-check"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Adresses email professionnelles</td>
+                            <td><span class="comparison-dash"></span></td>
+                            <td>3 comptes</td>
+                            <td>10 comptes</td>
+                        </tr>
+
+                        {# Assistance & Maintenance #}
+                        <tr class="comparison-category-row">
+                            <td colspan="4">Assistance & Maintenance</td>
+                        </tr>
+                        <tr>
+                            <td>Support technique par email</td>
+                            <td>30 jours</td>
+                            <td>90 jours</td>
+                            <td>6 mois</td>
+                        </tr>
+                        <tr>
+                            <td>Mises à jour de sécurité</td>
+                            <td>3 mois</td>
+                            <td>6 mois</td>
+                            <td>12 mois</td>
+                        </tr>
+                        <tr>
+                            <td>Modifications de contenu</td>
+                            <td>2 modifications</td>
+                            <td>5 modifications</td>
+                            <td>10 modifications</td>
+                        </tr>
+                        <tr>
+                            <td>Support téléphonique prioritaire</td>
+                            <td><span class="comparison-dash"></span></td>
+                            <td><span class="comparison-dash"></span></td>
+                            <td><span class="comparison-check"></span></td>
+                        </tr>
+
+                        {# Fonctionnalités #}
+                        <tr class="comparison-category-row">
+                            <td colspan="4">Fonctionnalités</td>
+                        </tr>
+                        <tr>
+                            <td>Nombre de pages</td>
+                            <td>1 page</td>
+                            <td>Jusqu'à 5 pages</td>
+                            <td>Illimité</td>
+                        </tr>
+                        <tr>
+                            <td>Design responsive</td>
+                            <td><span class="comparison-check"></span></td>
+                            <td><span class="comparison-check"></span></td>
+                            <td><span class="comparison-check"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Blog intégré</td>
+                            <td><span class="comparison-dash"></span></td>
+                            <td><span class="comparison-check"></span></td>
+                            <td><span class="comparison-check"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Boutique en ligne</td>
+                            <td><span class="comparison-dash"></span></td>
+                            <td><span class="comparison-dash"></span></td>
+                            <td><span class="comparison-check"></span></td>
+                        </tr>
+                        <tr>
+                            <td>SEO optimisé</td>
+                            <td>Basique</td>
+                            <td>Avancé</td>
+                            <td>Complet</td>
+                        </tr>
+                        <tr>
+                            <td>Formation</td>
+                            <td><span class="comparison-dash"></span></td>
+                            <td>1h incluse</td>
+                            <td>3h incluses</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    {# CTA Section #}
+    <section class="cta">
+        <div class="cta-container">
+            <h2 class="cta-title swiss-fade-up" data-scroll-animation-target="item">Besoin d'un devis personnalisé ?</h2>
+            <p class="cta-description swiss-fade-up" data-scroll-animation-target="item">Chaque projet est unique. Contactez-nous pour discuter de vos besoins spécifiques.</p>
+            <a href="{{ path('app_quote') }}" class="btn-formule btn-formule-primary swiss-fade-up" data-scroll-animation-target="item">Demander un devis gratuit</a>
+        </div>
+    </section>
+</div>
 {% endblock %}
