@@ -31,7 +31,20 @@
       "Bash(docker inspect:*)",
       "Bash(docker exec:*)",
       "Bash(php -l:*)",
-      "Bash(php:*)"
+      "Bash(php:*)",
+      "Bash(where.exe:*)",
+      "Bash(symfony server:start:*)",
+      "Bash(C:laragonbinphpphp-8.3.30-Win32-vs16-x64php.exe -S localhost:8000 -t public)",
+      "Bash(/c/laragon/bin/php/php-8.3.30-Win32-vs16-x64/php.exe:*)",
+      "Bash(cmd.exe /c \"cd /d C:\\\\Users\\\\flori\\\\Desktop\\\\sitepro && C:\\\\laragon\\\\bin\\\\composer\\\\composer.phar install\")",
+      "Bash(cmd.exe /c \"cd /d C:\\\\Users\\\\flori\\\\Desktop\\\\sitepro && set PATH=C:\\\\laragon\\\\bin\\\\php\\\\php-8.3.30-Win32-vs16-x64;C:\\\\laragon\\\\bin\\\\composer;%PATH% && php composer.phar install\")",
+      "Bash(cmd.exe:*)",
+      "Bash(powershell.exe:*)",
+      "Bash(/c/laragon/bin/mysql/mysql-8.4.3-winx64/bin/mysqld.exe:*)",
+      "Bash(git commit:*)",
+      "Bash(git push)",
+      "Bash(git push:*)",
+      "Bash(git merge:*)"
     ]
   }
 }
