@@ -77,12 +77,6 @@ final class MainController extends AbstractController
         return $this->render('pages/faq.html.twig');
     }
 
-    #[Route('/devis', name: 'app_quote')]
-    public function quote(): Response
-    {
-        return $this->render('pages/quote.html.twig');
-    }
-
     #[Route('/mentions-legales', name: 'app_legal')]
     public function legal(): Response
     {
