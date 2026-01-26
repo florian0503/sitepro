@@ -4,7 +4,7 @@ export default class extends Controller {
     static targets = ['filterBtn', 'card', 'loadMoreBtn'];
 
     connect() {
-        this.visibleCount = 2; // Start with 2 cards on mobile
+        this.visibleCount = this.getInitialVisibleCount();
         this.updateVisibility('all');
         window.addEventListener('resize', this.handleResize.bind(this));
     }
@@ -16,16 +16,31 @@ export default class extends Controller {
     handleResize() {
         const activeBtn = this.filterBtnTargets.find(btn => btn.classList.contains('is-active'));
         const filter = activeBtn ? activeBtn.dataset.filter : 'all';
+        this.visibleCount = this.getInitialVisibleCount();
         this.updateVisibility(filter);
     }
 
-    isMobile() {
-        return window.innerWidth <= 768;
+    getInitialVisibleCount() {
+        if (window.innerWidth > 1024) {
+            return 6; // Desktop: 2 rows of 3
+        } else if (window.innerWidth > 768) {
+            return 4; // Tablet: 2 rows of 2
+        }
+        return 2; // Mobile: 2 cards
+    }
+
+    getLoadMoreCount() {
+        if (window.innerWidth > 1024) {
+            return 3; // Desktop: 1 row of 3
+        } else if (window.innerWidth > 768) {
+            return 2; // Tablet: 1 row of 2
+        }
+        return 2; // Mobile: 2 cards
     }
 
     filter(event) {
         const filter = event.currentTarget.dataset.filter;
-        this.visibleCount = 2; // Reset to 2 when changing filter
+        this.visibleCount = this.getInitialVisibleCount();
 
         // Update active state
         this.filterBtnTargets.forEach(btn => btn.classList.remove('is-active'));
@@ -35,7 +50,7 @@ export default class extends Controller {
     }
 
     loadMore() {
-        this.visibleCount += 2; // Show 2 more cards
+        this.visibleCount += this.getLoadMoreCount();
         const activeBtn = this.filterBtnTargets.find(btn => btn.classList.contains('is-active'));
         const filter = activeBtn ? activeBtn.dataset.filter : 'all';
         this.updateVisibility(filter);
@@ -50,8 +65,7 @@ export default class extends Controller {
 
             if (matchesFilter) {
                 totalMatching++;
-                // On desktop: show all, on mobile: respect visibleCount
-                if (!this.isMobile() || displayedCount < this.visibleCount) {
+                if (displayedCount < this.visibleCount) {
                     card.style.display = '';
                     card.classList.remove('is-hidden');
                     displayedCount++;
@@ -65,8 +79,7 @@ export default class extends Controller {
         });
 
         if (this.hasLoadMoreBtnTarget) {
-            // Show button only on mobile when there are more cards to show
-            if (!this.isMobile() || displayedCount >= totalMatching) {
+            if (displayedCount >= totalMatching) {
                 this.loadMoreBtnTarget.classList.add('is-hidden');
             } else {
                 this.loadMoreBtnTarget.classList.remove('is-hidden');
