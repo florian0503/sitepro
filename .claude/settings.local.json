@@ -42,7 +42,9 @@
       "Bash(powershell.exe:*)",
       "Bash(/c/laragon/bin/mysql/mysql-8.4.3-winx64/bin/mysqld.exe:*)",
       "Bash(git commit:*)",
-      "Bash(git push)"
+      "Bash(git push)",
+      "Bash(git push:*)",
+      "Bash(git merge:*)"
     ]
   }
 }
