@@ -130,6 +130,12 @@ body {
     color: #333;
 }
 
+.logo-img {
+    height: 45px;
+    width: auto;
+    display: block;
+}
+
 .main-nav {
     flex: 1;
     display: flex;
@@ -1052,6 +1058,16 @@ body {
 .footer-logo {
     font-size: 1.5rem;
     font-weight: 600;
+}
+
+.footer-logo a {
+    display: inline-block;
+}
+
+.footer-logo-img {
+    height: 50px;
+    width: auto;
+    display: block;
 }
 
 .logo-secondary-footer {
