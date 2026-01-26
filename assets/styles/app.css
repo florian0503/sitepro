@@ -1924,6 +1924,11 @@ html, body {
     border-radius: 16px;
     padding: 2.5rem;
     border: 1px solid #e5e7eb;
+    transition: border-color 0.3s ease;
+}
+
+.contact-form-wrapper:hover {
+    border-color: #0066ff;
 }
 
 .contact-form {
@@ -2081,6 +2086,7 @@ html, body {
 .form-group textarea {
     resize: vertical;
     min-height: 120px;
+    font-family: inherit;
 }
 
 .form-checkbox {
@@ -2190,6 +2196,11 @@ html, body {
     border-radius: 16px;
     padding: 1.5rem;
     border: 1px solid #e5e7eb;
+    transition: border-color 0.3s ease;
+}
+
+.contact-info-card:hover {
+    border-color: #0066ff;
 }
 
 .contact-info-title {
@@ -2258,6 +2269,11 @@ html, body {
     border-radius: 16px;
     padding: 1.5rem;
     border: 1px solid #e5e7eb;
+    transition: border-color 0.3s ease;
+}
+
+.contact-social:hover {
+    border-color: #0066ff;
 }
 
 .contact-social-label {
@@ -2293,6 +2309,12 @@ html, body {
     background: linear-gradient(135deg, #f0f4f8 0%, #e0e7ff 100%);
     border-radius: 16px;
     padding: 1.5rem;
+    border: 1px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.contact-benefits:hover {
+    border-color: #0066ff;
 }
 
 .contact-benefit-item {
