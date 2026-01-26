@@ -174,7 +174,7 @@ body {
     font-size: 16px;
     border-radius: 10px;
     transition: all 0.2s ease;
-    border: 2px solid transparent;
+    border: 1px solid transparent;
     cursor: pointer;
 }
 
@@ -583,12 +583,14 @@ body {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
 }
 
 .pricing-card:hover {
     transform: translateY(-6px) scale(1.02);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 12px 30px rgba(0, 102, 255, 0.2);
+    border-color: #0066ff;
 }
 
 .pricing-card-icon {
@@ -664,13 +666,18 @@ body {
     gap: 1rem;
     position: relative;
     cursor: pointer;
-    border: 3px solid transparent;
+    border: 1px solid transparent;
     transition: all 0.3s ease;
 }
 
 .formule-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 8px 30px rgba(0, 102, 255, 0.2);
+    border-color: #0066ff;
+}
+
+.formule-card--selected:hover {
+    border-color: transparent;
 }
 
 .formule-card--selected {
@@ -933,12 +940,14 @@ body {
     align-items: center;
     text-align: center;
     gap: 1rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
 }
 
 .reference-card:hover {
     transform: translateY(-6px) scale(1.02);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 12px 30px rgba(0, 102, 255, 0.2);
+    border-color: #0066ff;
 }
 
 .reference-card-icon {
@@ -2472,7 +2481,7 @@ html, body {
 .about-card-blue {
     background: linear-gradient(135deg, #0066ff 0%, #3b82f6 100%);
     color: #fff;
-    border: 2px solid transparent;
+    border: 1px solid transparent;
     transition: border-color 0.3s ease;
 }
 
@@ -2487,7 +2496,7 @@ html, body {
 
 .about-card-light {
     background: #fff;
-    border: 2px solid #e5e7eb;
+    border: 1px solid #e5e7eb;
     color: #1a1a1a;
     transition: border-color 0.3s ease;
 }
@@ -2562,7 +2571,7 @@ html, body {
     background: #fff;
     padding: 2rem;
     border-radius: 16px;
-    border: 2px solid #e5e7eb;
+    border: 1px solid #e5e7eb;
     transition: border-color 0.3s ease;
 }
 
@@ -2633,7 +2642,7 @@ html, body {
 .team-card {
     border-radius: 16px;
     overflow: hidden;
-    border: 2px solid transparent;
+    border: 1px solid transparent;
     transition: border-color 0.3s ease;
 }
 
@@ -3012,7 +3021,7 @@ html, body {
     border-radius: 10px;
     text-decoration: none;
     transition: all 0.3s ease;
-    border: 2px solid transparent;
+    border: 1px solid transparent;
 }
 
 .btn-offer-primary {
@@ -3289,7 +3298,7 @@ html, body {
     font-size: 14px;
     font-weight: 600;
     border-radius: 10px;
-    border: 2px solid transparent;
+    border: 1px solid transparent;
     cursor: pointer;
     transition: all 0.2s ease;
     white-space: nowrap;
@@ -3620,6 +3629,10 @@ html, body {
         background-color: #fff;
         color: #0066ff;
         transform: translateY(-4px);
+    }
+
+    .chatbot-toggle:hover svg {
+        color: #0066ff;
     }
 }
 
