@@ -3,7 +3,210 @@
 {% block title %}FAQ - WebDesignPro{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <h1>FAQ</h1>
-    </div>
+<div data-controller="scroll-animation">
+    <section class="page-hero">
+        <div class="page-hero-inner">
+            <h1 class="page-hero-title swiss-fade-up" data-scroll-animation-target="item">Questions Fr&eacute;quentes</h1>
+            <p class="page-hero-description swiss-fade-up" data-scroll-animation-target="item" data-delay="100">
+                Tout ce que vous devez savoir avant de d&eacute;marrer votre projet web. Des r&eacute;ponses claires &agrave; vos questions.
+            </p>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="faq-container" data-controller="faq">
+
+            <div class="faq-item swiss-fade-up" data-faq-target="item" data-scroll-animation-target="item">
+                <button class="faq-question" data-action="click->faq#toggle">
+                    <span>Est-ce que je suis propri&eacute;taire du nom de domaine ?</span>
+                    <svg class="faq-icon" data-faq-target="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div class="faq-answer" data-faq-target="answer">
+                    <p>Oui, absolument ! Le nom de domaine est enregistr&eacute; &agrave; votre nom et vous en &ecirc;tes le propri&eacute;taire &agrave; 100%. Vous recevrez tous les acc&egrave;s n&eacute;cessaires pour le g&eacute;rer en toute autonomie. Pour les formules incluant le domaine, nous g&eacute;rons simplement l'enregistrement initial pour vous faciliter la t&acirc;che.</p>
+                </div>
+            </div>
+
+            <div class="faq-item swiss-fade-up" data-faq-target="item" data-scroll-animation-target="item">
+                <button class="faq-question" data-action="click->faq#toggle">
+                    <span>Combien de temps faut-il pour cr&eacute;er mon site ?</span>
+                    <svg class="faq-icon" data-faq-target="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div class="faq-answer" data-faq-target="answer">
+                    <p>Le d&eacute;lai d&eacute;pend de la formule choisie. Un site vitrine est g&eacute;n&eacute;ralement livr&eacute; en 1 &agrave; 2 semaines, un site plus complexe en 2 &agrave; 4 semaines. Nous vous communiquons un calendrier pr&eacute;cis d&egrave;s le d&eacute;but du projet.</p>
+                </div>
+            </div>
+
+            <div class="faq-item swiss-fade-up" data-faq-target="item" data-scroll-animation-target="item">
+                <button class="faq-question" data-action="click->faq#toggle">
+                    <span>Y a-t-il des frais mensuels cach&eacute;s ?</span>
+                    <svg class="faq-icon" data-faq-target="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div class="faq-answer" data-faq-target="answer">
+                    <p>Non, aucun frais cach&eacute;. Nos tarifs sont transparents et communiqu&eacute;s d&egrave;s le d&eacute;part. Les seuls frais r&eacute;currents sont l'h&eacute;bergement et le nom de domaine, qui sont clairement indiqu&eacute;s dans nos formules.</p>
+                </div>
+            </div>
+
+            <div class="faq-item swiss-fade-up" data-faq-target="item" data-scroll-animation-target="item">
+                <button class="faq-question" data-action="click->faq#toggle">
+                    <span>Puis-je modifier mon site moi-m&ecirc;me apr&egrave;s la livraison ?</span>
+                    <svg class="faq-icon" data-faq-target="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div class="faq-answer" data-faq-target="answer">
+                    <p>Oui, nous vous fournissons un acc&egrave;s &agrave; l'interface d'administration pour modifier vos contenus (textes, images, etc.). Une formation est incluse pour vous rendre autonome. Pour les modifications techniques, nous restons disponibles.</p>
+                </div>
+            </div>
+
+            <div class="faq-item swiss-fade-up" data-faq-target="item" data-scroll-animation-target="item">
+                <button class="faq-question" data-action="click->faq#toggle">
+                    <span>Que se passe-t-il si je ne suis pas satisfait ?</span>
+                    <svg class="faq-icon" data-faq-target="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div class="faq-answer" data-faq-target="answer">
+                    <p>Votre satisfaction est notre priorit&eacute;. Nous travaillons avec des &eacute;tapes de validation &agrave; chaque phase du projet. Si un &eacute;l&eacute;ment ne vous convient pas, nous le r&eacute;visons jusqu'&agrave; ce que vous soyez pleinement satisfait.</p>
+                </div>
+            </div>
+
+            <div class="faq-item swiss-fade-up" data-faq-target="item" data-scroll-animation-target="item">
+                <button class="faq-question" data-action="click->faq#toggle">
+                    <span>Le site sera-t-il optimis&eacute; pour les mobiles ?</span>
+                    <svg class="faq-icon" data-faq-target="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div class="faq-answer" data-faq-target="answer">
+                    <p>Absolument. Tous nos sites sont con&ccedil;us en responsive design, c'est-&agrave;-dire qu'ils s'adaptent parfaitement &agrave; tous les &eacute;crans : mobile, tablette et ordinateur. C'est un standard non n&eacute;gociable pour nous.</p>
+                </div>
+            </div>
+
+            <div class="faq-item swiss-fade-up" data-faq-target="item" data-scroll-animation-target="item">
+                <button class="faq-question" data-action="click->faq#toggle">
+                    <span>Puis-je passer d'une formule &agrave; une autre plus tard ?</span>
+                    <svg class="faq-icon" data-faq-target="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div class="faq-answer" data-faq-target="answer">
+                    <p>Oui, votre site peut &eacute;voluer avec vos besoins. Nous pouvons ajouter des fonctionnalit&eacute;s ou migrer vers une formule sup&eacute;rieure &agrave; tout moment. Votre investissement initial est toujours valoris&eacute;.</p>
+                </div>
+            </div>
+
+            <div class="faq-item swiss-fade-up" data-faq-target="item" data-scroll-animation-target="item">
+                <button class="faq-question" data-action="click->faq#toggle">
+                    <span>Fournissez-vous le contenu et les images ?</span>
+                    <svg class="faq-icon" data-faq-target="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div class="faq-answer" data-faq-target="answer">
+                    <p>Nous pouvons vous accompagner dans la r&eacute;daction de vos contenus et la s&eacute;lection d'images professionnelles. Certaines formules incluent la cr&eacute;ation de contenu. Vous pouvez &eacute;galement fournir vos propres textes et visuels.</p>
+                </div>
+            </div>
+
+            <div class="faq-item swiss-fade-up" data-faq-target="item" data-scroll-animation-target="item">
+                <button class="faq-question" data-action="click->faq#toggle">
+                    <span>Qu'est-ce qui est inclus dans l'h&eacute;bergement ?</span>
+                    <svg class="faq-icon" data-faq-target="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div class="faq-answer" data-faq-target="answer">
+                    <p>L'h&eacute;bergement comprend le stockage de votre site, le certificat SSL (HTTPS), les sauvegardes automatiques, la surveillance de la disponibilit&eacute; et les mises &agrave; jour de s&eacute;curit&eacute;. Votre site reste rapide et s&eacute;curis&eacute; en permanence.</p>
+                </div>
+            </div>
+
+            <div class="faq-item swiss-fade-up" data-faq-target="item" data-scroll-animation-target="item">
+                <button class="faq-question" data-action="click->faq#toggle">
+                    <span>Comment se passe le processus de cr&eacute;ation ?</span>
+                    <svg class="faq-icon" data-faq-target="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div class="faq-answer" data-faq-target="answer">
+                    <p>Le processus se d&eacute;roule en 4 &eacute;tapes : 1) &Eacute;change initial pour comprendre vos besoins, 2) Cr&eacute;ation de la maquette pour validation, 3) D&eacute;veloppement du site, 4) Tests et mise en ligne. Vous &ecirc;tes impliqu&eacute; &agrave; chaque &eacute;tape.</p>
+                </div>
+            </div>
+
+            <div class="faq-item swiss-fade-up" data-faq-target="item" data-scroll-animation-target="item">
+                <button class="faq-question" data-action="click->faq#toggle">
+                    <span>Offrez-vous un support apr&egrave;s la livraison ?</span>
+                    <svg class="faq-icon" data-faq-target="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div class="faq-answer" data-faq-target="answer">
+                    <p>Oui, nous offrons un support apr&egrave;s livraison inclus dans toutes nos formules. Nous restons disponibles pour r&eacute;pondre &agrave; vos questions, corriger d'&eacute;ventuels bugs et vous accompagner dans la prise en main de votre site.</p>
+                </div>
+            </div>
+
+            <div class="faq-item swiss-fade-up" data-faq-target="item" data-scroll-animation-target="item">
+                <button class="faq-question" data-action="click->faq#toggle">
+                    <span>Mon site sera-t-il optimis&eacute; pour Google (SEO) ?</span>
+                    <svg class="faq-icon" data-faq-target="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div class="faq-answer" data-faq-target="answer">
+                    <p>Oui, chaque site est optimis&eacute; pour le r&eacute;f&eacute;rencement naturel (SEO). Nous mettons en place les bonnes pratiques : balises m&eacute;ta, structure HTML s&eacute;mantique, vitesse de chargement optimis&eacute;e et compatibilit&eacute; mobile.</p>
+                </div>
+            </div>
+
+            <div class="faq-item swiss-fade-up" data-faq-target="item" data-scroll-animation-target="item">
+                <button class="faq-question" data-action="click->faq#toggle">
+                    <span>Quel est le d&eacute;lai de r&eacute;ponse ?</span>
+                    <svg class="faq-icon" data-faq-target="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div class="faq-answer" data-faq-target="answer">
+                    <p>Nous r&eacute;pondons g&eacute;n&eacute;ralement sous 24h en jours ouvr&eacute;s. Pour les urgences techniques sur un site en production, nous intervenons dans les plus brefs d&eacute;lais.</p>
+                </div>
+            </div>
+
+            <div class="faq-item swiss-fade-up" data-faq-target="item" data-scroll-animation-target="item">
+                <button class="faq-question" data-action="click->faq#toggle">
+                    <span>Dois-je payer un acompte ?</span>
+                    <svg class="faq-icon" data-faq-target="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div class="faq-answer" data-faq-target="answer">
+                    <p>Oui, un acompte de 30% est demand&eacute; au lancement du projet. Le solde est r&eacute;gl&eacute; &agrave; la livraison, une fois que vous &ecirc;tes satisfait du r&eacute;sultat. Ce fonctionnement vous garantit un engagement mutuel.</p>
+                </div>
+            </div>
+
+            <div class="faq-item swiss-fade-up" data-faq-target="item" data-scroll-animation-target="item">
+                <button class="faq-question" data-action="click->faq#toggle">
+                    <span>Puis-je avoir un appel avant de m'engager ?</span>
+                    <svg class="faq-icon" data-faq-target="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div class="faq-answer" data-faq-target="answer">
+                    <p>Bien s&ucirc;r ! Nous proposons un appel d&eacute;couverte gratuit et sans engagement. C'est l'occasion de discuter de votre projet, de poser vos questions et de voir si nous sommes le bon partenaire pour vous.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="cta swiss-scale" data-scroll-animation-target="item">
+        <div class="cta-container">
+            <h2 class="cta-title">Pr&ecirc;t &agrave; lancer votre site web ?</h2>
+            <p class="cta-description">
+                Discutons de votre projet d&egrave;s aujourd'hui. Devis gratuit, sans engagement.
+            </p>
+            <a href="{{ path('app_contact') }}" class="btn btn-formule btn-formule-primary">D&eacute;marrer mon projet</a>
+        </div>
+    </section>
+</div>
 {% endblock %}
