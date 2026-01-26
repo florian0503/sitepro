@@ -20,6 +20,9 @@ class GroqService
         $this->httpClient = $httpClient;
     }
 
+    /**
+     * @param array<int, array{role: string, content: string}> $messages
+     */
     public function chat(array $messages): string
     {
         $systemPrompt = $this->getSystemPrompt();
