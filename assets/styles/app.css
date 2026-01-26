@@ -3937,3 +3937,111 @@ html, body {
         bottom: 70px;
     }
 }
+
+/* ===========================================
+   Legal Pages (Mentions, CGV, Privacy)
+   =========================================== */
+
+.legal-content {
+    padding: 60px 24px 80px;
+    background: #fff;
+}
+
+.legal-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.legal-section {
+    margin-bottom: 3rem;
+}
+
+.legal-section:last-child {
+    margin-bottom: 0;
+}
+
+.legal-section h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #0066ff;
+}
+
+.legal-section p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #4a5568;
+    margin: 0 0 1rem;
+}
+
+.legal-section p:last-child {
+    margin-bottom: 0;
+}
+
+.legal-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+}
+
+.legal-section ul li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #4a5568;
+}
+
+.legal-section ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6rem;
+    width: 6px;
+    height: 6px;
+    background: #0066ff;
+    border-radius: 50%;
+}
+
+.legal-section ul li:last-child {
+    margin-bottom: 0;
+}
+
+.legal-section a {
+    color: #0066ff;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.legal-section a:hover {
+    color: #0052cc;
+    text-decoration: underline;
+}
+
+.legal-section strong {
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
+.legal-section em {
+    color: #6b7280;
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .legal-content {
+        padding: 40px 20px 60px;
+    }
+
+    .legal-section h2 {
+        font-size: 1.25rem;
+    }
+
+    .legal-section p,
+    .legal-section ul li {
+        font-size: 0.95rem;
+    }
+}

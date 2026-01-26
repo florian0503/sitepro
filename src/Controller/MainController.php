@@ -82,4 +82,22 @@ final class MainController extends AbstractController
     {
         return $this->render('pages/quote.html.twig');
     }
+
+    #[Route('/mentions-legales', name: 'app_legal')]
+    public function legal(): Response
+    {
+        return $this->render('pages/legal.html.twig');
+    }
+
+    #[Route('/cgv', name: 'app_cgv')]
+    public function cgv(): Response
+    {
+        return $this->render('pages/cgv.html.twig');
+    }
+
+    #[Route('/politique-confidentialite', name: 'app_privacy')]
+    public function privacy(): Response
+    {
+        return $this->render('pages/privacy.html.twig');
+    }
 }
