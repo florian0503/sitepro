@@ -71,7 +71,7 @@ export default class extends Controller {
 
     addWelcomeMessage() {
         setTimeout(() => {
-            this.addMessage('Bonjour ! Je suis l\'assistant de WebDesignPro. Comment puis-je vous aider ?', 'bot');
+            this.addMessage('Bonjour ! Je suis l\'assistant de EntryWeb. Comment puis-je vous aider ?', 'bot');
         }, 500);
     }
 

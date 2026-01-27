@@ -44,9 +44,13 @@ final class MainController extends AbstractController
     }
 
     #[Route('/a-propos', name: 'app_about')]
-    public function about(): Response
+    public function about(RealisationRepository $realisationRepository): Response
     {
-        return $this->render('pages/about.html.twig');
+        $realisationsCount = count($realisationRepository->findPublished());
+
+        return $this->render('pages/about.html.twig', [
+            'realisationsCount' => $realisationsCount,
+        ]);
     }
 
     #[Route('/contact', name: 'app_contact', methods: ['GET', 'POST'])]

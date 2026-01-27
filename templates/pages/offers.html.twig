@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Votre Site Web Clé en Main - WebDesignPro{% endblock %}
+{% block title %}Votre Site Web Clé en Main - EntryWeb{% endblock %}
 
 {% block body %}
 <div data-controller="scroll-animation">
@@ -12,6 +12,10 @@
         </div>
     </section>
 
+    <div class="tva-banner">
+        <p>TVA non applicable, article 293B du CGI</p>
+    </div>
+
     {# Section Pricing Cards #}
     <section class="offers-pricing">
         <div class="offers-pricing-container">
@@ -22,11 +26,12 @@
                         <h3 class="offer-card-title">Pack Essentiel</h3>
                         <p class="offer-card-subtitle">Idéal pour démarrer</p>
                         <div class="offer-card-price">
-                            <span class="price-amount">249€</span>
+                            <span class="price-amount">249€<sup>HT</sup></span>
                             <span class="price-type">Frais de mise en service</span>
                         </div>
                         <div class="offer-card-subscription">
-                            <span class="subscription-notice">+ 49€/mois (Engagement 24 mois)</span>
+                            <span class="subscription-notice">Abonnement : Dès la formule "Essentiel" (49€<sup>HT</sup>/mois)</span>
+                            <span class="subscription-engagement">Engagement 24 mois</span>
                         </div>
                     </div>
                     <div class="offer-card-body">
@@ -58,11 +63,12 @@
                         <h3 class="offer-card-title">Pack Business</h3>
                         <p class="offer-card-subtitle">Pour les entreprises ambitieuses</p>
                         <div class="offer-card-price">
-                            <span class="price-amount">449€</span>
+                            <span class="price-amount">449€<sup>HT</sup></span>
                             <span class="price-type">Frais de mise en service</span>
                         </div>
                         <div class="offer-card-subscription">
-                            <span class="subscription-notice">+ 79€/mois (Engagement 24 mois)</span>
+                            <span class="subscription-notice">Abonnement : Dès la formule "Confort" (79€<sup>HT</sup>/mois)</span>
+                            <span class="subscription-engagement">Engagement 24 mois</span>
                         </div>
                     </div>
                     <div class="offer-card-body">
@@ -93,7 +99,8 @@
                             <span class="price-type">Projet personnalisé</span>
                         </div>
                         <div class="offer-card-subscription">
-                            <span class="subscription-notice">+ 99€/mois (Engagement 24 mois)</span>
+                            <span class="subscription-notice">Abonnement : Dès la formule "Premium" (99€<sup>HT</sup>/mois)</span>
+                            <span class="subscription-engagement">Engagement 24 mois</span>
                         </div>
                     </div>
                     <div class="offer-card-body">
@@ -115,6 +122,9 @@
                     </div>
                 </div>
             </div>
+            <p class="offers-custom-note swiss-fade-up" data-scroll-animation-target="item">
+                Vous avez un projet différent ? Refonte de site, application web, fonctionnalités spécifiques... <a href="{{ path('app_contact') }}">Contactez-nous</a> pour un devis sur-mesure.
+            </p>
         </div>
     </section>
 
@@ -131,7 +141,7 @@
                     <div class="subscription-card-header">
                         <h3 class="subscription-card-title">Essentiel</h3>
                         <div class="subscription-card-price">
-                            <span class="subscription-amount">49€</span>
+                            <span class="subscription-amount">49€<sup>HT</sup></span>
                             <span class="subscription-period">/mois</span>
                         </div>
                     </div>
@@ -145,16 +155,17 @@
                             <li class="included"><span class="sub-check"></span>Support par email (48h)</li>
                             <li class="included"><span class="sub-check"></span>1h de maintenance/mois</li>
                         </ul>
+                        <p class="subscription-upgrade">Évolution possible vers Confort ou Premium</p>
                     </div>
                 </div>
 
-                {# Abonnement Business #}
+                {# Abonnement Confort #}
                 <div class="subscription-card subscription-card--popular swiss-fade-up" data-scroll-animation-target="item" data-delay="100" data-subscription-selection-target="card" data-action="click->subscription-selection#select">
                     <div class="subscription-card-badge">Recommandé</div>
                     <div class="subscription-card-header">
-                        <h3 class="subscription-card-title">Business</h3>
+                        <h3 class="subscription-card-title">Confort</h3>
                         <div class="subscription-card-price">
-                            <span class="subscription-amount">79€</span>
+                            <span class="subscription-amount">79€<sup>HT</sup></span>
                             <span class="subscription-period">/mois</span>
                         </div>
                     </div>
@@ -166,21 +177,22 @@
                             <li class="included"><span class="sub-check"></span>Monitoring de disponibilité</li>
                             <li class="included"><span class="sub-check"></span>1h de maintenance/mois</li>
                         </ul>
+                        <p class="subscription-upgrade">Évolution possible vers Premium</p>
                     </div>
                 </div>
 
-                {# Abonnement E-commerce #}
+                {# Abonnement Premium #}
                 <div class="subscription-card swiss-fade-up" data-scroll-animation-target="item" data-delay="200" data-subscription-selection-target="card" data-action="click->subscription-selection#select">
                     <div class="subscription-card-header">
-                        <h3 class="subscription-card-title">E-commerce</h3>
+                        <h3 class="subscription-card-title">Premium</h3>
                         <div class="subscription-card-price">
-                            <span class="subscription-amount">99€</span>
+                            <span class="subscription-amount">99€<sup>HT</sup></span>
                             <span class="subscription-period">/mois</span>
                         </div>
                     </div>
                     <div class="subscription-card-body">
                         <ul class="subscription-features">
-                            <li class="included"><span class="sub-check"></span>Tout du pack Business</li>
+                            <li class="included"><span class="sub-check"></span>Tout du pack Confort</li>
                             <li class="included"><span class="sub-check"></span>Sauvegardes journalières (BDD)</li>
                             <li class="included"><span class="sub-check"></span>Support prioritaire (Email)</li>
                             <li class="included"><span class="sub-check"></span>Sécurisation des transactions</li>
@@ -189,6 +201,9 @@
                     </div>
                 </div>
             </div>
+            <p class="subscriptions-options swiss-fade-up" data-scroll-animation-target="item">
+                <strong>Options disponibles :</strong> Adresse email professionnelle • Heures de maintenance supplémentaires • Maquettes sur demande — <a href="{{ path('app_contact') }}">Nous consulter</a>
+            </p>
         </div>
     </section>
 
@@ -205,9 +220,9 @@
                     <thead>
                         <tr>
                             <th class="comparison-feature-col">Ce qui est inclus</th>
-                            <th class="comparison-plan-col">Pack Essentiel</th>
-                            <th class="comparison-plan-col comparison-plan-col--active">Pack Business</th>
-                            <th class="comparison-plan-col">E-commerce</th>
+                            <th class="comparison-plan-col">Essentiel</th>
+                            <th class="comparison-plan-col comparison-plan-col--active">Confort</th>
+                            <th class="comparison-plan-col">Premium</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -217,8 +232,8 @@
                         </tr>
                         <tr>
                             <td>Frais de création</td>
-                            <td>249€</td>
-                            <td>449€</td>
+                            <td>249€<sup>HT</sup></td>
+                            <td>449€<sup>HT</sup></td>
                             <td>Sur devis</td>
                         </tr>
                         <tr>

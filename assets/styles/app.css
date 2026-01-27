@@ -772,6 +772,12 @@ body {
     color: rgba(255, 255, 255, 0.85);
 }
 
+.formule-card-price sup,
+.formule-card-price-sub sup {
+    font-size: 0.4em;
+    font-weight: 400;
+}
+
 .formule-card-desc {
     font-size: 1rem;
     line-height: 1.5;
@@ -3037,6 +3043,18 @@ html, body {
    OFFERS PAGE STYLES
    ======================================== */
 
+.tva-banner {
+    background: #f3f4f6;
+    padding: 0.75rem 1.5rem;
+    text-align: center;
+}
+
+.tva-banner p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
 .offers-pricing {
     background: #fff;
     padding: 60px 24px 80px;
@@ -3166,6 +3184,11 @@ html, body {
     line-height: 1;
 }
 
+.price-amount sup {
+    font-size: 0.4em;
+    font-weight: 400;
+}
+
 .offer-card--selected .price-amount {
     color: #fff;
 }
@@ -3197,6 +3220,17 @@ html, body {
 
 .offer-card--selected .subscription-notice {
     color: rgba(255, 255, 255, 0.9);
+}
+
+.subscription-engagement {
+    display: block;
+    font-size: 0.75rem;
+    color: #9ca3af;
+    margin-top: 0.25rem;
+}
+
+.offer-card--selected .subscription-engagement {
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .offer-card-body {
@@ -3315,6 +3349,29 @@ html, body {
     color: #0066ff;
 }
 
+.offers-custom-note {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 1.5rem 2rem;
+    background: #f8fafc;
+    border-radius: 12px;
+    color: #4b5563;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.offers-custom-note a {
+    color: #0066ff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.offers-custom-note a:hover {
+    color: #0052cc;
+    text-decoration: underline;
+}
+
 /* Subscriptions Section */
 .subscriptions-section {
     background: #f9fafb;
@@ -3415,6 +3472,11 @@ html, body {
     color: #0066ff;
 }
 
+.subscription-amount sup {
+    font-size: 0.5em;
+    font-weight: 400;
+}
+
 .subscription-period {
     font-size: 0.9rem;
     color: #6b7280;
@@ -3484,6 +3546,65 @@ html, body {
     width: 8px;
     height: 2px;
     background: #9ca3af;
+}
+
+.subscription-upgrade {
+    margin: 1rem 0 0;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+    font-size: 0.8rem;
+    color: #6b7280;
+    text-align: center;
+}
+
+.subscription-card--popular .subscription-upgrade {
+    border-top-color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.subscription-card--disabled {
+    opacity: 0.4;
+    pointer-events: none;
+    filter: grayscale(100%);
+}
+
+.subscription-card--disabled .subscription-upgrade {
+    display: none;
+}
+
+.subscription-card--disabled::after {
+    content: 'Non disponible avec ce pack';
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.75rem;
+    color: #9ca3af;
+    white-space: nowrap;
+}
+
+.subscriptions-options {
+    text-align: center;
+    margin-top: 1rem;
+    padding: 1rem 1.5rem;
+    background: #fff;
+    border-radius: 10px;
+    color: #6b7280;
+    font-size: 0.95rem;
+}
+
+.subscriptions-options strong {
+    color: #1a1a1a;
+}
+
+.subscriptions-options a {
+    color: #0066ff;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.subscriptions-options a:hover {
+    text-decoration: underline;
 }
 
 @media (max-width: 768px) {
@@ -4572,6 +4693,33 @@ html, body {
 .legal-section em {
     color: #6b7280;
     font-style: italic;
+}
+
+.legal-warning {
+    background: #fef3c7;
+    border-left: 4px solid #f59e0b;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.legal-warning h4 {
+    color: #92400e;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 0.75rem;
+}
+
+.legal-warning p {
+    color: #78350f;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.legal-footer {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid #e5e7eb;
 }
 
 @media (max-width: 768px) {
