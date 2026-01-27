@@ -47,7 +47,9 @@
       "Bash(git merge:*)",
       "Bash(timeout:*)",
       "Bash(symfony.exe server:start:*)",
-      "Bash(git pull:*)"
+      "Bash(git pull:*)",
+      "Bash(Start-Sleep -Seconds 3)",
+      "Bash(Get-Content \"C:\\\\Users\\\\LABORA~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-Laboratoires-HAGRAL-Desktop-webdesigner\\\\tasks\\\\be120c2.output\")"
     ]
   }
 }
