@@ -3343,9 +3343,86 @@ html, body {
     }
 }
 
+/* Benefits Section */
+.offers-benefits {
+    background: #fff;
+    padding: 80px 24px;
+}
+
+.offers-benefits-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.offers-benefits-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.offers-benefits-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 0.5rem;
+}
+
+.offers-benefits-subtitle {
+    font-size: 1rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+.offers-benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.benefit-item {
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.benefit-icon {
+    width: 64px;
+    height: 64px;
+    background: #f0f7ff;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    color: #0066ff;
+}
+
+.benefit-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 0.5rem;
+}
+
+.benefit-desc {
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin: 0;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .offers-benefits-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .offers-benefits-title {
+        font-size: 1.5rem;
+    }
+}
+
 /* Comparison Section */
 .offers-comparison {
-    background: #fff;
+    background: #f9fafb;
     padding: 80px 24px;
 }
 
@@ -3379,6 +3456,14 @@ html, body {
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
     overflow-x: auto;
+}
+
+.comparison-note {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #6b7280;
+    margin-top: 1.5rem;
+    font-style: italic;
 }
 
 .comparison-table {

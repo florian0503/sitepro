@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nos Forfaits - WebDesignPro{% endblock %}
+{% block title %}Votre Site Web Clé en Main - WebDesignPro{% endblock %}
 
 {% block body %}
 <div data-controller="scroll-animation">
     {# Section Hero - Forfaits #}
     <section class="page-hero">
         <div class="page-hero-inner">
-            <h1 class="page-hero-title swiss-fade-up is-visible" data-scroll-animation-target="item">Nos Forfaits Transparents</h1>
-            <p class="page-hero-description swiss-fade-up is-visible" data-scroll-animation-target="item">Des tarifs clairs, sans surprises. Choisissez la formule qui correspond parfaitement à vos besoins et à votre budget.</p>
+            <h1 class="page-hero-title swiss-fade-up is-visible" data-scroll-animation-target="item">Votre site web, sans prise de tête</h1>
+            <p class="page-hero-description swiss-fade-up is-visible" data-scroll-animation-target="item">Un site professionnel clé en main avec hébergement, maintenance et sécurité inclus. Vous vous concentrez sur votre activité, on s'occupe du reste.</p>
         </div>
     </section>
 
@@ -19,31 +19,30 @@
                 {# Pack Démarrage #}
                 <div class="offer-card swiss-fade-up" data-scroll-animation-target="item" data-delay="0" data-offer-selection-target="card" data-action="click->offer-selection#select">
                     <div class="offer-card-header">
-                        <h3 class="offer-card-title">Pack Démarrage</h3>
-                        <p class="offer-card-subtitle">Site vitrine simple</p>
+                        <h3 class="offer-card-title">Pack Essentiel</h3>
+                        <p class="offer-card-subtitle">Idéal pour démarrer</p>
                         <div class="offer-card-price">
-                            <span class="price-amount">499€</span>
-                            <span class="price-type">Paiement unique</span>
+                            <span class="price-amount">199€</span>
+                            <span class="price-type">Frais de mise en service</span>
                         </div>
                         <div class="offer-card-subscription">
-                            <span class="subscription-notice">+ abonnement mensuel</span>
+                            <span class="subscription-notice">+ abonnement mensuel (engagement 24 mois)</span>
                         </div>
                     </div>
                     <div class="offer-card-body">
                         <ul class="offer-features">
-                            <li><span class="offer-check"></span>Design moderne et professionnel</li>
-                            <li><span class="offer-check"></span>Site responsive (mobile/tablette)</li>
+                            <li><span class="offer-check"></span>Design moderne et sur-mesure</li>
+                            <li><span class="offer-check"></span>Site 100% responsive</li>
                             <li><span class="offer-check"></span>1 page personnalisée</li>
                             <li><span class="offer-check"></span>Formulaire de contact</li>
-                            <li><span class="offer-check"></span>Optimisation des images</li>
+                            <li><span class="offer-check"></span>Optimisation des performances</li>
                             <li><span class="offer-check"></span>Intégration Google Maps</li>
-                            <li><span class="offer-check"></span>Hébergement 1 an offert</li>
-                            <li><span class="offer-check"></span>Support technique 30 jours</li>
-                            <li><span class="offer-check"></span>Livraison en 7 jours</li>
+                            <li><span class="offer-check"></span>Technologie robuste et sécurisée</li>
+                            <li><span class="offer-check"></span>Livraison sous 3 semaines</li>
                         </ul>
                     </div>
                     <div class="offer-card-footer">
-                        <a href="{{ path('app_contact') }}" class="btn-offer btn-offer-primary">Choisir ce forfait</a>
+                        <a href="{{ path('app_contact') }}" class="btn-offer btn-offer-primary">Démarrer mon projet</a>
                     </div>
                 </div>
 
@@ -53,36 +52,34 @@
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                         </svg>
-                        Le plus populaire
+                        Le plus choisi
                     </div>
                     <div class="offer-card-header">
-                        <h3 class="offer-card-title">Pack Entreprise</h3>
-                        <p class="offer-card-subtitle">Solution complète PME</p>
+                        <h3 class="offer-card-title">Pack Business</h3>
+                        <p class="offer-card-subtitle">Pour les entreprises ambitieuses</p>
                         <div class="offer-card-price">
-                            <span class="price-amount">1290€</span>
-                            <span class="price-type">Paiement unique</span>
+                            <span class="price-amount">449€</span>
+                            <span class="price-type">Frais de mise en service</span>
                         </div>
                         <div class="offer-card-subscription">
-                            <span class="subscription-notice">+ abonnement mensuel</span>
+                            <span class="subscription-notice">+ abonnement mensuel (engagement 24 mois)</span>
                         </div>
                     </div>
                     <div class="offer-card-body">
-                        <p class="offer-includes">Tout du Starter Pack, plus :</p>
+                        <p class="offer-includes">Tout du Pack Essentiel, plus :</p>
                         <ul class="offer-features">
                             <li><span class="offer-check"></span>Jusqu'à 5 pages personnalisées</li>
-                            <li><span class="offer-check"></span>Blog intégré avec CMS</li>
-                            <li><span class="offer-check"></span>SEO de base optimisé</li>
+                            <li><span class="offer-check"></span>Blog intégré avec espace admin</li>
+                            <li><span class="offer-check"></span>Référencement SEO optimisé</li>
                             <li><span class="offer-check"></span>Galerie photos/vidéos</li>
                             <li><span class="offer-check"></span>Intégrations réseaux sociaux</li>
-                            <li><span class="offer-check"></span>Animations et interactions</li>
-                            <li><span class="offer-check"></span>Certificat SSL inclus</li>
-                            <li><span class="offer-check"></span>Support technique 90 jours</li>
-                            <li><span class="offer-check"></span>Formation à la gestion du site</li>
-                            <li><span class="offer-check"></span>Livraison en 14 jours</li>
+                            <li><span class="offer-check"></span>Animations fluides</li>
+                            <li><span class="offer-check"></span>Formation à la prise en main (1h)</li>
+                            <li><span class="offer-check"></span>Livraison sous 5 semaines</li>
                         </ul>
                     </div>
                     <div class="offer-card-footer">
-                        <a href="{{ path('app_contact') }}" class="btn-offer btn-offer-primary">Choisir ce forfait</a>
+                        <a href="{{ path('app_contact') }}" class="btn-offer btn-offer-primary">Démarrer mon projet</a>
                     </div>
                 </div>
 
@@ -90,33 +87,30 @@
                 <div class="offer-card swiss-fade-up" data-scroll-animation-target="item" data-delay="200" data-offer-selection-target="card" data-action="click->offer-selection#select">
                     <div class="offer-card-header">
                         <h3 class="offer-card-title">E-commerce & Sur-Mesure</h3>
-                        <p class="offer-card-subtitle">Boutique en ligne</p>
+                        <p class="offer-card-subtitle">Votre boutique en ligne</p>
                         <div class="offer-card-price">
                             <span class="price-amount">Sur Devis</span>
-                            <span class="price-type">À partir de 2500€</span>
+                            <span class="price-type">Projet personnalisé</span>
                         </div>
                         <div class="offer-card-subscription">
-                            <span class="subscription-notice">+ abonnement mensuel</span>
+                            <span class="subscription-notice">+ abonnement mensuel (engagement 24 mois)</span>
                         </div>
                     </div>
                     <div class="offer-card-body">
-                        <p class="offer-includes">Tout du Professional Pack, plus :</p>
+                        <p class="offer-includes">Solution sur-mesure incluant :</p>
                         <ul class="offer-features">
                             <li><span class="offer-check"></span>Boutique en ligne complète</li>
-                            <li><span class="offer-check"></span>Jusqu'à 50 produits</li>
-                            <li><span class="offer-check"></span>Paiement sécurisé en ligne</li>
-                            <li><span class="offer-check"></span>Gestion des stocks automatisée</li>
+                            <li><span class="offer-check"></span>Paiement sécurisé intégré</li>
+                            <li><span class="offer-check"></span>Gestion des stocks</li>
                             <li><span class="offer-check"></span>Tableau de bord vendeur</li>
                             <li><span class="offer-check"></span>Options de livraison multiples</li>
-                            <li><span class="offer-check"></span>Système de promotion/coupons</li>
-                            <li><span class="offer-check"></span>Intégration comptabilité</li>
-                            <li><span class="offer-check"></span>Support prioritaire 6 mois</li>
-                            <li><span class="offer-check"></span>Formation complète incluse</li>
-                            <li><span class="offer-check"></span>Fonctionnalités sur mesure</li>
+                            <li><span class="offer-check"></span>Système de promotions</li>
+                            <li><span class="offer-check"></span>Formation complète (3h)</li>
+                            <li><span class="offer-check"></span>Délai selon complexité</li>
                         </ul>
                     </div>
                     <div class="offer-card-footer">
-                        <a href="{{ path('app_contact') }}" class="btn-offer btn-offer-primary">Choisir ce forfait</a>
+                        <a href="{{ path('app_contact') }}" class="btn-offer btn-offer-primary">Discuter de mon projet</a>
                     </div>
                 </div>
             </div>
@@ -127,8 +121,8 @@
     <section class="subscriptions-section">
         <div class="subscriptions-container">
             <div class="subscriptions-header swiss-fade-up" data-scroll-animation-target="item">
-                <h2 class="subscriptions-title">Choisissez votre abonnement</h2>
-                <p class="subscriptions-subtitle">Un abonnement mensuel à ajouter à votre forfait</p>
+                <h2 class="subscriptions-title">Votre abonnement tout inclus</h2>
+                <p class="subscriptions-subtitle">Hébergement, maintenance et tranquillité d'esprit — Engagement 24 mois</p>
             </div>
             <div class="subscriptions-cards" data-controller="subscription-selection">
                 {# Abonnement Essentiel #}
@@ -136,17 +130,19 @@
                     <div class="subscription-card-header">
                         <h3 class="subscription-card-title">Essentiel</h3>
                         <div class="subscription-card-price">
-                            <span class="subscription-amount">30€</span>
+                            <span class="subscription-amount">49€</span>
                             <span class="subscription-period">/mois</span>
                         </div>
                     </div>
                     <div class="subscription-card-body">
                         <ul class="subscription-features">
-                            <li class="included"><span class="sub-check"></span>Hébergement web</li>
+                            <li class="included"><span class="sub-check"></span>Hébergement haute performance</li>
                             <li class="included"><span class="sub-check"></span>Nom de domaine inclus</li>
-                            <li class="included"><span class="sub-check"></span>Certificat SSL</li>
-                            <li class="not-included"><span class="sub-dash"></span>Support 7j/7</li>
-                            <li class="not-included"><span class="sub-dash"></span>Modifications illimitées</li>
+                            <li class="included"><span class="sub-check"></span>Certificat SSL (HTTPS)</li>
+                            <li class="included"><span class="sub-check"></span>Mises à jour de sécurité</li>
+                            <li class="included"><span class="sub-check"></span>Sauvegardes automatiques</li>
+                            <li class="included"><span class="sub-check"></span>Support par email</li>
+                            <li class="not-included"><span class="sub-dash"></span>1h de maintenance/mois</li>
                         </ul>
                     </div>
                 </div>
@@ -157,39 +153,62 @@
                     <div class="subscription-card-header">
                         <h3 class="subscription-card-title">Confort</h3>
                         <div class="subscription-card-price">
-                            <span class="subscription-amount">50€</span>
+                            <span class="subscription-amount">79€</span>
                             <span class="subscription-period">/mois</span>
                         </div>
                     </div>
                     <div class="subscription-card-body">
                         <ul class="subscription-features">
-                            <li class="included"><span class="sub-check"></span>Hébergement web</li>
+                            <li class="included"><span class="sub-check"></span>Hébergement haute performance</li>
                             <li class="included"><span class="sub-check"></span>Nom de domaine inclus</li>
-                            <li class="included"><span class="sub-check"></span>Certificat SSL</li>
-                            <li class="included"><span class="sub-check"></span>Support 7j/7</li>
-                            <li class="not-included"><span class="sub-dash"></span>Modifications illimitées</li>
+                            <li class="included"><span class="sub-check"></span>Certificat SSL (HTTPS)</li>
+                            <li class="included"><span class="sub-check"></span>Mises à jour de sécurité</li>
+                            <li class="included"><span class="sub-check"></span>Sauvegardes automatiques</li>
+                            <li class="included"><span class="sub-check"></span>Support prioritaire 7j/7</li>
+                            <li class="included"><span class="sub-check"></span>1h de maintenance/mois</li>
                         </ul>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                {# Abonnement Premium #}
-                <div class="subscription-card swiss-fade-up" data-scroll-animation-target="item" data-delay="200" data-subscription-selection-target="card" data-action="click->subscription-selection#select">
-                    <div class="subscription-card-header">
-                        <h3 class="subscription-card-title">Premium</h3>
-                        <div class="subscription-card-price">
-                            <span class="subscription-amount">80€</span>
-                            <span class="subscription-period">/mois</span>
-                        </div>
+    {# Section Avantages #}
+    <section class="offers-benefits">
+        <div class="offers-benefits-container">
+            <div class="offers-benefits-header swiss-fade-up" data-scroll-animation-target="item">
+                <h2 class="offers-benefits-title">Pourquoi choisir la location de site ?</h2>
+                <p class="offers-benefits-subtitle">Zéro tracas technique, vous restez concentré sur votre business</p>
+            </div>
+            <div class="offers-benefits-grid">
+                <div class="benefit-item swiss-fade-up" data-scroll-animation-target="item" data-delay="0">
+                    <div class="benefit-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
                     </div>
-                    <div class="subscription-card-body">
-                        <ul class="subscription-features">
-                            <li class="included"><span class="sub-check"></span>Hébergement web</li>
-                            <li class="included"><span class="sub-check"></span>Nom de domaine inclus</li>
-                            <li class="included"><span class="sub-check"></span>Certificat SSL</li>
-                            <li class="included"><span class="sub-check"></span>Support 7j/7</li>
-                            <li class="included"><span class="sub-check"></span>Modifications illimitées</li>
-                        </ul>
+                    <h3 class="benefit-title">Sécurité garantie</h3>
+                    <p class="benefit-desc">Mises à jour de sécurité automatiques, certificat SSL et sauvegardes régulières inclus.</p>
+                </div>
+                <div class="benefit-item swiss-fade-up" data-scroll-animation-target="item" data-delay="100">
+                    <div class="benefit-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
                     </div>
+                    <h3 class="benefit-title">Toujours à jour</h3>
+                    <p class="benefit-desc">Votre site évolue avec les dernières technologies. Maintenance technique incluse chaque mois.</p>
+                </div>
+                <div class="benefit-item swiss-fade-up" data-scroll-animation-target="item" data-delay="200">
+                    <div class="benefit-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="benefit-title">Clé en main</h3>
+                    <p class="benefit-desc">Hébergement premium, nom de domaine et support inclus. Vous n'avez rien à gérer.</p>
                 </div>
             </div>
         </div>
@@ -199,34 +218,57 @@
     <section class="offers-comparison">
         <div class="offers-comparison-container">
             <div class="offers-comparison-header swiss-fade-up" data-scroll-animation-target="item">
-                <h2 class="offers-comparison-title">Comparaison Détaillée des Forfaits</h2>
-                <p class="offers-comparison-subtitle">Tous les détails pour vous aider à faire le bon choix.</p>
+                <h2 class="offers-comparison-title">Comparatif des formules</h2>
+                <p class="offers-comparison-subtitle">Trouvez l'offre adaptée à votre projet</p>
             </div>
 
             <div class="comparison-table-wrapper swiss-fade-up" data-scroll-animation-target="item" data-delay="100">
                 <table class="comparison-table">
                     <thead>
                         <tr>
-                            <th class="comparison-feature-col">Fonctionnalité</th>
-                            <th class="comparison-plan-col">Starter Pack</th>
-                            <th class="comparison-plan-col comparison-plan-col--active">Professional Pack</th>
+                            <th class="comparison-feature-col">Ce qui est inclus</th>
+                            <th class="comparison-plan-col">Pack Essentiel</th>
+                            <th class="comparison-plan-col comparison-plan-col--active">Pack Business</th>
                             <th class="comparison-plan-col">E-commerce</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {# Hébergement & Domaine #}
+                        {# Mise en service #}
                         <tr class="comparison-category-row">
-                            <td colspan="4">Hébergement & Domaine</td>
+                            <td colspan="4">Mise en service</td>
                         </tr>
                         <tr>
-                            <td>Hébergement web (1 an)</td>
+                            <td>Frais de création</td>
+                            <td>199€</td>
+                            <td>449€</td>
+                            <td>Sur devis</td>
+                        </tr>
+                        <tr>
+                            <td>Délai de livraison</td>
+                            <td>3 semaines</td>
+                            <td>5 semaines</td>
+                            <td>Selon projet</td>
+                        </tr>
+                        <tr>
+                            <td>Nombre de pages</td>
+                            <td>1 page</td>
+                            <td>Jusqu'à 5 pages</td>
+                            <td>Illimité</td>
+                        </tr>
+
+                        {# Inclus dans l'abonnement #}
+                        <tr class="comparison-category-row">
+                            <td colspan="4">Inclus dans votre abonnement</td>
+                        </tr>
+                        <tr>
+                            <td>Hébergement haute performance</td>
                             <td><span class="comparison-check"></span></td>
                             <td><span class="comparison-check"></span></td>
                             <td><span class="comparison-check"></span></td>
                         </tr>
                         <tr>
                             <td>Nom de domaine (.fr ou .com)</td>
-                            <td><span class="comparison-dash"></span></td>
+                            <td><span class="comparison-check"></span></td>
                             <td><span class="comparison-check"></span></td>
                             <td><span class="comparison-check"></span></td>
                         </tr>
@@ -237,50 +279,21 @@
                             <td><span class="comparison-check"></span></td>
                         </tr>
                         <tr>
-                            <td>Adresses email professionnelles</td>
-                            <td><span class="comparison-dash"></span></td>
-                            <td>3 comptes</td>
-                            <td>10 comptes</td>
-                        </tr>
-
-                        {# Assistance & Maintenance #}
-                        <tr class="comparison-category-row">
-                            <td colspan="4">Assistance & Maintenance</td>
-                        </tr>
-                        <tr>
-                            <td>Support technique par email</td>
-                            <td>30 jours</td>
-                            <td>90 jours</td>
-                            <td>6 mois</td>
-                        </tr>
-                        <tr>
                             <td>Mises à jour de sécurité</td>
-                            <td>3 mois</td>
-                            <td>6 mois</td>
-                            <td>12 mois</td>
+                            <td><span class="comparison-check"></span></td>
+                            <td><span class="comparison-check"></span></td>
+                            <td><span class="comparison-check"></span></td>
                         </tr>
                         <tr>
-                            <td>Modifications de contenu</td>
-                            <td>2 modifications</td>
-                            <td>5 modifications</td>
-                            <td>10 modifications</td>
-                        </tr>
-                        <tr>
-                            <td>Support téléphonique prioritaire</td>
-                            <td><span class="comparison-dash"></span></td>
-                            <td><span class="comparison-dash"></span></td>
+                            <td>Sauvegardes automatiques</td>
+                            <td><span class="comparison-check"></span></td>
+                            <td><span class="comparison-check"></span></td>
                             <td><span class="comparison-check"></span></td>
                         </tr>
 
                         {# Fonctionnalités #}
                         <tr class="comparison-category-row">
                             <td colspan="4">Fonctionnalités</td>
-                        </tr>
-                        <tr>
-                            <td>Nombre de pages</td>
-                            <td>1 page</td>
-                            <td>Jusqu'à 5 pages</td>
-                            <td>Illimité</td>
                         </tr>
                         <tr>
                             <td>Design responsive</td>
@@ -315,15 +328,16 @@
                     </tbody>
                 </table>
             </div>
+            <p class="comparison-note swiss-fade-up" data-scroll-animation-target="item">* Tous les forfaits nécessitent un abonnement mensuel avec engagement de 24 mois. Sites développés avec des technologies professionnelles garantissant performance et évolutivité.</p>
         </div>
     </section>
 
     {# CTA Section #}
     <section class="cta">
         <div class="cta-container">
-            <h2 class="cta-title swiss-fade-up" data-scroll-animation-target="item">Besoin d'un devis personnalisé ?</h2>
-            <p class="cta-description swiss-fade-up" data-scroll-animation-target="item">Chaque projet est unique. Contactez-nous pour discuter de vos besoins spécifiques.</p>
-            <a href="{{ path('app_contact') }}" class="btn-formule btn-formule-primary swiss-fade-up" data-scroll-animation-target="item">Demander un devis gratuit</a>
+            <h2 class="cta-title swiss-fade-up" data-scroll-animation-target="item">Prêt à lancer votre projet ?</h2>
+            <p class="cta-description swiss-fade-up" data-scroll-animation-target="item">Discutons de votre projet. Premier échange gratuit et sans engagement.</p>
+            <a href="{{ path('app_contact') }}" class="btn-formule btn-formule-primary swiss-fade-up" data-scroll-animation-target="item">Prendre rendez-vous</a>
         </div>
     </section>
 </div>
