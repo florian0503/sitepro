@@ -760,6 +760,18 @@ body {
     transition: color 0.3s ease;
 }
 
+.formule-card-price-sub {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #6b7280;
+    margin: 0.25rem 0 0;
+    transition: color 0.3s ease;
+}
+
+.formule-card--selected .formule-card-price-sub {
+    color: rgba(255, 255, 255, 0.85);
+}
+
 .formule-card-desc {
     font-size: 1rem;
     line-height: 1.5;
@@ -4491,6 +4503,13 @@ html, body {
     margin: 0 0 1rem;
     padding-bottom: 0.5rem;
     border-bottom: 2px solid #0066ff;
+}
+
+.legal-section h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 1.5rem 0 0.75rem;
 }
 
 .legal-section p {
