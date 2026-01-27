@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Contact - WebDesignPro{% endblock %}
+{% block title %}Contact - EntryWeb{% endblock %}
 
 {% block body %}
 <div data-controller="scroll-animation">
@@ -29,7 +29,7 @@
                     </div>
                     {% endif %}
                 {% else %}
-                <form class="contact-form" method="post" action="{{ path('app_contact') }}" onsubmit="this.querySelector('button[type=submit]').disabled = true; this.querySelector('button[type=submit]').innerHTML = 'Envoi en cours...'">
+                <form class="contact-form" method="post" action="{{ path('app_contact') }}" data-controller="contact-form">
                     <div class="form-group">
                         <label for="name">Nom complet *</label>
                         <input type="text" id="name" name="name" placeholder="Votre nom" required>
@@ -41,26 +41,14 @@
                     </div>
 
                     <div class="form-group" data-controller="custom-select">
-                        <label for="project_type">Type de projet *</label>
-                        <select id="project_type" name="project_type" required data-custom-select-target="select">
-                            <option value="">Sélectionnez un type de projet</option>
-                            <option value="site-vitrine">Site vitrine</option>
-                            <option value="e-commerce">Site e-commerce</option>
-                            <option value="application-web">Application web</option>
-                            <option value="refonte">Refonte de site</option>
-                            <option value="autre">Autre</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group" data-controller="custom-select">
-                        <label for="budget">Budget estimé *</label>
+                        <label for="budget">Formule souhaitée *</label>
                         <select id="budget" name="budget" required data-custom-select-target="select">
-                            <option value="">Sélectionnez votre budget</option>
-                            <option value="moins-1000">Moins de 1 000€</option>
-                            <option value="1000-3000">1 000€ - 3 000€</option>
-                            <option value="3000-5000">3 000€ - 5 000€</option>
-                            <option value="5000-10000">5 000€ - 10 000€</option>
-                            <option value="plus-10000">Plus de 10 000€</option>
+                            <option value="">Sélectionnez une formule</option>
+                            <option value="pack-essentiel">Pack Essentiel (249€HT + 49€HT/mois)</option>
+                            <option value="pack-business">Pack Business (449€HT + 79€HT/mois)</option>
+                            <option value="e-commerce">E-commerce (Sur devis + 99€HT/mois)</option>
+                            <option value="sur-mesure">Autre projet (Devis personnalisé)</option>
+                            <option value="autre">Je ne sais pas encore</option>
                         </select>
                     </div>
 
@@ -71,7 +59,7 @@
 
                     <div class="form-group form-checkbox">
                         <input type="checkbox" id="rgpd" name="rgpd" required>
-                        <label for="rgpd">J'accepte les <a href="#">conditions générales de protection des données</a></label>
+                        <label for="rgpd">J'accepte les <a href="{{ path('app_privacy') }}">conditions générales de protection des données</a></label>
                     </div>
 
                     <button type="submit" class="btn-contact-submit">
@@ -100,7 +88,7 @@
                         </div>
                         <div class="contact-info-content">
                             <span class="contact-info-label">Email</span>
-                            <span class="contact-info-value">contact@webdesignpro.fr</span>
+                            <span class="contact-info-value">florian.dimbert7@gmail.com</span>
                         </div>
                     </div>
 
@@ -111,7 +99,7 @@
                             </svg>
                         </div>
                         <div class="contact-info-content">
-                            <span class="contact-info-label">Téléphone</span>
+                            <span class="contact-info-label">Téléphone (1er contact)</span>
                             <span class="contact-info-value">+33 1 23 45 67 89</span>
                         </div>
                     </div>

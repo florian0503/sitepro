@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}À propos - WebDesignPro{% endblock %}
+{% block title %}À propos - EntryWeb{% endblock %}
 
 {% block body %}
 <div data-controller="scroll-animation">
@@ -18,17 +18,17 @@
                 </span>
                 <h1 class="about-title swiss-fade-up" data-scroll-animation-target="item" data-delay="100">Des Sites Web Qui Boostent Votre Business</h1>
                 <p class="about-description swiss-fade-up" data-scroll-animation-target="item" data-delay="200">
-                    Nous sommes Florian et Emilien, fondateurs de WebDesignPro. Notre mission ? 
+                    Nous sommes Florian et Emilien, fondateurs de EntryWeb. Notre mission ? 
                     Transformer votre présence en ligne en véritable levier de croissance pour votre entreprise. 
                     Nous créons des sites web performants qui attirent des clients et génèrent des résultats concrets.
                 </p>
                 <div class="about-stats" data-controller="counter">
                     <div class="about-stat swiss-fade-up" data-scroll-animation-target="item" data-delay="300">
-                        <span class="about-stat-value" data-counter-target="number">50+</span>
+                        <span class="about-stat-value" data-counter-target="number">{{ realisationsCount }}</span>
                         <span class="about-stat-label">Sites Livrés</span>
                     </div>
                     <div class="about-stat swiss-fade-up" data-scroll-animation-target="item" data-delay="400">
-                        <span class="about-stat-value" data-counter-target="number">98%</span>
+                        <span class="about-stat-value" data-counter-target="number">100%</span>
                         <span class="about-stat-label">Clients Satisfaits</span>
                     </div>
                     <div class="about-stat swiss-fade-up" data-scroll-animation-target="item" data-delay="500">
