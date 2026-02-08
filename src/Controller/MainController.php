@@ -11,8 +11,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mime\Email;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Attribute\Route;
 
 final class MainController extends AbstractController
@@ -111,7 +111,7 @@ final class MainController extends AbstractController
                 ->from('contact@entryweb.fr')
                 ->to('contact@entryweb.fr')
                 ->replyTo($clientEmail)
-                ->subject('Nouveau contact - ' . $name)
+                ->subject('Nouveau contact - '.$name)
                 ->html($htmlContent)
                 ->text("Nom : {$name}\nEmail : {$clientEmail}\nFormule : {$budget}\n\nMessage :\n{$message}");
 
