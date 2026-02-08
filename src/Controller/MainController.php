@@ -11,6 +11,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mime\Email;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Attribute\Route;
 
 final class MainController extends AbstractController
@@ -54,18 +56,66 @@ final class MainController extends AbstractController
     }
 
     #[Route('/contact', name: 'app_contact', methods: ['GET', 'POST'])]
-    public function contact(Request $request, EntityManagerInterface $entityManager): Response
+    public function contact(Request $request, EntityManagerInterface $entityManager, MailerInterface $mailer): Response
     {
         if ($request->isMethod('POST')) {
+            $name = $request->request->getString('name');
+            $clientEmail = $request->request->getString('email');
+            $budget = $request->request->getString('budget');
+            $message = $request->request->getString('message');
+
             $contactMessage = new ContactMessage();
-            $contactMessage->setName($request->request->getString('name'));
-            $contactMessage->setEmail($request->request->getString('email'));
+            $contactMessage->setName($name);
+            $contactMessage->setEmail($clientEmail);
             $contactMessage->setProjectType($request->request->getString('project_type'));
-            $contactMessage->setBudget($request->request->getString('budget'));
-            $contactMessage->setMessage($request->request->getString('message'));
+            $contactMessage->setBudget($budget);
+            $contactMessage->setMessage($message);
 
             $entityManager->persist($contactMessage);
             $entityManager->flush();
+
+            $htmlContent = <<<HTML
+            <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff;">
+                <div style="background: #0066ff; padding: 32px; text-align: center;">
+                    <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 600;">EntryWeb</h1>
+                    <p style="color: #cce0ff; margin: 8px 0 0; font-size: 14px;">Nouveau message de contact</p>
+                </div>
+                <div style="padding: 32px; background: #f8f9fa; border: 1px solid #e9ecef;">
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <tr>
+                            <td style="padding: 12px 16px; background: #ffffff; border-bottom: 1px solid #f0f0f0; font-size: 13px; color: #666; width: 120px; vertical-align: top;">Nom</td>
+                            <td style="padding: 12px 16px; background: #ffffff; border-bottom: 1px solid #f0f0f0; font-size: 15px; color: #111;">{$name}</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 16px; background: #ffffff; border-bottom: 1px solid #f0f0f0; font-size: 13px; color: #666; vertical-align: top;">Email</td>
+                            <td style="padding: 12px 16px; background: #ffffff; border-bottom: 1px solid #f0f0f0; font-size: 15px;"><a href="mailto:{$clientEmail}" style="color: #111; text-decoration: none;">{$clientEmail}</a></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 16px; background: #ffffff; border-bottom: 1px solid #f0f0f0; font-size: 13px; color: #666; vertical-align: top;">Formule</td>
+                            <td style="padding: 12px 16px; background: #ffffff; border-bottom: 1px solid #f0f0f0; font-size: 15px; color: #111;">{$budget}</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 16px; background: #ffffff; font-size: 13px; color: #666; vertical-align: top;">Message</td>
+                            <td style="padding: 12px 16px; background: #ffffff; font-size: 15px; color: #111; line-height: 1.6;">{$message}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div style="padding: 24px; text-align: center; background: #0066ff;">
+                    <a href="mailto:{$clientEmail}" style="display: inline-block; padding: 12px 32px; background: #ffffff; color: #0066ff; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px;">Repondre a {$name}</a>
+                    <p style="color: #cce0ff; margin: 16px 0 0; font-size: 12px;">EntryWeb - L'agence web des entrepreneurs</p>
+                </div>
+            </div>
+            HTML;
+
+            $email = (new Email())
+                ->from('contact@entryweb.fr')
+                ->to('contact@entryweb.fr')
+                ->replyTo($clientEmail)
+                ->subject('Nouveau contact - ' . $name)
+                ->html($htmlContent)
+                ->text("Nom : {$name}\nEmail : {$clientEmail}\nFormule : {$budget}\n\nMessage :\n{$message}");
+
+            $mailer->send($email);
 
             $this->addFlash('success', 'contact_sent');
 
