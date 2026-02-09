@@ -23,7 +23,7 @@ final class MainController extends AbstractController
     public function home(Request $request, RealisationRepository $realisationRepository): Response
     {
         $ref = $request->query->getString('ref');
-        if ($ref !== '') {
+        if ('' !== $ref) {
             $request->getSession()->set('referral_code', $ref);
         }
 
@@ -74,9 +74,9 @@ final class MainController extends AbstractController
 
             // Find referral sponsor
             $parrainEmail = '';
-            if ($referralCode !== '') {
+            if ('' !== $referralCode) {
                 $parrain = $parrainageRepository->findByReferralCode($referralCode);
-                if ($parrain !== null) {
+                if (null !== $parrain) {
                     $parrainEmail = $parrain->getEmail();
                     $parrain->setReferralsCount($parrain->getReferralsCount() + 1);
                 }
@@ -88,7 +88,7 @@ final class MainController extends AbstractController
             $contactMessage->setProjectType($budget);
             $contactMessage->setBudget($budget);
             $contactMessage->setMessage($message);
-            if ($parrainEmail !== '') {
+            if ('' !== $parrainEmail) {
                 $contactMessage->setReferredBy($parrainEmail);
             }
 
@@ -97,7 +97,7 @@ final class MainController extends AbstractController
 
             $parrainRow = '';
             $parrainText = '';
-            if ($parrainEmail !== '') {
+            if ('' !== $parrainEmail) {
                 $parrainRow = <<<HTML
                         <tr>
                             <td style="padding: 12px 16px; background: #ecfdf5; border-bottom: 1px solid #f0f0f0; font-size: 13px; color: #065f46; vertical-align: top; font-weight: 600;">Parrainé par</td>
@@ -160,7 +160,7 @@ final class MainController extends AbstractController
         // Check if a referral code is in session
         $parrain = null;
         $referralCode = $request->getSession()->get('referral_code');
-        if ($referralCode !== null) {
+        if (null !== $referralCode) {
             $parrain = $parrainageRepository->findByReferralCode($referralCode);
         }
 
@@ -200,20 +200,20 @@ final class MainController extends AbstractController
 
         // Store referral code in session when visiting with ?ref=
         $ref = $request->query->getString('ref');
-        if ($ref !== '') {
+        if ('' !== $ref) {
             $request->getSession()->set('referral_code', $ref);
         }
 
         if ($request->isMethod('POST')) {
             $email = trim($request->request->getString('email'));
 
-            if ($email !== '') {
+            if ('' !== $email) {
                 $parrainage = $parrainageRepository->findByEmail($email);
 
-                if ($parrainage === null) {
+                if (null === $parrainage) {
                     do {
                         $code = 'ENT-'.strtoupper(substr(bin2hex(random_bytes(3)), 0, 6));
-                    } while ($parrainageRepository->findByReferralCode($code) !== null);
+                    } while (null !== $parrainageRepository->findByReferralCode($code));
 
                     $parrainage = new Parrainage();
                     $parrainage->setEmail($email);
@@ -231,7 +231,7 @@ final class MainController extends AbstractController
 
         // Retrieve parrainage from session after redirect
         $parrainageEmail = $request->getSession()->remove('parrainage_email');
-        if ($parrainageEmail !== null) {
+        if (null !== $parrainageEmail) {
             $parrainage = $parrainageRepository->findByEmail($parrainageEmail);
         }
 
