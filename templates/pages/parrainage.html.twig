@@ -1,0 +1,285 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Programme de Parrainage - EntryWeb{% endblock %}
+
+{% block body %}
+<div data-controller="scroll-animation">
+    {# Section Hero - Programme de Parrainage #}
+    <section class="parrainage-hero">
+        <div class="parrainage-hero-inner">
+            <h1 class="parrainage-hero-title swiss-fade-up is-visible" data-scroll-animation-target="item">Programme de Parrainage</h1>
+            <p class="parrainage-hero-description swiss-fade-up is-visible" data-scroll-animation-target="item">
+                Recommandez nos services à votre réseau et bénéficiez de récompenses exclusives.<br>
+                Plus vous parrainez, plus vous gagnez !
+            </p>
+        </div>
+    </section>
+
+    {# Section Avantages Parrain/Filleul #}
+    <section class="parrainage-rewards">
+        <div class="parrainage-rewards-container">
+            <div class="parrainage-hero-cards swiss-fade-up" data-scroll-animation-target="item">
+                <div class="parrainage-hero-card">
+                    <span class="parrainage-hero-card-value">2 mois</span>
+                    <span class="parrainage-hero-card-label">d'abonnement offerts<br>pour vous</span>
+                </div>
+                <div class="parrainage-hero-card">
+                    <span class="parrainage-hero-card-value">10%</span>
+                    <span class="parrainage-hero-card-label">de réduction<br>pour votre filleul</span>
+                </div>
+            </div>
+            <div class="parrainage-hero-highlight swiss-fade-up" data-scroll-animation-target="item">
+                <span>1 parrainage = 2 mois d'abonnement offerts sur la formule Essentiel !</span>
+            </div>
+        </div>
+    </section>
+
+    {# Section Comment ça marche #}
+    <section class="parrainage-howto">
+        <div class="parrainage-howto-container">
+            <div class="parrainage-howto-header swiss-fade-up" data-scroll-animation-target="item">
+                <h2 class="parrainage-howto-title">Comment ça marche ?</h2>
+                <p class="parrainage-howto-subtitle">Un processus simple en 3 étapes pour commencer à profiter des avantages</p>
+            </div>
+            <div class="parrainage-steps">
+                <div class="parrainage-step swiss-fade-up" data-scroll-animation-target="item" data-delay="0">
+                    <div class="parrainage-step-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="18" cy="5" r="3"></circle>
+                            <circle cx="6" cy="12" r="3"></circle>
+                            <circle cx="18" cy="19" r="3"></circle>
+                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                        </svg>
+                    </div>
+                    <h3 class="parrainage-step-title">Partagez votre lien</h3>
+                    <p class="parrainage-step-desc">Recommandez EntryWeb à vos contacts professionnels : collègues, partenaires, clients, amis entrepreneurs.</p>
+                </div>
+                <div class="parrainage-step swiss-fade-up" data-scroll-animation-target="item" data-delay="150">
+                    <div class="parrainage-step-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <h3 class="parrainage-step-title">Votre filleul nous contacte</h3>
+                    <p class="parrainage-step-desc">Votre filleul utilise votre lien de parrainage ou mentionne votre nom lors de sa demande de devis.</p>
+                </div>
+                <div class="parrainage-step swiss-fade-up" data-scroll-animation-target="item" data-delay="300">
+                    <div class="parrainage-step-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="8" width="18" height="4" rx="1"></rect>
+                            <path d="M12 8v13"></path>
+                            <path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"></path>
+                            <path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"></path>
+                        </svg>
+                    </div>
+                    <h3 class="parrainage-step-title">Profitez des récompenses</h3>
+                    <p class="parrainage-step-desc">Dès que votre filleul signe avec nous, vous recevez 2 mois d'abonnement offerts sur la formule Essentiel et lui bénéficie de 10% de réduction sur les frais de départ.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# Section Avantages #}
+    <section class="parrainage-benefits">
+        <div class="parrainage-benefits-container">
+            <div class="parrainage-benefits-header swiss-fade-up" data-scroll-animation-target="item">
+                <h2 class="parrainage-benefits-title">Des avantages pour tous</h2>
+                <p class="parrainage-benefits-subtitle">Un programme gagnant-gagnant qui récompense votre confiance</p>
+            </div>
+            <div class="parrainage-benefits-cards">
+                <div class="parrainage-benefit-card swiss-fade-up" data-scroll-animation-target="item" data-delay="0">
+                    <div class="parrainage-benefit-icon parrainage-benefit-icon--parrain">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="parrainage-benefit-title">Pour vous, le parrain</h3>
+                    <ul class="parrainage-benefit-list">
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0066ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="parrainage-check-icon"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>2 mois d'abonnement offerts par filleul converti</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0066ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="parrainage-check-icon"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>Utilisable sur la formule Essentiel</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0066ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="parrainage-check-icon"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>Aucune limite de parrainage</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0066ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="parrainage-check-icon"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>Crédit cumulable et valable 2 ans</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0066ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="parrainage-check-icon"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>Suivi en temps réel de vos parrainages</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0066ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="parrainage-check-icon"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>Programme VIP dès 3 parrainages réussis</li>
+                    </ul>
+                </div>
+                <div class="parrainage-benefit-card swiss-fade-up" data-scroll-animation-target="item" data-delay="150">
+                    <div class="parrainage-benefit-icon parrainage-benefit-icon--filleul">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+                            <polyline points="16 7 22 7 22 13"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="parrainage-benefit-title">Pour votre filleul</h3>
+                    <ul class="parrainage-benefit-list">
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0066ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="parrainage-check-icon"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>10% de réduction sur les frais de départ (hors abonnement)</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0066ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="parrainage-check-icon"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>Priorité dans le planning de production</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0066ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="parrainage-check-icon"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>Accompagnement personnalisé renforcé</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0066ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="parrainage-check-icon"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>Formation offerte à la gestion du site</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0066ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="parrainage-check-icon"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>Support prioritaire pendant 3 mois</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0066ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="parrainage-check-icon"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>Accès à notre réseau de partenaires</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# Section Commencez à parrainer #}
+    <section class="parrainage-start" id="devenir-parrain">
+        <div class="parrainage-start-container">
+            <div class="parrainage-start-header swiss-fade-up" data-scroll-animation-target="item">
+                <h2 class="parrainage-start-title">Commencez à parrainer</h2>
+                <p class="parrainage-start-subtitle">Obtenez votre lien de parrainage unique en quelques secondes</p>
+            </div>
+            <div class="parrainage-start-box swiss-fade-up" data-scroll-animation-target="item" data-delay="100">
+                {% if parrainage %}
+                    {# Display the referral link after submission #}
+                    <div class="parrainage-link-section">
+                        <div class="parrainage-success-message">
+                            {% for message in app.flashes('success') %}
+                                {% if message == 'parrainage_created' %}
+                                    <p class="parrainage-flash parrainage-flash--success">Votre lien de parrainage a bien été créé !</p>
+                                {% endif %}
+                            {% endfor %}
+                            {% for message in app.flashes('info') %}
+                                {% if message == 'parrainage_exists' %}
+                                    <p class="parrainage-flash parrainage-flash--info">Votre lien de parrainage existant a été retrouvé.</p>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <label class="parrainage-label">Voici votre lien de parrainage unique</label>
+                        <div class="parrainage-link-input-wrapper" data-controller="copy-link">
+                            <input type="text" class="parrainage-link-input" value="{{ url('app_home') }}?ref={{ parrainage.referralCode }}" readonly data-copy-link-target="input">
+                            <button class="parrainage-copy-btn" data-action="click->copy-link#copy" data-copy-link-target="button">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                </svg>
+                                <span data-copy-link-target="text">Copier</span>
+                            </button>
+                        </div>
+                    </div>
+                {% else %}
+                    {# Form to get the referral link #}
+                    <form method="post" action="{{ path('app_parrainage') }}" class="parrainage-form" data-turbo="false">
+                        <div class="parrainage-form-group">
+                            <label class="parrainage-label" for="parrainage-email">Votre email</label>
+                            <input type="email" id="parrainage-email" name="email" class="parrainage-form-input" placeholder="jean@exemple.fr" required>
+                        </div>
+                        <button type="submit" class="parrainage-submit-btn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="18" cy="5" r="3"></circle>
+                                <circle cx="6" cy="12" r="3"></circle>
+                                <circle cx="18" cy="19" r="3"></circle>
+                                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                            </svg>
+                            Obtenir mon lien de parrainage
+                        </button>
+                    </form>
+                {% endif %}
+                <div class="parrainage-tip">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                    </svg>
+                    <p><strong>Astuce :</strong> Partagez votre lien sur LinkedIn, dans vos emails professionnels, ou lors de vos événements networking pour maximiser vos chances de parrainage.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# Section FAQ Parrainage #}
+    <section class="faq-section">
+        <div class="parrainage-faq-header swiss-fade-up" data-scroll-animation-target="item">
+            <h2 class="parrainage-faq-title">Questions fréquentes</h2>
+            <p class="parrainage-faq-subtitle">Tout ce que vous devez savoir sur notre programme de parrainage</p>
+        </div>
+        <div class="faq-container" data-controller="faq">
+            <div class="faq-item swiss-fade-up" data-faq-target="item" data-scroll-animation-target="item">
+                <button class="faq-question" data-action="click->faq#toggle">
+                    <span>Quand vais-je recevoir mes 2 mois d'abonnement offerts ?</span>
+                    <svg class="faq-icon" data-faq-target="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div class="faq-answer" data-faq-target="answer">
+                    <p>Vos 2 mois d'abonnement offerts sont crédités sur votre compte dès que votre filleul a signé son contrat et effectué son premier paiement. Vous recevrez une notification par email.</p>
+                </div>
+            </div>
+            <div class="faq-item swiss-fade-up" data-faq-target="item" data-scroll-animation-target="item">
+                <button class="faq-question" data-action="click->faq#toggle">
+                    <span>Comment fonctionnent mes 2 mois offerts ?</span>
+                    <svg class="faq-icon" data-faq-target="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div class="faq-answer" data-faq-target="answer">
+                    <p>Les mois offerts sont automatiquement appliqués à votre prochain renouvellement d'abonnement sur la formule Essentiel. Si vous n'êtes pas encore abonné, ils seront utilisables lors de votre souscription.</p>
+                </div>
+            </div>
+            <div class="faq-item swiss-fade-up" data-faq-target="item" data-scroll-animation-target="item">
+                <button class="faq-question" data-action="click->faq#toggle">
+                    <span>Y a-t-il une limite au nombre de parrainages ?</span>
+                    <svg class="faq-icon" data-faq-target="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div class="faq-answer" data-faq-target="answer">
+                    <p>Non, il n'y a aucune limite ! Vous pouvez parrainer autant de personnes que vous le souhaitez et cumuler vos récompenses. Plus vous parrainez, plus vous gagnez.</p>
+                </div>
+            </div>
+            <div class="faq-item swiss-fade-up" data-faq-target="item" data-scroll-animation-target="item">
+                <button class="faq-question" data-action="click->faq#toggle">
+                    <span>Mon filleul peut-il cumuler la réduction avec une offre en cours ?</span>
+                    <svg class="faq-icon" data-faq-target="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div class="faq-answer" data-faq-target="answer">
+                    <p>La réduction de parrainage est cumulable avec certaines offres promotionnelles. Contactez-nous pour vérifier la compatibilité avec une offre spécifique.</p>
+                </div>
+            </div>
+            <div class="faq-item swiss-fade-up" data-faq-target="item" data-scroll-animation-target="item">
+                <button class="faq-question" data-action="click->faq#toggle">
+                    <span>Que se passe-t-il si mon filleul ne mentionne pas mon nom ?</span>
+                    <svg class="faq-icon" data-faq-target="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div class="faq-answer" data-faq-target="answer">
+                    <p>Pas de panique ! Si votre filleul oublie de mentionner votre nom, il peut nous contacter dans les 30 jours suivant sa signature pour que nous puissions vous attribuer la récompense.</p>
+                </div>
+            </div>
+            <div class="faq-item swiss-fade-up" data-faq-target="item" data-scroll-animation-target="item">
+                <button class="faq-question" data-action="click->faq#toggle">
+                    <span>Puis-je parrainer une entreprise avec qui j'ai déjà parlé de vos services ?</span>
+                    <svg class="faq-icon" data-faq-target="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div class="faq-answer" data-faq-target="answer">
+                    <p>Oui, tant que cette entreprise n'est pas déjà cliente chez nous et qu'elle n'a pas encore entamé de démarche commerciale avec notre équipe.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# Section CTA Final #}
+    <section class="parrainage-cta">
+        <div class="parrainage-cta-container">
+            <h2 class="parrainage-cta-title swiss-fade-up" data-scroll-animation-target="item">Prêt à recommander EntryWeb ?</h2>
+            <p class="parrainage-cta-description swiss-fade-up" data-scroll-animation-target="item">
+                Aidez votre réseau à développer sa présence en ligne tout en profitant de récompenses attractives. C'est simple, rapide, et gagnant-gagnant !
+            </p>
+            <div class="parrainage-cta-actions swiss-fade-up" data-scroll-animation-target="item">
+                <a href="#devenir-parrain" class="btn-parrainage btn-parrainage-primary">Devenir parrain</a>
+                <a href="{{ path('app_contact') }}" class="btn-parrainage btn-parrainage-outline">Nous contacter</a>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
