@@ -55,10 +55,15 @@ task('deploy:assets', function () {
 
 // Symlink public_html vers le dossier public de Symfony
 task('deploy:symlink_public', function () {
-    $domainPath = '~/domains/blue-swan-296877.hostingersite.com';
-    run("if [ -d $domainPath/public_html ] && [ ! -L $domainPath/public_html ]; then rm -rf $domainPath/public_html; fi");
-    run("ln -sfn {{deploy_path}}/current/public $domainPath/public_html");
-    writeln('Symlink public_html created');
+    $domains = [
+        '~/domains/blue-swan-296877.hostingersite.com',
+        '~/domains/entryweb.fr',
+    ];
+    foreach ($domains as $domainPath) {
+        run("if [ -d $domainPath/public_html ] && [ ! -L $domainPath/public_html ]; then rm -rf $domainPath/public_html; fi");
+        run("ln -sfn {{deploy_path}}/current/public $domainPath/public_html");
+        writeln("Symlink public_html created for $domainPath");
+    }
 });
 
 // ============================================================================
