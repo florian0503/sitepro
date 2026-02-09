@@ -2074,6 +2074,23 @@ html, body {
     gap: 1.5rem;
 }
 
+.parrainage-referral-banner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #065f46;
+}
+
+.parrainage-referral-banner svg {
+    flex-shrink: 0;
+    color: #059669;
+}
+
 .form-group {
     display: flex;
     flex-direction: column;
@@ -4834,5 +4851,658 @@ html, body {
     .faq-answer p {
         padding: 0 20px 16px 20px;
         font-size: 0.95rem;
+    }
+}
+
+/* =============================================
+   PARRAINAGE PAGE STYLES
+   ============================================= */
+
+/* Hero Section */
+.parrainage-hero {
+    background: linear-gradient(135deg, #f0f4f8 0%, #e0e7ff 100%);
+    padding: 50px 24px;
+}
+
+.parrainage-hero-inner {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.parrainage-hero-title {
+    font-size: 48px;
+    font-weight: 400;
+    color: #111;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.parrainage-hero-description {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #4a5568;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.parrainage-hero-cards {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 0;
+}
+
+.parrainage-hero-card {
+    background: #fff;
+    border: 2px solid #0066ff;
+    border-radius: 16px;
+    padding: 32px 40px;
+    text-align: center;
+    min-width: 200px;
+}
+
+.parrainage-hero-card-value {
+    font-size: 32px;
+    font-weight: 600;
+    color: #0066ff;
+    display: block;
+}
+
+.parrainage-hero-card-label {
+    font-size: 14px;
+    color: #4a5568;
+    margin-top: 8px;
+    display: block;
+}
+
+.parrainage-hero-highlight {
+    display: inline-block;
+    background: #fff;
+    border: 2px solid #0066ff;
+    border-radius: 16px;
+    padding: 14px 40px;
+    margin-top: 24px;
+    text-align: center;
+    min-width: 200px;
+}
+
+.parrainage-hero-highlight span {
+    font-size: 16px;
+    font-weight: 500;
+    color: #0066ff;
+}
+
+/* Rewards Section */
+.parrainage-rewards {
+    background: #f9fafb;
+    padding: 50px 24px;
+}
+
+.parrainage-rewards-container {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* How It Works Section */
+.parrainage-howto {
+    background: #fff;
+    padding: 80px 24px;
+}
+
+.parrainage-howto-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.parrainage-howto-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.parrainage-howto-title {
+    font-size: 36px;
+    font-weight: 400;
+    color: #111;
+    margin-bottom: 12px;
+}
+
+.parrainage-howto-subtitle {
+    font-size: 18px;
+    color: #4a5568;
+}
+
+.parrainage-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+.parrainage-step {
+    background: #fff;
+    border: 2px solid #e0e7ff;
+    border-radius: 16px;
+    padding: 40px 32px;
+    text-align: center;
+    transition: border-color 0.3s ease;
+}
+
+.parrainage-step:hover {
+    border-color: #0066ff;
+}
+
+.parrainage-step-icon {
+    width: 48px;
+    height: 48px;
+    background: transparent;
+    color: #0066ff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.parrainage-step-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 12px;
+}
+
+.parrainage-step-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #4a5568;
+}
+
+/* Benefits Section */
+.parrainage-benefits {
+    background: #f9fafb;
+    padding: 80px 24px;
+}
+
+.parrainage-benefits-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.parrainage-benefits-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.parrainage-benefits-title {
+    font-size: 36px;
+    font-weight: 400;
+    color: #111;
+    margin-bottom: 12px;
+}
+
+.parrainage-benefits-subtitle {
+    font-size: 18px;
+    color: #4a5568;
+}
+
+.parrainage-benefits-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+}
+
+@property --border-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.parrainage-benefit-card {
+    position: relative;
+    background: #fff;
+    border: 2px dashed #e5e7eb;
+    border-radius: 16px;
+    padding: 40px 32px;
+    transition: border-color 0.3s ease;
+}
+
+.parrainage-benefit-card::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 16px;
+    padding: 2px;
+    background: repeating-conic-gradient(
+        from var(--border-angle),
+        #0066ff 0deg 1.5deg,
+        transparent 1.5deg 3deg
+    );
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+.parrainage-benefit-card:hover {
+    border-color: transparent;
+}
+
+.parrainage-benefit-card:hover::after {
+    opacity: 1;
+    animation: border-rotate 45s linear infinite;
+}
+
+@keyframes border-rotate {
+    to {
+        --border-angle: 360deg;
+    }
+}
+
+.parrainage-benefit-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.parrainage-benefit-icon--parrain {
+    background: #fff;
+    border: 2px solid #0066ff;
+    color: #0066ff;
+}
+
+.parrainage-benefit-icon--filleul {
+    background: #fff;
+    border: 2px solid #0066ff;
+    color: #0066ff;
+}
+
+.parrainage-benefit-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 16px;
+}
+
+.parrainage-benefit-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.parrainage-benefit-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+    font-size: 15px;
+    color: #4a5568;
+}
+
+.parrainage-benefit-list li:last-child {
+    margin-bottom: 0;
+}
+
+.parrainage-check-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+}
+
+/* Start Parrainage Section */
+.parrainage-start {
+    background: #fff;
+    padding: 80px 24px;
+}
+
+.parrainage-start-container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.parrainage-start-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.parrainage-start-title {
+    font-size: 36px;
+    font-weight: 400;
+    color: #111;
+    margin-bottom: 12px;
+}
+
+.parrainage-start-subtitle {
+    font-size: 18px;
+    color: #4a5568;
+}
+
+.parrainage-start-box {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 40px;
+}
+
+.parrainage-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 8px;
+}
+
+.parrainage-link-input-wrapper,
+.parrainage-email-input-wrapper {
+    display: flex;
+    gap: 12px;
+}
+
+.parrainage-link-input,
+.parrainage-email-input {
+    flex: 1;
+    padding: 14px 16px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 15px;
+    color: #111;
+    background: #f9fafb;
+}
+
+.parrainage-link-input:focus,
+.parrainage-email-input:focus {
+    border-color: #0066ff;
+    outline: none;
+}
+
+.parrainage-copy-btn,
+.parrainage-send-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 24px;
+    background: #0066ff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.parrainage-copy-btn:hover,
+.parrainage-send-btn:hover {
+    background: #0052cc;
+}
+
+.parrainage-divider {
+    display: flex;
+    align-items: center;
+    margin: 24px 0;
+}
+
+.parrainage-divider::before,
+.parrainage-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #e5e7eb;
+}
+
+.parrainage-divider span {
+    padding: 0 16px;
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.parrainage-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.parrainage-form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.parrainage-form-input {
+    padding: 14px 16px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 15px;
+    color: #111;
+    background: #f9fafb;
+    transition: border-color 0.3s ease;
+}
+
+.parrainage-form-input:focus {
+    border-color: #0066ff;
+    outline: none;
+}
+
+.parrainage-submit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px 24px;
+    background: #0066ff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.parrainage-submit-btn:hover {
+    background: #0052cc;
+}
+
+.parrainage-flash {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.parrainage-flash--success {
+    background: #ecfdf5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+}
+
+.parrainage-flash--info {
+    background: #eff6ff;
+    color: #1e40af;
+    border: 1px solid #bfdbfe;
+}
+
+.parrainage-code-display {
+    margin-top: 12px;
+    font-size: 14px;
+    color: #4a5568;
+}
+
+.parrainage-tip {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+    padding: 16px;
+    background: #fffbeb;
+    border-radius: 8px;
+}
+
+.parrainage-tip svg {
+    flex-shrink: 0;
+    color: #f59e0b;
+}
+
+.parrainage-tip p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #4a5568;
+    margin: 0;
+}
+
+.parrainage-tip strong {
+    font-weight: 600;
+}
+
+/* FAQ Section */
+.parrainage-faq-header {
+    text-align: center;
+    margin-bottom: 48px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.parrainage-faq-title {
+    font-size: 36px;
+    font-weight: 400;
+    color: #111;
+    margin-bottom: 12px;
+}
+
+.parrainage-faq-subtitle {
+    font-size: 18px;
+    color: #4a5568;
+}
+
+/* CTA Section */
+.parrainage-cta {
+    background: #0066ff;
+    padding: 48px 24px;
+    text-align: center;
+}
+
+.parrainage-cta-container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.parrainage-cta-title {
+    font-size: 36px;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 16px;
+}
+
+.parrainage-cta-description {
+    font-size: 18px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 32px;
+}
+
+.parrainage-cta-actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+.btn-parrainage {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid #fff;
+}
+
+.btn-parrainage-primary {
+    background: #fff;
+    color: #0066ff;
+}
+
+.btn-parrainage-primary:hover {
+    background: transparent;
+    color: #fff;
+}
+
+.btn-parrainage-outline {
+    background: transparent;
+    color: #fff;
+}
+
+.btn-parrainage-outline:hover {
+    background: #fff;
+    color: #0066ff;
+}
+
+/* Responsive Parrainage */
+@media (max-width: 1024px) {
+    .parrainage-steps {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .parrainage-hero-title {
+        font-size: 32px;
+    }
+
+    .parrainage-hero-cards {
+        flex-direction: row;
+        justify-content: center;
+        gap: 16px;
+    }
+
+    .parrainage-hero-card {
+        flex: 1;
+        min-width: 0;
+        padding: 20px 16px;
+    }
+
+    .parrainage-howto-title,
+    .parrainage-benefits-title,
+    .parrainage-start-title,
+    .parrainage-faq-title,
+    .parrainage-cta-title {
+        font-size: 28px;
+    }
+
+    .parrainage-benefits-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .parrainage-link-input-wrapper,
+    .parrainage-email-input-wrapper {
+        flex-direction: column;
+    }
+
+    .parrainage-copy-btn,
+    .parrainage-send-btn {
+        justify-content: center;
+    }
+
+    .parrainage-cta-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn-parrainage {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
     }
 }
