@@ -37,6 +37,9 @@ class ContactMessage
     #[ORM\Column]
     private bool $isRead = false;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $referredBy = null;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
@@ -127,6 +130,18 @@ class ContactMessage
     public function setIsRead(bool $isRead): static
     {
         $this->isRead = $isRead;
+
+        return $this;
+    }
+
+    public function getReferredBy(): ?string
+    {
+        return $this->referredBy;
+    }
+
+    public function setReferredBy(?string $referredBy): static
+    {
+        $this->referredBy = $referredBy;
 
         return $this;
     }

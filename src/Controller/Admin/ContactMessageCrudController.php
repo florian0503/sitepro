@@ -61,16 +61,16 @@ class ContactMessageCrudController extends AbstractCrudController
         yield EmailField::new('email', 'Email')
             ->setFormTypeOption('disabled', true);
 
-        yield TextField::new('projectType', 'Type de projet')
+        yield TextField::new('projectType', 'Formule')
             ->setFormTypeOption('disabled', true);
-
-        yield TextField::new('budget', 'Budget')
-            ->setFormTypeOption('disabled', true)
-            ->hideOnIndex();
 
         yield TextareaField::new('message', 'Message')
             ->setFormTypeOption('disabled', true)
-            ->hideOnIndex();
+            ->setMaxLength(80);
+
+        yield TextField::new('referredBy', 'Parrainé par')
+            ->setFormTypeOption('disabled', true)
+            ->setTemplatePath('admin/field/referred_by.html.twig');
 
         yield BooleanField::new('isRead', 'Lu')
             ->renderAsSwitch(true);
