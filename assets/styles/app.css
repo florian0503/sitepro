@@ -178,6 +178,7 @@ body {
     padding: 8px 24px;
     text-decoration: none;
     font-size: 16px;
+    font-weight: 600;
     border-radius: 10px;
     transition: all 0.2s ease;
     border: 1px solid transparent;
@@ -231,7 +232,6 @@ body {
     color: #4a5568;
     margin: 0 auto;
     max-width: none;
-    white-space: nowrap;
 }
 
 .realisations {
@@ -4861,7 +4861,7 @@ html, body {
 /* Hero Section */
 .parrainage-hero {
     background: linear-gradient(135deg, #f0f4f8 0%, #e0e7ff 100%);
-    padding: 50px 24px;
+    padding: 80px 24px;
 }
 
 .parrainage-hero-inner {
@@ -4872,13 +4872,13 @@ html, body {
 .parrainage-hero-title {
     font-size: 48px;
     font-weight: 400;
-    color: #111;
+    color: #1a1a1a;
     margin-bottom: 16px;
     text-align: center;
 }
 
 .parrainage-hero-description {
-    font-size: 18px;
+    font-size: 20px;
     line-height: 1.7;
     color: #4a5568;
     text-align: center;
@@ -4935,7 +4935,7 @@ html, body {
 
 /* Rewards Section */
 .parrainage-rewards {
-    background: #f9fafb;
+    background: #fff;
     padding: 50px 24px;
 }
 
@@ -4947,7 +4947,7 @@ html, body {
 
 /* How It Works Section */
 .parrainage-howto {
-    background: #fff;
+    background: #f9fafb;
     padding: 80px 24px;
 }
 
@@ -5019,7 +5019,7 @@ html, body {
 
 /* Benefits Section */
 .parrainage-benefits {
-    background: #f9fafb;
+    background: #fff;
     padding: 80px 24px;
 }
 
@@ -5060,48 +5060,40 @@ html, body {
 .parrainage-benefit-card {
     position: relative;
     background: #fff;
-    border: 2px dashed #e5e7eb;
     border-radius: 16px;
     padding: 40px 32px;
-    transition: border-color 0.3s ease;
 }
 
-.parrainage-benefit-card::after {
-    content: '';
+.parrainage-benefit-border {
     position: absolute;
-    inset: -2px;
-    border-radius: 16px;
-    padding: 2px;
-    background: repeating-conic-gradient(
-        from var(--border-angle),
-        #0066ff 0deg 1.5deg,
-        transparent 1.5deg 3deg
-    );
-    -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.3s;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
     pointer-events: none;
 }
 
-.parrainage-benefit-card:hover {
-    border-color: transparent;
+.parrainage-benefit-border rect {
+    x: 1px;
+    y: 1px;
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
+    rx: 15px;
+    fill: none;
+    stroke: #e5e7eb;
+    stroke-width: 2;
+    stroke-dasharray: 12 6;
+    transition: stroke 0.3s ease;
 }
 
-.parrainage-benefit-card:hover::after {
-    opacity: 1;
-    animation: border-rotate 45s linear infinite;
+.parrainage-benefit-card:hover .parrainage-benefit-border rect {
+    stroke: #0066ff;
+    animation: dash-move 15s linear infinite;
 }
 
-@keyframes border-rotate {
+@keyframes dash-move {
     to {
-        --border-angle: 360deg;
+        stroke-dashoffset: -1000;
     }
 }
 
@@ -5162,7 +5154,7 @@ html, body {
 
 /* Start Parrainage Section */
 .parrainage-start {
-    background: #fff;
+    background: #f9fafb;
     padding: 80px 24px;
 }
 
@@ -5281,7 +5273,7 @@ html, body {
 .parrainage-form-input {
     padding: 14px 16px;
     border: 1px solid #e5e7eb;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 15px;
     color: #111;
     background: #f9fafb;
@@ -5298,19 +5290,20 @@ html, body {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 16px 24px;
+    padding: 14px 24px;
     background: #0066ff;
     color: #fff;
-    border: none;
-    border-radius: 8px;
+    border: 2px solid #0066ff;
+    border-radius: 10px;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 .parrainage-submit-btn:hover {
-    background: #0052cc;
+    background: #fff;
+    color: #0066ff;
 }
 
 .parrainage-flash {
@@ -5404,9 +5397,9 @@ html, body {
 }
 
 .parrainage-cta-description {
-    font-size: 18px;
+    font-size: 20px;
     line-height: 1.7;
-    color: rgba(255, 255, 255, 0.85);
+    color: #fff;
     margin-bottom: 32px;
 }
 
@@ -5419,9 +5412,9 @@ html, body {
 .btn-parrainage {
     display: inline-block;
     padding: 14px 32px;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 600;
     text-decoration: none;
     transition: all 0.3s ease;
     border: 2px solid #fff;

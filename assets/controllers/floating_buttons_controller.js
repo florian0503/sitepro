@@ -18,7 +18,7 @@ export default class extends Controller {
     }
 
     checkPosition() {
-        const blueSections = document.querySelectorAll('section.cta, .formule-card--selected, .offer-card--selected');
+        const blueSections = document.querySelectorAll('section.cta, section.parrainage-cta, .formule-card--selected, .offer-card--selected');
 
         if (this.hasCtaTarget) {
             this.updateButtonStyle(this.ctaTarget, blueSections);
