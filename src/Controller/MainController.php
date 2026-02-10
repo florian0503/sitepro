@@ -66,11 +66,23 @@ final class MainController extends AbstractController
     public function contact(Request $request, EntityManagerInterface $entityManager, MailerInterface $mailer, ParrainageRepository $parrainageRepository): Response
     {
         if ($request->isMethod('POST')) {
+            if (!$this->isCsrfTokenValid('contact_form', $request->request->getString('_token'))) {
+                $this->addFlash('error', 'Jeton CSRF invalide, veuillez réessayer.');
+
+                return $this->redirectToRoute('app_contact');
+            }
+
             $name = $request->request->getString('name');
             $clientEmail = $request->request->getString('email');
             $budget = $request->request->getString('budget');
             $message = $request->request->getString('message');
             $referralCode = $request->request->getString('referral_code');
+
+            if (false === filter_var($clientEmail, FILTER_VALIDATE_EMAIL)) {
+                $this->addFlash('error', 'Adresse email invalide.');
+
+                return $this->redirectToRoute('app_contact');
+            }
 
             // Find referral sponsor
             $parrainEmail = '';
@@ -107,6 +119,11 @@ final class MainController extends AbstractController
                 $parrainText = "Parrainé par : {$parrainEmail}\n";
             }
 
+            $safeName = htmlspecialchars($name, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+            $safeEmail = htmlspecialchars($clientEmail, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+            $safeBudget = htmlspecialchars($budget, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+            $safeMessage = nl2br(htmlspecialchars($message, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'));
+
             $htmlContent = <<<HTML
             <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff;">
                 <div style="background: #0066ff; padding: 32px; text-align: center;">
@@ -118,24 +135,24 @@ final class MainController extends AbstractController
                         {$parrainRow}
                         <tr>
                             <td style="padding: 12px 16px; background: #ffffff; border-bottom: 1px solid #f0f0f0; font-size: 13px; color: #666; width: 120px; vertical-align: top;">Nom</td>
-                            <td style="padding: 12px 16px; background: #ffffff; border-bottom: 1px solid #f0f0f0; font-size: 15px; color: #111;">{$name}</td>
+                            <td style="padding: 12px 16px; background: #ffffff; border-bottom: 1px solid #f0f0f0; font-size: 15px; color: #111;">{$safeName}</td>
                         </tr>
                         <tr>
                             <td style="padding: 12px 16px; background: #ffffff; border-bottom: 1px solid #f0f0f0; font-size: 13px; color: #666; vertical-align: top;">Email</td>
-                            <td style="padding: 12px 16px; background: #ffffff; border-bottom: 1px solid #f0f0f0; font-size: 15px;"><a href="mailto:{$clientEmail}" style="color: #111; text-decoration: none;">{$clientEmail}</a></td>
+                            <td style="padding: 12px 16px; background: #ffffff; border-bottom: 1px solid #f0f0f0; font-size: 15px;"><a href="mailto:{$safeEmail}" style="color: #111; text-decoration: none;">{$safeEmail}</a></td>
                         </tr>
                         <tr>
                             <td style="padding: 12px 16px; background: #ffffff; border-bottom: 1px solid #f0f0f0; font-size: 13px; color: #666; vertical-align: top;">Formule</td>
-                            <td style="padding: 12px 16px; background: #ffffff; border-bottom: 1px solid #f0f0f0; font-size: 15px; color: #111;">{$budget}</td>
+                            <td style="padding: 12px 16px; background: #ffffff; border-bottom: 1px solid #f0f0f0; font-size: 15px; color: #111;">{$safeBudget}</td>
                         </tr>
                         <tr>
                             <td style="padding: 12px 16px; background: #ffffff; font-size: 13px; color: #666; vertical-align: top;">Message</td>
-                            <td style="padding: 12px 16px; background: #ffffff; font-size: 15px; color: #111; line-height: 1.6;">{$message}</td>
+                            <td style="padding: 12px 16px; background: #ffffff; font-size: 15px; color: #111; line-height: 1.6;">{$safeMessage}</td>
                         </tr>
                     </table>
                 </div>
                 <div style="padding: 24px; text-align: center; background: #0066ff;">
-                    <a href="mailto:{$clientEmail}" style="display: inline-block; padding: 12px 32px; background: #ffffff; color: #0066ff; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px;">Repondre a {$name}</a>
+                    <a href="mailto:{$safeEmail}" style="display: inline-block; padding: 12px 32px; background: #ffffff; color: #0066ff; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px;">Repondre a {$safeName}</a>
                     <p style="color: #cce0ff; margin: 16px 0 0; font-size: 12px;">EntryWeb - L'agence web des entrepreneurs</p>
                 </div>
             </div>
@@ -205,6 +222,12 @@ final class MainController extends AbstractController
         }
 
         if ($request->isMethod('POST')) {
+            if (!$this->isCsrfTokenValid('parrainage_form', $request->request->getString('_token'))) {
+                $this->addFlash('error', 'Jeton CSRF invalide, veuillez réessayer.');
+
+                return $this->redirect($this->generateUrl('app_parrainage').'#devenir-parrain');
+            }
+
             $email = trim($request->request->getString('email'));
 
             if ('' !== $email) {
