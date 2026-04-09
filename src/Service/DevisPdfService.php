@@ -24,13 +24,16 @@ class DevisPdfService
 
         $options = new Options();
         $options->set('isRemoteEnabled', true);
-        $options->set('isPhpEnabled', true);
         $options->set('defaultFont', 'Helvetica');
 
         $dompdf = new Dompdf($options);
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
+
+        $canvas = $dompdf->getCanvas();
+        $font = $dompdf->getFontMetrics()->getFont('Helvetica');
+        $canvas->page_text(495, 820, 'Page {PAGE_NUM} / {PAGE_COUNT}', $font, 8, [0.6, 0.6, 0.6]);
 
         return $dompdf->output();
     }
