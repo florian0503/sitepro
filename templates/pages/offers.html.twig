@@ -3,6 +3,15 @@
 {% block title %}Votre Site Web Clé en Main - EntryWeb{% endblock %}
 
 {% block body %}
+<style>
+@keyframes badge-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+    50% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+}
+.offer-card-badge-pulse {
+    animation: badge-pulse 2s ease-in-out infinite;
+}
+</style>
 <div data-controller="scroll-animation">
     {# Section Hero - Forfaits #}
     <section class="page-hero">
@@ -26,11 +35,11 @@
                         <h3 class="offer-card-title">Pack Essentiel</h3>
                         <p class="offer-card-subtitle">Idéal pour démarrer</p>
                         <div class="offer-card-price">
-                            <span class="price-amount">249€<sup>HT</sup></span>
+                            <span class="price-amount">349€<sup>HT</sup></span>
                             <span class="price-type">Frais de mise en service</span>
                         </div>
                         <div class="offer-card-subscription">
-                            <span class="subscription-notice">Abonnement : Dès la formule "Essentiel" (49€<sup>HT</sup>/mois)</span>
+                            <span class="subscription-notice">Abonnement : Dès la formule "Starter" (49€<sup>HT</sup>/mois)</span>
                             <span class="subscription-engagement">Engagement 24 mois</span>
                         </div>
                     </div>
@@ -43,7 +52,6 @@
                             <li><span class="offer-check"></span>Optimisation des performances</li>
                             <li><span class="offer-check"></span>Intégration Google Maps</li>
                             <li><span class="offer-check"></span>Technologie robuste et sécurisée</li>
-                            <li><span class="offer-check"></span>Livraison sous 3 semaines</li>
                         </ul>
                     </div>
                     <div class="offer-card-footer">
@@ -53,11 +61,8 @@
 
                 {# Pack Entreprise - Populaire #}
                 <div class="offer-card offer-card--selected swiss-fade-up" data-scroll-animation-target="item" data-delay="100" data-offer-selection-target="card" data-action="click->offer-selection#select">
-                    <div class="offer-card-badge">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                        </svg>
-                        Le plus choisi
+                    <div class="offer-card-badge offer-card-badge-pulse" style="transform:translateX(-50%) scale(1);opacity:1;background:#ef4444;color:#fff;">
+                        Offre de lancement
                     </div>
                     <div class="offer-card-header">
                         <h3 class="offer-card-title">Pack Business</h3>
@@ -81,8 +86,6 @@
                             <li><span class="offer-check"></span>Galerie photos/vidéos</li>
                             <li><span class="offer-check"></span>Intégrations réseaux sociaux</li>
                             <li><span class="offer-check"></span>Animations fluides</li>
-                            <li><span class="offer-check"></span>Accès aux tutoriels vidéos de gestion</li>
-                            <li><span class="offer-check"></span>Livraison sous 5 semaines</li>
                         </ul>
                     </div>
                     <div class="offer-card-footer">
@@ -92,6 +95,9 @@
 
                 {# E-commerce & Sur-Mesure #}
                 <div class="offer-card swiss-fade-up" data-scroll-animation-target="item" data-delay="200" data-offer-selection-target="card" data-action="click->offer-selection#select">
+                    <div class="offer-card-badge offer-card-badge-pulse" style="transform:translateX(-50%) scale(1);opacity:1;background:#ef4444;color:#fff;">
+                        Offre de lancement
+                    </div>
                     <div class="offer-card-header">
                         <h3 class="offer-card-title">E-commerce & Sur-Mesure</h3>
                         <p class="offer-card-subtitle">Votre boutique en ligne</p>
@@ -114,8 +120,6 @@
                             <li><span class="offer-check"></span>Options de livraison multiples</li>
                             <li><span class="offer-check"></span>Système de promotions</li>
                             <li><span class="offer-check"></span>Sauvegardes journalières sécurisées</li>
-                            <li><span class="offer-check"></span>Accès bibliothèque tutoriels vidéos</li>
-                            <li><span class="offer-check"></span>Délai selon complexité</li>
                         </ul>
                     </div>
                     <div class="offer-card-footer">
@@ -137,10 +141,10 @@
                 <p class="subscriptions-subtitle">Hébergement, maintenance et tranquillité d'esprit — Engagement 24 mois</p>
             </div>
             <div class="subscriptions-cards" data-controller="subscription-selection">
-                {# Abonnement Essentiel #}
+                {# Abonnement Starter #}
                 <div class="subscription-card swiss-fade-up" data-scroll-animation-target="item" data-delay="0" data-subscription-selection-target="card" data-action="click->subscription-selection#select">
                     <div class="subscription-card-header">
-                        <h3 class="subscription-card-title">Essentiel</h3>
+                        <h3 class="subscription-card-title">Starter</h3>
                         <div class="subscription-card-price">
                             <span class="subscription-amount">49€<sup>HT</sup></span>
                             <span class="subscription-period">/mois</span>
@@ -148,13 +152,10 @@
                     </div>
                     <div class="subscription-card-body">
                         <ul class="subscription-features">
-                            <li class="included"><span class="sub-check"></span>Hébergement haute performance</li>
-                            <li class="included"><span class="sub-check"></span>Nom de domaine inclus</li>
-                            <li class="included"><span class="sub-check"></span>Certificat SSL (HTTPS)</li>
+                            <li class="included"><span class="sub-check"></span>Hébergement inclus</li>
                             <li class="included"><span class="sub-check"></span>Mises à jour de sécurité</li>
                             <li class="included"><span class="sub-check"></span>Sauvegardes automatiques</li>
                             <li class="included"><span class="sub-check"></span>Support par email (48h)</li>
-                            <li class="included"><span class="sub-check"></span>1h de maintenance/mois</li>
                         </ul>
                         <p class="subscription-upgrade">Évolution possible vers Confort ou Premium</p>
                     </div>
@@ -172,10 +173,10 @@
                     </div>
                     <div class="subscription-card-body">
                         <ul class="subscription-features">
-                            <li class="included"><span class="sub-check"></span>Tout du pack Essentiel</li>
+                            <li class="included"><span class="sub-check"></span>Tout du pack Starter</li>
                             <li class="included"><span class="sub-check"></span>Support prioritaire (Email)</li>
-                            <li class="included"><span class="sub-check"></span>Mises à jour prioritaires</li>
-                            <li class="included"><span class="sub-check"></span>Monitoring de disponibilité</li>
+                            <li class="included"><span class="sub-check"></span>SEO complet</li>
+                            <li class="included"><span class="sub-check"></span>Hébergement haute performance</li>
                             <li class="included"><span class="sub-check"></span>1h de maintenance/mois</li>
                         </ul>
                         <p class="subscription-upgrade">Évolution possible vers Premium</p>
@@ -203,7 +204,7 @@
                 </div>
             </div>
             <p class="subscriptions-options swiss-fade-up" data-scroll-animation-target="item">
-                <strong>Options disponibles :</strong> Adresse email professionnelle • Heures de maintenance supplémentaires • Maquettes sur demande — <a href="{{ path('app_contact') }}">Nous consulter</a>
+                <strong>Options disponibles :</strong> Adresse email professionnelle • Heures de maintenance supplémentaires — <a href="{{ path('app_contact') }}">Nous consulter</a>
             </p>
         </div>
     </section>
@@ -221,7 +222,7 @@
                     <thead>
                         <tr>
                             <th class="comparison-feature-col">Ce qui est inclus</th>
-                            <th class="comparison-plan-col">Essentiel</th>
+                            <th class="comparison-plan-col">Starter</th>
                             <th class="comparison-plan-col comparison-plan-col--active">Confort</th>
                             <th class="comparison-plan-col">Premium</th>
                         </tr>
@@ -233,16 +234,11 @@
                         </tr>
                         <tr>
                             <td>Frais de création</td>
-                            <td>249€<sup>HT</sup></td>
+                            <td>349€<sup>HT</sup></td>
                             <td>449€<sup>HT</sup></td>
                             <td>Sur devis</td>
                         </tr>
-                        <tr>
-                            <td>Délai de livraison</td>
-                            <td>3 semaines</td>
-                            <td>5 semaines</td>
-                            <td>Selon projet</td>
-                        </tr>
+
                         <tr>
                             <td>Nombre de pages</td>
                             <td>1 page</td>
@@ -255,20 +251,20 @@
                             <td colspan="4">Inclus dans votre abonnement</td>
                         </tr>
                         <tr>
-                            <td>Hébergement haute performance</td>
-                            <td><span class="comparison-check"></span></td>
-                            <td><span class="comparison-check"></span></td>
-                            <td><span class="comparison-check"></span></td>
+                            <td>Hébergement</td>
+                            <td>Standard</td>
+                            <td>Haute performance</td>
+                            <td>Haute performance</td>
                         </tr>
                         <tr>
                             <td>Nom de domaine (.fr ou .com)</td>
-                            <td><span class="comparison-check"></span></td>
+                            <td><span class="comparison-dash"></span></td>
                             <td><span class="comparison-check"></span></td>
                             <td><span class="comparison-check"></span></td>
                         </tr>
                         <tr>
                             <td>Certificat SSL (HTTPS)</td>
-                            <td><span class="comparison-check"></span></td>
+                            <td><span class="comparison-dash"></span></td>
                             <td><span class="comparison-check"></span></td>
                             <td><span class="comparison-check"></span></td>
                         </tr>
@@ -307,23 +303,12 @@
                             <td><span class="comparison-check"></span></td>
                             <td><span class="comparison-check"></span></td>
                         </tr>
-                        <tr>
-                            <td>Boutique en ligne</td>
-                            <td><span class="comparison-dash"></span></td>
-                            <td><span class="comparison-dash"></span></td>
-                            <td><span class="comparison-check"></span></td>
-                        </tr>
+
                         <tr>
                             <td>Structure technique SEO</td>
                             <td>Basique</td>
-                            <td>Avancé</td>
-                            <td>Complet</td>
-                        </tr>
-                        <tr>
-                            <td>Tutoriels vidéos</td>
-                            <td><span class="comparison-check"></span></td>
-                            <td><span class="comparison-check"></span></td>
-                            <td><span class="comparison-check"></span></td>
+                            <td>SEO complet</td>
+                            <td>SEO complet</td>
                         </tr>
                     </tbody>
                 </table>
