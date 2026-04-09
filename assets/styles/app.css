@@ -2923,7 +2923,7 @@ html, body {
 }
 
 .team-card-image {
-    height: 320px;
+    height: 650px;
     background-size: cover;
     background-position: center top;
     position: relative;
@@ -3049,7 +3049,7 @@ html, body {
     }
 
     .team-card-image {
-        height: 280px;
+        height: 550px;
     }
 
     .team-card-name {
