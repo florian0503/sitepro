@@ -7,6 +7,7 @@ namespace App\Controller\Admin;
 use App\Entity\Category;
 use App\Entity\Client;
 use App\Entity\ContactMessage;
+use App\Entity\Devis;
 use App\Entity\Realisation;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -39,6 +40,9 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::section('Clients');
         yield MenuItem::linkToCrud('Base de données clients', 'fa fa-users', Client::class);
+        yield MenuItem::section('Devis');
+        yield MenuItem::linkToUrl('Créer un devis', 'fa fa-plus-circle', '/devis/builder');
+        yield MenuItem::linkToCrud('Tous les devis', 'fa fa-file-invoice', Devis::class);
         yield MenuItem::section('Contenu');
         yield MenuItem::linkToCrud('Messages', 'fa fa-envelope', ContactMessage::class);
         yield MenuItem::linkToCrud('Réalisations', 'fa fa-images', Realisation::class);
