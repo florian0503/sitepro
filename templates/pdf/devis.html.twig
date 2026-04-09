@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @page {
+            margin: 40px 50px 80px 50px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Helvetica, Arial, sans-serif; font-size: 11px; color: #333; line-height: 1.5; }
+
+        .header { display: table; width: 100%; margin-bottom: 30px; border-bottom: 3px solid #2563eb; padding: 10px 15px 15px 15px; }
+        .header-left { display: table-cell; width: 50%; vertical-align: top; padding-right: 30px; }
+        .header-right { display: table-cell; width: 50%; vertical-align: top; text-align: right; padding-left: 30px; }
+        .company-name { font-size: 22px; font-weight: bold; color: #2563eb; margin-bottom: 5px; }
+        .company-info { font-size: 10px; color: #666; line-height: 1.6; }
+
+        .devis-title { background: #2563eb; color: #fff; padding: 10px 20px; font-size: 18px; font-weight: bold; margin-bottom: 20px; }
+
+        .meta-table { display: table; width: 100%; margin-bottom: 25px; }
+        .meta-left { display: table-cell; width: 50%; vertical-align: top; padding-right: 10px; }
+        .meta-right { display: table-cell; width: 50%; vertical-align: top; padding-left: 10px; }
+        .meta-box { background: #f8f9fa; border: 1px solid #dee2e6; padding: 12px 15px; border-radius: 4px; }
+        .meta-box h3 { font-size: 11px; text-transform: uppercase; color: #2563eb; margin-bottom: 8px; letter-spacing: 0.5px; }
+        .meta-box p { margin-bottom: 3px; font-size: 10px; }
+
+        table.items { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        table.items thead th { background: #2563eb; color: #fff; padding: 8px 10px; text-align: left; font-size: 10px; text-transform: uppercase; }
+        table.items tbody td { padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-size: 10px; }
+        table.items tbody tr:nth-child(even) { background: #f8f9fa; }
+        table.items .cat-row td { background: #e8effd; font-weight: bold; color: #2563eb; font-size: 10px; }
+        table.items .price-col { text-align: right; white-space: nowrap; }
+        table.items .desc-col { color: #666; font-size: 9px; }
+
+        .totals { display: table; width: 100%; margin-bottom: 10px; }
+        .totals-spacer { display: table-cell; width: 60%; }
+        .totals-box { display: table-cell; width: 40%; }
+        .totals-box table { width: 100%; border-collapse: collapse; }
+        .totals-box td { padding: 6px 10px; font-size: 11px; }
+        .totals-box .total-label { text-align: left; font-weight: bold; }
+        .totals-box .total-value { text-align: right; }
+        .totals-box .grand-total { background: #2563eb; color: #fff; font-size: 13px; }
+
+        .mention-tva { font-size: 9px; color: #666; text-align: center; margin-bottom: 15px; font-style: italic; }
+
+        .monthly-box { background: #fff3cd; border: 1px solid #ffc107; padding: 10px 15px; margin-bottom: 20px; border-radius: 4px; }
+        .monthly-box strong { color: #856404; }
+
+        .notes-box { background: #f8f9fa; border: 1px solid #dee2e6; padding: 10px 15px; margin-bottom: 20px; border-radius: 4px; }
+        .notes-box h3 { font-size: 11px; text-transform: uppercase; color: #2563eb; margin-bottom: 5px; }
+
+        .validity { font-size: 10px; color: #666; margin-bottom: 15px; text-align: center; }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            border-top: 2px solid #2563eb;
+            padding: 6px 50px;
+            font-size: 8px;
+            color: #999;
+            line-height: 1.4;
+        }
+        .footer-text { text-align: center; }
+        .footer-page { text-align: right; font-size: 8px; color: #999; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <div class="company-name">EntryWeb</div>
+            <div class="company-info">
+                Agence de création de sites web professionnels<br>
+                France<br>
+                contact@entryweb.fr<br>
+                www.entryweb.fr
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="company-info">
+                SIRET : 948 220 512 00016<br>
+                N° TVA : FR69948220512
+            </div>
+        </div>
+    </div>
+
+    <div class="devis-title">DEVIS {{ devis.reference }}</div>
+
+    <div class="meta-table">
+        <div class="meta-left">
+            <div class="meta-box">
+                <h3>Client</h3>
+                <p><strong>{{ devis.clientFullName }}</strong></p>
+                {% if devis.clientCompany %}<p>{{ devis.clientCompany }}</p>{% endif %}
+                {% if devis.clientAddress %}<p>{{ devis.clientAddress }}</p>{% endif %}
+                <p>{{ devis.clientEmail }}</p>
+                {% if devis.clientPhone %}<p>{{ devis.clientPhone }}</p>{% endif %}
+                {% if devis.clientSiret %}<p>SIRET : {{ devis.clientSiret }}</p>{% endif %}
+            </div>
+        </div>
+        <div class="meta-right">
+            <div class="meta-box">
+                <h3>Détails du devis</h3>
+                <p><strong>Référence :</strong> {{ devis.reference }}</p>
+                <p><strong>Date :</strong> {{ devis.createdAt|date('d/m/Y') }}</p>
+                <p><strong>Valide jusqu'au :</strong> {{ devis.validUntil|date('d/m/Y') }}</p>
+            </div>
+        </div>
+    </div>
+
+    {% set oneTimeItems = [] %}
+    {% set monthlyItems = [] %}
+    {% for item in devis.items %}
+        {% if item.monthly %}
+            {% set monthlyItems = monthlyItems|merge([item]) %}
+        {% else %}
+            {% set oneTimeItems = oneTimeItems|merge([item]) %}
+        {% endif %}
+    {% endfor %}
+
+    {% if oneTimeItems|length > 0 %}
+    <table class="items">
+        <thead>
+            <tr>
+                <th style="width: 55%;">Prestation</th>
+                <th style="width: 30%;">Description</th>
+                <th class="price-col" style="width: 15%;">Prix HT</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% set currentCat = '' %}
+            {% for item in oneTimeItems %}
+                {% if item.categoryName != currentCat %}
+                    {% set currentCat = item.categoryName %}
+                    <tr class="cat-row"><td colspan="3">{{ currentCat }}</td></tr>
+                {% endif %}
+                <tr>
+                    <td>{{ item.itemName }}</td>
+                    <td class="desc-col">{{ item.description }}</td>
+                    <td class="price-col">{{ item.price|number_format(2, ',', ' ') }} € HT</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+    <div class="totals">
+        <div class="totals-spacer"></div>
+        <div class="totals-box">
+            <table>
+                <tr class="grand-total">
+                    <td class="total-label">Total HT</td>
+                    <td class="total-value">{{ devis.totalHt|number_format(2, ',', ' ') }} €</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <p class="mention-tva">TVA non applicable, art. 293 B du CGI</p>
+
+    {% if monthlyItems|length > 0 %}
+    <div class="monthly-box">
+        <strong>Abonnements mensuels récurrents :</strong><br>
+        {% for item in monthlyItems %}
+            - {{ item.itemName }} : {{ item.price|number_format(2, ',', ' ') }} € /mois<br>
+        {% endfor %}
+        <strong>Total mensuel : {{ devis.monthlyTotal|number_format(2, ',', ' ') }} € /mois</strong>
+    </div>
+    {% endif %}
+
+    {% if devis.notes %}
+    <div class="notes-box">
+        <h3>Notes</h3>
+        <p>{{ devis.notes|nl2br }}</p>
+    </div>
+    {% endif %}
+
+    <p class="validity">
+        Ce devis est valable {{ devis.validityDays }} jours à compter de sa date d'émission (jusqu'au {{ devis.validUntil|date('d/m/Y') }}).
+    </p>
+
+    <div class="footer">
+        <div class="footer-text">
+            EntryWeb — Agence de création de sites web professionnels — SIRET : 948 220 512 00016 — N° TVA : FR69948220512<br>
+            Ce document n'a pas valeur de facture. Le devis doit être signé et retourné pour acceptation.
+        </div>
+    </div>
+</body>
+</html>
