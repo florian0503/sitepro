@@ -2898,10 +2898,17 @@ html, body {
     margin: 0;
 }
 
+
 .team-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
+}
+
+.team-grid--centered {
+    grid-template-columns: 1fr;
+    max-width: 50%;
+    margin: 0 auto;
 }
 
 .team-card {
@@ -2916,7 +2923,7 @@ html, body {
 }
 
 .team-card-image {
-    height: 650px;
+    height: 320px;
     background-size: cover;
     background-position: center top;
     position: relative;
@@ -3042,7 +3049,7 @@ html, body {
     }
 
     .team-card-image {
-        height: 550px;
+        height: 280px;
     }
 
     .team-card-name {
@@ -3129,8 +3136,8 @@ html, body {
     top: -14px;
     left: 50%;
     transform: translateX(-50%) scale(0);
-    background: #fbbf24;
-    color: #1a1a1a;
+    background: #e53e3e;
+    color: #fff;
     font-size: 0.875rem;
     font-weight: 600;
     padding: 6px 16px;
@@ -3389,6 +3396,7 @@ html, body {
     color: #0052cc;
     text-decoration: underline;
 }
+
 
 /* Subscriptions Section */
 .subscriptions-section {
