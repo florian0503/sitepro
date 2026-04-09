@@ -64,7 +64,8 @@ export default class extends Controller {
     addMessage(text, sender) {
         const messageDiv = document.createElement('div');
         messageDiv.className = `chatbot-message chatbot-message--${sender}`;
-        messageDiv.innerHTML = `<div class="chatbot-message-content">${this.escapeHtml(text)}</div>`;
+        const formatted = sender === 'bot' ? this.formatBotMessage(text) : this.escapeHtml(text);
+        messageDiv.innerHTML = `<div class="chatbot-message-content">${formatted}</div>`;
         this.messagesTarget.appendChild(messageDiv);
         this.scrollToBottom();
     }
@@ -98,6 +99,13 @@ export default class extends Controller {
 
     scrollToBottom() {
         this.messagesTarget.scrollTop = this.messagesTarget.scrollHeight;
+    }
+
+    formatBotMessage(text) {
+        let html = this.escapeHtml(text);
+        html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+        html = html.replace(/\n/g, '<br>');
+        return html;
     }
 
     escapeHtml(text) {
