@@ -40,7 +40,7 @@ class DevisBuilderController extends AbstractController
             $devis->setNotes($request->request->get('notes'));
 
             $selectedOfferIndex = $request->request->get('selected_offer');
-            if ($selectedOfferIndex !== null && isset($offers[(int) $selectedOfferIndex])) {
+            if (null !== $selectedOfferIndex && isset($offers[(int) $selectedOfferIndex])) {
                 $offer = $offers[(int) $selectedOfferIndex];
                 $offerItem = new DevisItem();
                 $offerItem->setCategoryName('Offre de base');
