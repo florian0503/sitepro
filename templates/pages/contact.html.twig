@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Contact - EntryWeb{% endblock %}
+{% block title %}Contact — EntryWeb{% endblock %}
+{% block meta_description %}Contactez EntryWeb pour votre projet de site web. Devis gratuit, réponse sous 24h. Création de sites professionnels pour entrepreneurs.{% endblock %}
 
 {% block body %}
 <div data-controller="scroll-animation">
@@ -16,8 +17,7 @@
     <section class="contact-section">
         <div class="contact-container">
             <div class="contact-form-wrapper swiss-fade-up" data-scroll-animation-target="item" data-delay="200">
-                {% for message in app.flashes('success') %}
-                    {% if message == 'contact_sent' %}
+                {% if 'contact_sent' in app.flashes('success') %}
                     <div class="contact-success">
                         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
                             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
@@ -27,7 +27,6 @@
                         <p>Merci pour votre message. Nous vous répondrons sous 24h ouvrées.</p>
                         <a href="{{ path('app_home') }}" class="btn-contact-submit">Retour à l'accueil</a>
                     </div>
-                    {% endif %}
                 {% else %}
                 <form class="contact-form" method="post" action="{{ path('app_contact') }}" data-controller="contact-form">
                     <input type="hidden" name="_token" value="{{ csrf_token('contact_form') }}">
@@ -85,7 +84,7 @@
 
                     <p class="form-note">* Champs obligatoires • Réponse garantie sous 24h</p>
                 </form>
-                {% endfor %}
+                {% endif %}
             </div>
 
             <aside class="contact-sidebar swiss-fade-up" data-scroll-animation-target="item" data-delay="300">

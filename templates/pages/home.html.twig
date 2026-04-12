@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil - EntryWeb{% endblock %}
+{% block title %}EntryWeb — Sites web professionnels clé en main pour entrepreneurs{% endblock %}
+{% block meta_description %}Créez votre site web professionnel à partir de 349€ HT. Design moderne, hébergement inclus, livraison rapide. Devis gratuit.{% endblock %}
 
 {% block body %}
 <style>
@@ -29,7 +30,7 @@
                 </div>
             </div>
             <div class="hero-visual swiss-fade-right is-visible" data-scroll-animation-target="item">
-                <img src="/images/laptop.jpg" alt="Laptop mockup" class="hero-image">
+                <img src="{{ asset('images/laptop.jpg') }}" alt="Laptop mockup" class="hero-image">
             </div>
         </div>
     </section>
@@ -72,7 +73,7 @@
     <section class="founders">
         <div class="founders-container">
             <div class="founders-image swiss-fade-left" data-scroll-animation-target="item">
-                <img src="/images/equipe.jpeg" alt="Florian et Émilien, co-fondateurs d'EntryWeb" class="founders-photo">
+                <img src="{{ asset('images/equipe.jpeg') }}" alt="Florian et Émilien, co-fondateurs d'EntryWeb" class="founders-photo">
             </div>
             <div class="founders-content swiss-fade-right" data-scroll-animation-target="item">
                 <h2 class="founders-title">Pourquoi nous avons créé EntryWeb ?</h2>
