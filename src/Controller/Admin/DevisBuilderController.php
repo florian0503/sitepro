@@ -25,6 +25,7 @@ class DevisBuilderController extends AbstractController
         AdminUrlGenerator $urlGenerator,
     ): Response {
         $categories = DevisGrid::getCategories();
+        $offers = DevisGrid::getOffers();
 
         if ($request->isMethod('POST')) {
             $devis = new Devis();
@@ -37,6 +38,18 @@ class DevisBuilderController extends AbstractController
             $devis->setClientAddress($request->request->get('client_address'));
             $devis->setClientSiret($request->request->get('client_siret'));
             $devis->setNotes($request->request->get('notes'));
+
+            $selectedOfferIndex = $request->request->get('selected_offer');
+            if (null !== $selectedOfferIndex && isset($offers[(int) $selectedOfferIndex])) {
+                $offer = $offers[(int) $selectedOfferIndex];
+                $offerItem = new DevisItem();
+                $offerItem->setCategoryName('Offre de base');
+                $offerItem->setItemName($offer['name']);
+                $offerItem->setDescription($offer['description']);
+                $offerItem->setPrice($offer['price'] ?? 0.0);
+                $offerItem->setIsMonthly(false);
+                $devis->addItem($offerItem);
+            }
 
             /** @var array<string> $selectedItems */
             $selectedItems = $request->request->all('items');
@@ -71,6 +84,7 @@ class DevisBuilderController extends AbstractController
 
         return $this->render('admin/devis/builder.html.twig', [
             'categories' => $categories,
+            'offers' => $offers,
         ]);
     }
 }

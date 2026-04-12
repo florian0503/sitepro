@@ -4,16 +4,25 @@ const totalMonthlyEl = document.getElementById('total-monthly');
 const monthlySection = document.getElementById('monthly-section');
 const categorySubtotals = document.querySelectorAll('.category-subtotal');
 const selectedListEl = document.getElementById('selected-items-list');
+const offerLabels = document.querySelectorAll('.offer-option');
+const offerRadios = document.querySelectorAll('input[name="selected_offer"]');
+
+let selectedOfferPrice = 0;
+let selectedOfferName = '';
 
 function formatPrice(n) {
     return n.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
 function recalculate() {
-    let ht = 0;
+    let ht = selectedOfferPrice;
     let monthly = 0;
     const catTotals = {};
     let selectedHtml = '';
+
+    if (selectedOfferName) {
+        selectedHtml += '<div class="d-flex justify-content-between small mb-1 fw-bold text-primary"><span>' + selectedOfferName + '</span><span>' + (selectedOfferPrice > 0 ? formatPrice(selectedOfferPrice) + ' \u20ac' : 'Sur devis') + '</span></div>';
+    }
 
     checkboxes.forEach(function(cb) {
         if (cb.checked) {
@@ -49,9 +58,51 @@ function recalculate() {
     });
 }
 
-checkboxes.forEach(function(cb) {
-    cb.addEventListener('change', function() {
-        this.closest('.devis-item-row').classList.toggle('selected', this.checked);
+offerLabels.forEach(function(label) {
+    label.addEventListener('click', function() {
+        offerLabels.forEach(l => l.classList.remove('selected'));
+        this.classList.add('selected');
+        const radio = this.querySelector('input[type=radio]');
+        radio.checked = true;
+        selectedOfferPrice = parseFloat(radio.dataset.offerPrice) || 0;
+        selectedOfferName = radio.dataset.offerName;
         recalculate();
     });
 });
+
+function updateCategoryLocks() {
+    const categories = {};
+    checkboxes.forEach(function(cb) {
+        const cat = cb.dataset.category;
+        if (!categories[cat]) categories[cat] = [];
+        categories[cat].push(cb);
+    });
+
+    Object.values(categories).forEach(function(cbs) {
+        const first = cbs[0];
+        cbs.slice(1).forEach(function(cb) {
+            const row = cb.closest('.devis-item-row');
+            if (!first.checked) {
+                cb.checked = false;
+                cb.disabled = true;
+                row.classList.remove('selected');
+                row.style.opacity = '0.4';
+                row.style.pointerEvents = 'none';
+            } else {
+                cb.disabled = false;
+                row.style.opacity = '';
+                row.style.pointerEvents = '';
+            }
+        });
+    });
+}
+
+checkboxes.forEach(function(cb) {
+    cb.addEventListener('change', function() {
+        this.closest('.devis-item-row').classList.toggle('selected', this.checked);
+        updateCategoryLocks();
+        recalculate();
+    });
+});
+
+updateCategoryLocks();
