@@ -3000,6 +3000,10 @@ html, body {
     .team-grid {
         grid-template-columns: 1fr;
     }
+
+    .team-grid--centered {
+        max-width: 100%;
+    }
 }
 
 @media (max-width: 768px) {
