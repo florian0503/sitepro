@@ -3,6 +3,15 @@
 {% block title %}Accueil - EntryWeb{% endblock %}
 
 {% block body %}
+<style>
+@keyframes badge-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+    50% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+}
+.offer-card-badge-pulse {
+    animation: badge-pulse 2s ease-in-out infinite;
+}
+</style>
 <div data-controller="scroll-animation">
     <section class="hero">
         <div class="hero-container">
@@ -155,7 +164,7 @@
                     <a href="{{ path('app_offers') }}" class="btn btn-formule btn-formule-primary">Choisir</a>
                 </div>
                 <div class="formule-card formule-card--selected swiss-fade-up" data-formule-selection-target="card" data-action="click->formule-selection#select" data-scroll-animation-target="item" data-delay="150">
-                    <span class="formule-card-tag">Le plus choisi</span>
+                    <div class="offer-card-badge offer-card-badge-pulse" style="transform:translateX(-50%) scale(1);opacity:1;background:#ef4444;color:#fff;">Offre de lancement</div>
                     <h3 class="formule-card-title">Pack Business</h3>
                     <p class="formule-card-price">449€<sup>HT</sup></p>
                     <p class="formule-card-price-sub">+ 79€<sup>HT</sup>/mois</p>
@@ -169,6 +178,7 @@
                     <a href="{{ path('app_offers') }}" class="btn btn-formule btn-formule-primary">Choisir</a>
                 </div>
                 <div class="formule-card swiss-fade-up" data-formule-selection-target="card" data-action="click->formule-selection#select" data-scroll-animation-target="item" data-delay="300">
+                    <div class="offer-card-badge offer-card-badge-pulse" style="transform:translateX(-50%) scale(1);opacity:1;background:#ef4444;color:#fff;">Offre de lancement</div>
                     <h3 class="formule-card-title">E-commerce</h3>
                     <p class="formule-card-price">Sur devis</p>
                     <p class="formule-card-price-sub">+ 99€<sup>HT</sup>/mois</p>
