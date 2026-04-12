@@ -26,7 +26,7 @@ class AppFixtures extends Fixture
         $admin = new User();
         $admin->setEmail('contact@entryweb.fr');
         $admin->setRoles(['ROLE_ADMIN']);
-        $admin->setPassword($this->passwordHasher->hashPassword($admin, 'Entryweb2026!'));
+        $admin->setPassword($this->passwordHasher->hashPassword($admin, $_ENV['ADMIN_PASSWORD'] ?? 'ChangeMe!'));
         $manager->persist($admin);
 
         // Create categories

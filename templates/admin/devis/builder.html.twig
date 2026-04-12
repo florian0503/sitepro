@@ -28,7 +28,8 @@
 </div>
 
 <div class="container-fluid py-4 px-4">
-<form method="post" action="/devis/builder" id="devis-form">
+<form method="post" action="{{ path('admin_devis_builder') }}" id="devis-form">
+    <input type="hidden" name="_token" value="{{ csrf_token('devis_builder') }}">
     <div class="row">
         <div class="col-lg-8">
             <div class="card mb-4">

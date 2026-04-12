@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}À propos - EntryWeb{% endblock %}
+{% block title %}À propos — EntryWeb{% endblock %}
+{% block meta_description %}Découvrez l'équipe EntryWeb : Florian et Emilien, deux experts passionnés qui créent des sites web performants pour booster votre business.{% endblock %}
 
 {% block body %}
 <div data-controller="scroll-animation">
@@ -145,7 +146,7 @@
             </div>
             <div class="team-grid">
                 <div class="team-card swiss-fade-up" data-scroll-animation-target="item" data-delay="100">
-                    <div class="team-card-image" style="background-image: url('/images/equipe.jpeg');">
+                    <div class="team-card-image" style="background-image: url('{{ asset('images/equipe.jpeg') }}');">
                         <div class="team-card-overlay">
                             <span class="team-card-badge">Ingénierie d'excellence</span>
                             <h3 class="team-card-name">Florian</h3>
@@ -161,7 +162,7 @@
                     </div>
                 </div>
                 <div class="team-card swiss-fade-up" data-scroll-animation-target="item" data-delay="200">
-                    <div class="team-card-image" style="background-image: url('/images/emilien.jpeg');">
+                    <div class="team-card-image" style="background-image: url('{{ asset('images/emilien.jpeg') }}');">
                         <div class="team-card-overlay">
                             <span class="team-card-badge">Expert UX/Design</span>
                             <h3 class="team-card-name">Emilien</h3>
