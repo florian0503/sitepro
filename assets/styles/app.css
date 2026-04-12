@@ -2917,8 +2917,9 @@ html, body {
 }
 
 .team-container {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
+    padding: 0 1.5rem;
 }
 
 .team-header {
@@ -2946,8 +2947,9 @@ html, body {
     gap: 2rem;
 }
 
-.team-grid--three {
-    grid-template-columns: repeat(3, 1fr);
+.team-grid.team-grid--three {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 1.25rem;
 }
 
 .team-grid--centered {
@@ -2960,11 +2962,14 @@ html, body {
     border-radius: 16px;
     overflow: hidden;
     border: 1px solid transparent;
-    transition: border-color 0.3s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .team-card:hover {
     border-color: #0066ff;
+    transform: scale(1.05);
+    box-shadow: 0 12px 40px rgba(0, 102, 255, 0.15);
+    z-index: 2;
 }
 
 .team-card-image {
@@ -2972,6 +2977,22 @@ html, body {
     background-size: cover;
     background-position: center top;
     position: relative;
+}
+
+.team-grid--three .team-card-image {
+    height: 350px;
+}
+
+.team-grid--three .team-card-name {
+    font-size: 24px;
+}
+
+.team-grid--three .team-card-quote {
+    font-size: 13px;
+}
+
+.team-grid--three .team-card-overlay {
+    padding: 1.25rem;
 }
 
 .team-card-overlay {
@@ -3042,9 +3063,25 @@ html, body {
         margin: 0 auto;
     }
 
-    .team-grid,
-    .team-grid--three {
+    .team-grid {
         grid-template-columns: 1fr;
+    }
+
+    .team-grid--three {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.75rem;
+    }
+
+    .team-grid--three .team-card-image {
+        height: 280px;
+    }
+
+    .team-grid--three .team-card-name {
+        font-size: 20px;
+    }
+
+    .team-grid--three .team-card-quote {
+        font-size: 12px;
     }
 
     .team-grid--centered {
@@ -3053,6 +3090,10 @@ html, body {
 }
 
 @media (max-width: 768px) {
+    .team-grid--three {
+        grid-template-columns: 1fr;
+    }
+
     .about-hero {
         padding: 48px 16px;
     }
