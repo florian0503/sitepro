@@ -23,7 +23,6 @@
     right: 0;
     height: 12px;
 }
-.nav-dropdown:hover .nav-dropdown-menu { display: block; }
 .nav-dropdown-menu a {
     display: block;
     padding: 10px 20px;
@@ -40,7 +39,15 @@
     cursor: pointer;
 }
 .nav-dropdown-toggle svg { transition: transform 0.2s; }
-.nav-dropdown:hover .nav-dropdown-toggle svg { transform: rotate(180deg); }
+@media (hover: hover) and (min-width: 769px) {
+    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+    .nav-dropdown:hover .nav-dropdown-toggle svg { transform: rotate(180deg); }
+}
+@media (max-width: 768px) {
+    .nav-dropdown .nav-dropdown-menu { display: none; position: static; box-shadow: none; border: none; border-radius: 0; padding: 0 0 0 16px; margin-top: 4px; transform: none; }
+    .nav-dropdown.is-open .nav-dropdown-menu { display: block; }
+    .nav-dropdown.is-open .nav-dropdown-toggle svg { transform: rotate(180deg); }
+}
 </style>
 <header class="site-header" data-controller="scroll-progress mobile-menu">
     <div class="scroll-progress-bar"></div>
@@ -66,7 +73,7 @@
                     <a href="{{ path('app_offers') }}" class="nav-link {% if app.request.get('_route') == 'app_offers' %}active{% endif %}">Offres</a>
                 </li>
                 <li class="nav-item nav-dropdown">
-                    <span class="nav-link nav-dropdown-toggle {% if app.request.get('_route') in ['app_portfolio', 'app_about', 'app_parrainage'] %}active{% endif %}">
+                    <span class="nav-link nav-dropdown-toggle {% if app.request.get('_route') in ['app_portfolio', 'app_about', 'app_parrainage'] %}active{% endif %}" data-action="click->mobile-menu#toggleDropdown">
                         Entreprise
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
                     </span>

@@ -15,6 +15,10 @@
         .devis-item-row:hover { border-color: #2563eb !important; }
         .devis-item-row.selected { border-color: #2563eb !important; background: #eef2ff !important; }
         .sticky-summary { position: sticky; top: 20px; }
+        .offer-option { cursor: pointer; transition: all 0.15s; border: 2px solid #dee2e6 !important; }
+        .offer-option:hover { border-color: #2563eb !important; }
+        .offer-option.selected { border-color: #2563eb !important; background: #eef2ff !important; }
+        .offer-option input[type=radio] { display: none; }
     </style>
 </head>
 <body>
@@ -65,7 +69,33 @@
                 </div>
             </div>
 
-            <h4 class="mb-3"><i class="fa fa-list-check me-2"></i>Prestations</h4>
+            <div class="card mb-4">
+                <div class="card-header bg-white">
+                    <h5 class="card-title mb-0"><i class="fa fa-tag me-2"></i>Offre de base <span class="text-danger">*</span></h5>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        {% for index, offer in offers %}
+                        <div class="col-md-4">
+                            <label class="offer-option rounded p-3 d-block h-100" id="offer-label-{{ index }}">
+                                <input type="radio" name="selected_offer" value="{{ index }}" data-offer-price="{{ offer.price ?? 0 }}" data-offer-name="{{ offer.name }}">
+                                <div class="d-flex justify-content-between align-items-start mb-1">
+                                    <strong>{{ offer.name }}</strong>
+                                    {% if offer.price is not null %}
+                                    <span class="badge bg-primary ms-2 text-nowrap">{{ offer.price|number_format(0, ',', ' ') }} € HT</span>
+                                    {% else %}
+                                    <span class="badge bg-secondary ms-2 text-nowrap">Sur devis</span>
+                                    {% endif %}
+                                </div>
+                                <div class="text-muted small">{{ offer.description }}</div>
+                            </label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="mb-3"><i class="fa fa-list-check me-2"></i>Prestations complémentaires</h4>
 
             {% for category in categories %}
             <div class="card mb-3">

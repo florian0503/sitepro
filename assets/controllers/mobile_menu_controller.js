@@ -19,6 +19,11 @@ export default class extends Controller {
         }
     }
 
+    toggleDropdown(event) {
+        const dropdown = event.currentTarget.closest('.nav-dropdown');
+        dropdown.classList.toggle('is-open');
+    }
+
     close() {
         this.isOpen = false;
         this.menuTarget.classList.remove('is-open');
