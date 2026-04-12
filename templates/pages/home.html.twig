@@ -93,50 +93,21 @@
                 <p class="references-label">RÉFÉRENCES</p>
                 <h2 class="references-title">Ils nous font confiance</h2>
                 <p class="references-description">
-                    Plus de 50 entreprises satisfaites ont choisi notre expertise pour développer leur présence en ligne.
+                    Plus de {{ realisationsCount }} entreprises satisfaites ont choisi notre expertise pour développer leur présence en ligne.
                 </p>
             </div>
             <div class="references-cards" data-scroll-carousel-target="track" data-auto-scroll-target="track">
+                {% set colorClasses = ['reference-icon-blue', 'reference-icon-purple', 'reference-icon-magenta', 'reference-icon-teal', 'reference-icon-green'] %}
+                {% for realisation in realisations %}
+                    {% set name = realisation.clientName ?? realisation.title %}
+                    {% set words = name|split(' ') %}
+                    {% set initials = (words[0]|slice(0, 1) ~ (words[1] is defined ? words[1]|slice(0, 1) : ''))|upper %}
                     <div class="reference-card" data-references-show-more-target="card">
-                        <div class="reference-card-icon reference-icon-blue">BA</div>
-                        <h3 class="reference-card-title">Boulangerie Artisanale</h3>
-                        <p class="reference-card-category">Alimentation</p>
+                        <div class="reference-card-icon {{ colorClasses[loop.index0 % colorClasses|length] }}">{{ initials }}</div>
+                        <h3 class="reference-card-title">{{ name }}</h3>
+                        <p class="reference-card-category">{{ realisation.category.name }}</p>
                     </div>
-                    <div class="reference-card" data-references-show-more-target="card">
-                        <div class="reference-card-icon reference-icon-purple">FS</div>
-                        <h3 class="reference-card-title">Fitness Studio</h3>
-                        <p class="reference-card-category">Sport & Bien-être</p>
-                    </div>
-                    <div class="reference-card" data-references-show-more-target="card">
-                        <div class="reference-card-icon reference-icon-magenta">RL</div>
-                        <h3 class="reference-card-title">Restaurant Le Gourmet</h3>
-                        <p class="reference-card-category">Restauration</p>
-                    </div>
-                    <div class="reference-card" data-references-show-more-target="card">
-                        <div class="reference-card-icon reference-icon-teal">M&</div>
-                        <h3 class="reference-card-title">Mode & Style</h3>
-                        <p class="reference-card-category">E-commerce</p>
-                    </div>
-                    <div class="reference-card" data-references-show-more-target="card">
-                        <div class="reference-card-icon reference-icon-green">CC</div>
-                        <h3 class="reference-card-title">Cabinet Conseil</h3>
-                        <p class="reference-card-category">Services</p>
-                    </div>
-                    <div class="reference-card" data-references-show-more-target="card">
-                        <div class="reference-card-icon reference-icon-blue">CE</div>
-                        <h3 class="reference-card-title">Coiffure Élégance</h3>
-                        <p class="reference-card-category">Coiffure</p>
-                    </div>
-                    <div class="reference-card" data-references-show-more-target="card">
-                        <div class="reference-card-icon reference-icon-purple">GM</div>
-                        <h3 class="reference-card-title">Garage Martin</h3>
-                        <p class="reference-card-category">Automobile</p>
-                    </div>
-                    <div class="reference-card" data-references-show-more-target="card">
-                        <div class="reference-card-icon reference-icon-magenta">CD</div>
-                        <h3 class="reference-card-title">Clinique Du Parc</h3>
-                        <p class="reference-card-category">Santé</p>
-                    </div>
+                {% endfor %}
             </div>
         </div>
     </section>
@@ -179,7 +150,7 @@
                 </div>
                 <div class="formule-card swiss-fade-up" data-formule-selection-target="card" data-action="click->formule-selection#select" data-scroll-animation-target="item" data-delay="300">
                     <div class="offer-card-badge offer-card-badge-pulse" style="transform:translateX(-50%) scale(1);opacity:1;background:#ef4444;color:#fff;">Offre de lancement</div>
-                    <h3 class="formule-card-title">E-commerce</h3>
+                    <h3 class="formule-card-title">E-commerce & Sur-Mesure</h3>
                     <p class="formule-card-price">Sur devis</p>
                     <p class="formule-card-price-sub">+ 99€<sup>HT</sup>/mois</p>
                     <p class="formule-card-desc">Votre boutique en ligne complète</p>
@@ -207,7 +178,7 @@
                 </p>
             </div>
             <div class="portfolio-cards">
-                {% for realisation in realisations %}
+                {% for realisation in realisations|slice(0, 4) %}
                 <a href="{{ path('app_portfolio') }}" class="portfolio-card swiss-fade-up{{ loop.index > 2 ? ' portfolio-card--mobile-hidden' : '' }}" data-scroll-animation-target="item" data-delay="{{ loop.index0 * 100 }}" data-portfolio-show-more-target="card">
                     <div class="portfolio-card-image">
                         {% if realisation.imageName %}

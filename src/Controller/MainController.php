@@ -30,7 +30,8 @@ final class MainController extends AbstractController
         $realisations = $realisationRepository->findPublished();
 
         return $this->render('pages/home.html.twig', [
-            'realisations' => array_slice($realisations, 0, 4),
+            'realisations' => $realisations,
+            'realisationsCount' => count($realisations),
         ]);
     }
 
