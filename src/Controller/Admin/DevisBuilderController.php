@@ -14,7 +14,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted('ROLE_ADMIN')]
 class DevisBuilderController extends AbstractController
 {
     #[Route('/devis/builder', name: 'admin_devis_builder')]
@@ -28,6 +30,10 @@ class DevisBuilderController extends AbstractController
         $offers = DevisGrid::getOffers();
 
         if ($request->isMethod('POST')) {
+            if (!$this->isCsrfTokenValid('devis_builder', $request->request->get('_token'))) {
+                throw $this->createAccessDeniedException('Token CSRF invalide.');
+            }
+
             $devis = new Devis();
             $devis->setReference($devisRepository->getNextReference());
             $devis->setClientFirstName((string) $request->request->get('client_first_name'));
