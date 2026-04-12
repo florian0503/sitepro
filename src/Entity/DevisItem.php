@@ -29,8 +29,8 @@ class DevisItem
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column]
-    private float $price = 0.0;
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
+    private string $price = '0.00';
 
     #[ORM\Column]
     private bool $isMonthly = false;
@@ -88,14 +88,14 @@ class DevisItem
         return $this;
     }
 
-    public function getPrice(): float
+    public function getPrice(): string
     {
         return $this->price;
     }
 
-    public function setPrice(float $price): static
+    public function setPrice(string|float $price): static
     {
-        $this->price = $price;
+        $this->price = (string) $price;
 
         return $this;
     }

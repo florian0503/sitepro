@@ -42,8 +42,8 @@ class Devis
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $clientSiret = null;
 
-    #[ORM\Column]
-    private float $totalHt = 0.0;
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
+    private string $totalHt = '0.00';
 
     #[ORM\Column]
     private int $validityDays = 7;
@@ -71,21 +71,21 @@ class Devis
 
     public function computeTotals(): void
     {
-        $ht = 0.0;
+        $ht = '0.00';
         foreach ($this->items as $item) {
             if (!$item->isMonthly()) {
-                $ht += $item->getPrice();
+                $ht = bcadd($ht, $item->getPrice(), 2);
             }
         }
         $this->totalHt = $ht;
     }
 
-    public function getMonthlyTotal(): float
+    public function getMonthlyTotal(): string
     {
-        $total = 0.0;
+        $total = '0.00';
         foreach ($this->items as $item) {
             if ($item->isMonthly()) {
-                $total += $item->getPrice();
+                $total = bcadd($total, $item->getPrice(), 2);
             }
         }
 
@@ -203,14 +203,14 @@ class Devis
         return $this;
     }
 
-    public function getTotalHt(): float
+    public function getTotalHt(): string
     {
         return $this->totalHt;
     }
 
-    public function setTotalHt(float $totalHt): static
+    public function setTotalHt(string|float $totalHt): static
     {
-        $this->totalHt = $totalHt;
+        $this->totalHt = (string) $totalHt;
 
         return $this;
     }

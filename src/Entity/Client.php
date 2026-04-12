@@ -21,9 +21,9 @@ class Client
     public const SUBSCRIPTION_PREMIUM = 'premium';
 
     public const SUBSCRIPTION_AMOUNTS = [
-        self::SUBSCRIPTION_STARTER => 49.0,
-        self::SUBSCRIPTION_CONFORT => 79.0,
-        self::SUBSCRIPTION_PREMIUM => 99.0,
+        self::SUBSCRIPTION_STARTER => '49.00',
+        self::SUBSCRIPTION_CONFORT => '79.00',
+        self::SUBSCRIPTION_PREMIUM => '99.00',
     ];
 
     #[ORM\Id]
@@ -58,14 +58,14 @@ class Client
     #[ORM\Column]
     private int $totalMonths = 24;
 
-    #[ORM\Column]
-    private float $monthlyAmount = 0.0;
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
+    private string $monthlyAmount = '0.00';
 
     #[ORM\Column]
     private bool $setupFeePaid = false;
 
-    #[ORM\Column]
-    private float $maintenanceHoursUsed = 0.0;
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
+    private string $maintenanceHoursUsed = '0.00';
 
     #[ORM\Column]
     private bool $hasActiveIssue = false;
@@ -112,9 +112,9 @@ class Client
         return max(0, $this->totalMonths - $this->getMonthsPaid());
     }
 
-    public function getTotalPaid(): float
+    public function getTotalPaid(): string
     {
-        return $this->getMonthsPaid() * $this->monthlyAmount;
+        return bcmul((string) $this->getMonthsPaid(), $this->monthlyAmount, 2);
     }
 
     public function getFullName(): string
@@ -240,14 +240,14 @@ class Client
         return $this;
     }
 
-    public function getMonthlyAmount(): float
+    public function getMonthlyAmount(): string
     {
         return $this->monthlyAmount;
     }
 
-    public function setMonthlyAmount(float $monthlyAmount): static
+    public function setMonthlyAmount(string|float $monthlyAmount): static
     {
-        $this->monthlyAmount = $monthlyAmount;
+        $this->monthlyAmount = (string) $monthlyAmount;
 
         return $this;
     }
@@ -264,14 +264,14 @@ class Client
         return $this;
     }
 
-    public function getMaintenanceHoursUsed(): float
+    public function getMaintenanceHoursUsed(): string
     {
         return $this->maintenanceHoursUsed;
     }
 
-    public function setMaintenanceHoursUsed(float $maintenanceHoursUsed): static
+    public function setMaintenanceHoursUsed(string|float $maintenanceHoursUsed): static
     {
-        $this->maintenanceHoursUsed = $maintenanceHoursUsed;
+        $this->maintenanceHoursUsed = (string) $maintenanceHoursUsed;
 
         return $this;
     }
