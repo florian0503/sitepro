@@ -1698,6 +1698,17 @@ html, body {
         flex-direction: column;
         align-items: flex-start;
         gap: 1.5rem;
+        width: 100%;
+    }
+
+    .nav-item,
+    .nav-dropdown {
+        width: 100%;
+        display: block;
+    }
+
+    .nav-dropdown-toggle {
+        width: 100%;
     }
 
     .nav-link {
