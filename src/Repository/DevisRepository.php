@@ -21,15 +21,21 @@ class DevisRepository extends ServiceEntityRepository
     public function getNextReference(): string
     {
         $year = date('Y');
+        $prefix = 'DEV-'.$year.'-';
+
         $result = $this->createQueryBuilder('d')
-            ->select('COUNT(d.id)')
+            ->select('MAX(d.reference)')
             ->where('d.reference LIKE :prefix')
-            ->setParameter('prefix', 'DEV-'.$year.'-%')
+            ->setParameter('prefix', $prefix.'%')
             ->getQuery()
             ->getSingleScalarResult();
 
-        $next = ((int) $result) + 1;
+        if (null === $result) {
+            return $prefix.'001';
+        }
 
-        return \sprintf('DEV-%s-%03d', $year, $next);
+        $lastNumber = (int) substr($result, \strlen($prefix));
+
+        return \sprintf('DEV-%s-%03d', $year, $lastNumber + 1);
     }
 }

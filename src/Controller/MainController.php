@@ -11,8 +11,10 @@ use App\Repository\ParrainageRepository;
 use App\Repository\RealisationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Attribute\Route;
@@ -64,8 +66,14 @@ final class MainController extends AbstractController
     }
 
     #[Route('/contact', name: 'app_contact', methods: ['GET', 'POST'])]
-    public function contact(Request $request, EntityManagerInterface $entityManager, MailerInterface $mailer, ParrainageRepository $parrainageRepository): Response
-    {
+    public function contact(
+        Request $request,
+        EntityManagerInterface $entityManager,
+        MailerInterface $mailer,
+        ParrainageRepository $parrainageRepository,
+        #[Autowire('%env(CONTACT_EMAIL)%')]
+        string $contactEmail = 'contact@entryweb.fr',
+    ): Response {
         if ($request->isMethod('POST')) {
             if (!$this->isCsrfTokenValid('contact_form', $request->request->getString('_token'))) {
                 $this->addFlash('error', 'Jeton CSRF invalide, veuillez réessayer.');
@@ -160,14 +168,20 @@ final class MainController extends AbstractController
             HTML;
 
             $email = (new Email())
-                ->from('contact@entryweb.fr')
-                ->to('contact@entryweb.fr')
+                ->from($contactEmail)
+                ->to($contactEmail)
                 ->replyTo($clientEmail)
                 ->subject('Nouveau contact - '.$name)
                 ->html($htmlContent)
                 ->text("{$parrainText}Nom : {$name}\nEmail : {$clientEmail}\nFormule : {$budget}\n\nMessage :\n{$message}");
 
-            $mailer->send($email);
+            try {
+                $mailer->send($email);
+            } catch (TransportExceptionInterface) {
+                $this->addFlash('error', 'Une erreur est survenue lors de l\'envoi. Veuillez réessayer plus tard.');
+
+                return $this->redirectToRoute('app_contact');
+            }
 
             $request->getSession()->remove('referral_code');
             $this->addFlash('success', 'contact_sent');

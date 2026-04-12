@@ -49,7 +49,7 @@ class GroqService
             $data = $response->toArray();
 
             return $data['choices'][0]['message']['content'] ?? 'Désolé, je n\'ai pas pu générer de réponse.';
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             return 'Désolé, une erreur est survenue. Veuillez réessayer plus tard.';
         }
     }
