@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\Service\GroqService;
@@ -15,14 +17,19 @@ class ChatbotController extends AbstractController
     public function chat(Request $request, GroqService $groqService, SessionInterface $session): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
-        $userMessage = trim($data['message'] ?? '');
+
+        if (!\is_array($data)) {
+            return new JsonResponse(['error' => 'Requête invalide.'], 400);
+        }
+
+        $userMessage = trim((string) ($data['message'] ?? ''));
 
         if ('' === $userMessage) {
             return new JsonResponse(['error' => 'Message vide'], 400);
         }
 
         if (mb_strlen($userMessage) > 500) {
-            return new JsonResponse(['response' => 'Votre message est trop long. Merci de le raccourcir (500 caractères max).'], 200);
+            return new JsonResponse(['error' => 'Message trop long (500 caractères max).'], 400);
         }
 
         // Récupérer l'historique de la session
