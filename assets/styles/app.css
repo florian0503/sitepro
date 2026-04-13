@@ -764,13 +764,18 @@ body {
 .formule-card-price-sub {
     font-size: 1rem;
     font-weight: 500;
-    color: #6b7280;
-    margin: 0.25rem 0 0;
+    color: #0066ff;
+    margin: 0.75rem 0 0;
+    padding: 0.75rem 0;
+    border-top: 1px dashed #e5e7eb;
+    border-bottom: 1px dashed #e5e7eb;
     transition: color 0.3s ease;
 }
 
 .formule-card--selected .formule-card-price-sub {
     color: rgba(255, 255, 255, 0.85);
+    border-top-color: rgba(255, 255, 255, 0.3);
+    border-bottom-color: rgba(255, 255, 255, 0.3);
 }
 
 .formule-card-price sup,
