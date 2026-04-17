@@ -55,13 +55,16 @@
 
                     <div class="form-group" data-controller="custom-select">
                         <label for="budget">Formule souhaitée *</label>
-                        <select id="budget" name="budget" required data-custom-select-target="select">
+                        <select id="budget" name="budget" required data-custom-select-target="select" {% if preselectedBudget %}data-preselect="{{ preselectedBudget }}"{% endif %}>
                             <option value="">Sélectionnez une formule</option>
-                            <option value="pack-essentiel">Pack Essentiel (349€HT + 49€HT/mois)</option>
-                            <option value="pack-business">Pack Business (449€HT + 79€HT/mois)</option>
-                            <option value="e-commerce">E-commerce & Sur-Mesure (Sur devis + 99€HT/mois)</option>
-                            <option value="sur-mesure">Autre projet (Devis personnalisé)</option>
-                            <option value="autre">Je ne sais pas encore</option>
+                            <option value="pack-essentiel-starter"  {{ selectedOffer == 'pack-essentiel' and selectedSubscription == 'starter'  ? 'selected' : '' }}>Pack Essentiel — Starter (349€HT + 49€HT/mois)</option>
+                            <option value="pack-essentiel-confort"  {{ selectedOffer == 'pack-essentiel' and selectedSubscription == 'confort'  ? 'selected' : '' }}>Pack Essentiel — Confort (349€HT + 79€HT/mois)</option>
+                            <option value="pack-essentiel-premium"  {{ selectedOffer == 'pack-essentiel' and selectedSubscription == 'premium'  ? 'selected' : '' }}>Pack Essentiel — Premium (349€HT + 99€HT/mois)</option>
+                            <option value="pack-business-confort"   {{ selectedOffer == 'pack-business'  and selectedSubscription == 'confort'  ? 'selected' : '' }}>Pack Business — Confort (449€HT + 79€HT/mois)</option>
+                            <option value="pack-business-premium"   {{ selectedOffer == 'pack-business'  and selectedSubscription == 'premium'  ? 'selected' : '' }}>Pack Business — Premium (449€HT + 99€HT/mois)</option>
+                            <option value="e-commerce-premium"      {{ selectedOffer == 'e-commerce'                                           ? 'selected' : '' }}>E-commerce & Sur-Mesure — Premium (Sur devis + 99€HT/mois)</option>
+                            <option value="sur-mesure"              {{ selectedOffer == 'sur-mesure'                                           ? 'selected' : '' }}>Autre projet (Devis personnalisé)</option>
+                            <option value="autre"                   {{ selectedOffer == 'autre'                                                ? 'selected' : '' }}>Je ne sais pas encore</option>
                         </select>
                     </div>
 

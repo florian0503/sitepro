@@ -5,7 +5,7 @@ export default class extends Controller {
         this.element.addEventListener('submit', this.handleSubmit.bind(this));
     }
 
-    handleSubmit(event) {
+    handleSubmit() {
         const submitButton = this.element.querySelector('button[type=submit]');
         if (submitButton) {
             submitButton.disabled = true;

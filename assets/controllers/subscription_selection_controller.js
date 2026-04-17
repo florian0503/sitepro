@@ -6,13 +6,16 @@ export default class extends Controller {
     select(event) {
         const clickedCard = event.currentTarget;
 
-        // Retirer la sélection et le style popular de toutes les cartes
+        if (clickedCard.classList.contains('subscription-card--disabled')) return;
+
         this.cardTargets.forEach(card => {
             card.classList.remove('subscription-card--selected');
             card.classList.remove('subscription-card--popular');
         });
 
-        // Ajouter la sélection à la carte cliquée
         clickedCard.classList.add('subscription-card--selected');
+
+        const subscriptionValue = clickedCard.dataset.subscriptionValue || '';
+        document.dispatchEvent(new CustomEvent('subscription:selected', { detail: { value: subscriptionValue } }));
     }
 }

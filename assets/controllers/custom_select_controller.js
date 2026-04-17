@@ -14,18 +14,36 @@ export default class extends Controller {
         document.removeEventListener('click', this.handleOutsideClick.bind(this));
     }
 
+    refresh() {
+        if (this.wrapper) {
+            this.wrapper.remove();
+        }
+        this.buildCustomSelect();
+    }
+
     buildCustomSelect() {
         const select = this.selectTarget;
-        const options = select.querySelectorAll('option');
-        
+
+        if (select.dataset.preselect) {
+            select.value = select.dataset.preselect;
+        }
+
+        const options = Array.from(select.querySelectorAll('option')).filter(o => !o.hidden);
+        const currentValue = select.value;
+        let initialIndex = 0;
+        options.forEach((option, index) => {
+            if (option.value && option.value === currentValue) initialIndex = index;
+        });
+
         const wrapper = document.createElement('div');
         wrapper.className = 'custom-select';
-        
+
         const display = document.createElement('div');
         display.className = 'custom-select-display';
+        if (initialIndex !== 0) display.classList.add('has-value');
         display.setAttribute('data-custom-select-target', 'display');
         display.innerHTML = `
-            <span class="custom-select-text">${options[0].textContent}</span>
+            <span class="custom-select-text">${options[initialIndex].textContent}</span>
             <svg class="custom-select-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M6 9l6 6 6-6"/>
             </svg>
