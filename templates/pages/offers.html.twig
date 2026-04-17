@@ -30,7 +30,7 @@
         <div class="offers-pricing-container">
             <div class="offers-cards" data-controller="offer-selection">
                 {# Pack Démarrage #}
-                <div class="offer-card swiss-fade-up" data-scroll-animation-target="item" data-delay="0" data-offer-selection-target="card" data-action="click->offer-selection#select">
+                <div class="offer-card swiss-fade-up" data-scroll-animation-target="item" data-delay="0" data-offer-selection-target="card" data-action="click->offer-selection#select" data-offer-value="pack-essentiel">
                     <div class="offer-card-header">
                         <h3 class="offer-card-title">Pack Essentiel</h3>
                         <p class="offer-card-subtitle">Idéal pour démarrer</p>
@@ -55,12 +55,12 @@
                         </ul>
                     </div>
                     <div class="offer-card-footer">
-                        <a href="{{ path('app_contact') }}" class="btn-offer btn-offer-primary">Démarrer mon projet</a>
+                        <a href="{{ path('app_contact', {'offer': 'pack-essentiel'}) }}" class="btn-offer btn-offer-primary">Démarrer mon projet</a>
                     </div>
                 </div>
 
                 {# Pack Entreprise - Populaire #}
-                <div class="offer-card offer-card--selected swiss-fade-up" data-scroll-animation-target="item" data-delay="100" data-offer-selection-target="card" data-action="click->offer-selection#select">
+                <div class="offer-card offer-card--selected swiss-fade-up" data-scroll-animation-target="item" data-delay="100" data-offer-selection-target="card" data-action="click->offer-selection#select" data-offer-value="pack-business">
                     <div class="offer-card-badge offer-card-badge-pulse" style="transform:translateX(-50%) scale(1);opacity:1;background:#ef4444;color:#fff;">
                         Offre de lancement
                     </div>
@@ -88,12 +88,12 @@
                         </ul>
                     </div>
                     <div class="offer-card-footer">
-                        <a href="{{ path('app_contact') }}" class="btn-offer btn-offer-primary">Démarrer mon projet</a>
+                        <a href="{{ path('app_contact', {'offer': 'pack-business'}) }}" class="btn-offer btn-offer-primary">Démarrer mon projet</a>
                     </div>
                 </div>
 
                 {# E-commerce & Sur-Mesure #}
-                <div class="offer-card swiss-fade-up" data-scroll-animation-target="item" data-delay="200" data-offer-selection-target="card" data-action="click->offer-selection#select">
+                <div class="offer-card swiss-fade-up" data-scroll-animation-target="item" data-delay="200" data-offer-selection-target="card" data-action="click->offer-selection#select" data-offer-value="e-commerce">
                     <div class="offer-card-badge offer-card-badge-pulse" style="transform:translateX(-50%) scale(1);opacity:1;background:#ef4444;color:#fff;">
                         Offre de lancement
                     </div>
@@ -122,7 +122,7 @@
                         </ul>
                     </div>
                     <div class="offer-card-footer">
-                        <a href="{{ path('app_contact') }}" class="btn-offer btn-offer-primary">Discuter de mon projet</a>
+                        <a href="{{ path('app_contact', {'offer': 'e-commerce'}) }}" class="btn-offer btn-offer-primary">Discuter de mon projet</a>
                     </div>
                 </div>
             </div>
@@ -141,7 +141,7 @@
             </div>
             <div class="subscriptions-cards" data-controller="subscription-selection">
                 {# Abonnement Starter #}
-                <div class="subscription-card swiss-fade-up" data-scroll-animation-target="item" data-delay="0" data-subscription-selection-target="card" data-action="click->subscription-selection#select">
+                <div class="subscription-card swiss-fade-up" data-scroll-animation-target="item" data-delay="0" data-subscription-selection-target="card" data-action="click->subscription-selection#select" data-subscription-value="starter">
                     <div class="subscription-card-header">
                         <h3 class="subscription-card-title">Starter</h3>
                         <div class="subscription-card-price">
@@ -161,7 +161,7 @@
                 </div>
 
                 {# Abonnement Confort #}
-                <div class="subscription-card subscription-card--popular swiss-fade-up" data-scroll-animation-target="item" data-delay="100" data-subscription-selection-target="card" data-action="click->subscription-selection#select">
+                <div class="subscription-card subscription-card--popular swiss-fade-up" data-scroll-animation-target="item" data-delay="100" data-subscription-selection-target="card" data-action="click->subscription-selection#select" data-subscription-value="confort">
                     <div class="subscription-card-badge">Recommandé</div>
                     <div class="subscription-card-header">
                         <h3 class="subscription-card-title">Confort</h3>
@@ -183,7 +183,7 @@
                 </div>
 
                 {# Abonnement Premium #}
-                <div class="subscription-card swiss-fade-up" data-scroll-animation-target="item" data-delay="200" data-subscription-selection-target="card" data-action="click->subscription-selection#select">
+                <div class="subscription-card swiss-fade-up" data-scroll-animation-target="item" data-delay="200" data-subscription-selection-target="card" data-action="click->subscription-selection#select" data-subscription-value="premium">
                     <div class="subscription-card-header">
                         <h3 class="subscription-card-title">Premium</h3>
                         <div class="subscription-card-price">

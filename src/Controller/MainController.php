@@ -75,6 +75,7 @@ final class MainController extends AbstractController
             $name = $request->request->getString('name');
             $clientEmail = $request->request->getString('email');
             $budget = $request->request->getString('budget');
+            $subscription = $request->request->getString('subscription');
             $message = $request->request->getString('message');
             $referralCode = $request->request->getString('referral_code');
 
@@ -122,6 +123,7 @@ final class MainController extends AbstractController
             $safeName = htmlspecialchars($name, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
             $safeEmail = htmlspecialchars($clientEmail, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
             $safeBudget = htmlspecialchars($budget, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+            $safeSubscription = htmlspecialchars($subscription, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
             $safeMessage = nl2br(htmlspecialchars($message, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'));
 
             $htmlContent = <<<HTML
@@ -144,6 +146,10 @@ final class MainController extends AbstractController
                         <tr>
                             <td style="padding: 12px 16px; background: #ffffff; border-bottom: 1px solid #f0f0f0; font-size: 13px; color: #666; vertical-align: top;">Formule</td>
                             <td style="padding: 12px 16px; background: #ffffff; border-bottom: 1px solid #f0f0f0; font-size: 15px; color: #111;">{$safeBudget}</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 16px; background: #ffffff; border-bottom: 1px solid #f0f0f0; font-size: 13px; color: #666; vertical-align: top;">Abonnement</td>
+                            <td style="padding: 12px 16px; background: #ffffff; border-bottom: 1px solid #f0f0f0; font-size: 15px; color: #111;">{$safeSubscription}</td>
                         </tr>
                         <tr>
                             <td style="padding: 12px 16px; background: #ffffff; font-size: 13px; color: #666; vertical-align: top;">Message</td>
@@ -181,8 +187,32 @@ final class MainController extends AbstractController
             $parrain = $parrainageRepository->findByReferralCode($referralCode);
         }
 
+        $allowedOffers = ['pack-essentiel', 'pack-business', 'e-commerce', 'sur-mesure', 'autre'];
+        $selectedOffer = $request->query->getString('offer');
+        if (!in_array($selectedOffer, $allowedOffers, true)) {
+            $selectedOffer = '';
+        }
+
+        $allowedSubscriptions = ['starter', 'confort', 'premium'];
+        $selectedSubscription = $request->query->getString('subscription');
+        if (!in_array($selectedSubscription, $allowedSubscriptions, true)) {
+            $selectedSubscription = '';
+        }
+
+        // Calcul de la valeur exacte à pré-sélectionner dans le select
+        $preselectedBudget = match (true) {
+            $selectedOffer === 'e-commerce'                        => 'e-commerce-premium',
+            $selectedOffer === 'sur-mesure'                        => 'sur-mesure',
+            $selectedOffer === 'autre'                             => 'autre',
+            $selectedOffer !== '' && $selectedSubscription !== ''  => $selectedOffer.'-'.$selectedSubscription,
+            default                                                => '',
+        };
+
         return $this->render('pages/contact.html.twig', [
-            'parrain' => $parrain,
+            'parrain'              => $parrain,
+            'selectedOffer'        => $selectedOffer,
+            'selectedSubscription' => $selectedSubscription,
+            'preselectedBudget'    => $preselectedBudget,
         ]);
     }
 
