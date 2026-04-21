@@ -216,18 +216,18 @@ final class MainController extends AbstractController
 
         // Calcul de la valeur exacte à pré-sélectionner dans le select
         $preselectedBudget = match (true) {
-            $selectedOffer === 'e-commerce'                        => 'e-commerce-premium',
-            $selectedOffer === 'sur-mesure'                        => 'sur-mesure',
-            $selectedOffer === 'autre'                             => 'autre',
-            $selectedOffer !== '' && $selectedSubscription !== ''  => $selectedOffer.'-'.$selectedSubscription,
-            default                                                => '',
+            'e-commerce' === $selectedOffer => 'e-commerce-premium',
+            'sur-mesure' === $selectedOffer => 'sur-mesure',
+            'autre' === $selectedOffer => 'autre',
+            '' !== $selectedOffer && '' !== $selectedSubscription => $selectedOffer.'-'.$selectedSubscription,
+            default => '',
         };
 
         return $this->render('pages/contact.html.twig', [
-            'parrain'              => $parrain,
-            'selectedOffer'        => $selectedOffer,
+            'parrain' => $parrain,
+            'selectedOffer' => $selectedOffer,
             'selectedSubscription' => $selectedSubscription,
-            'preselectedBudget'    => $preselectedBudget,
+            'preselectedBudget' => $preselectedBudget,
         ]);
     }
 
