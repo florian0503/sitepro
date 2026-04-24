@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Blog - EntryWeb{% endblock %}
+
+{% block body %}
+<div data-controller="scroll-animation">
+
+    {# Hero #}
+    <section class="page-hero">
+        <div class="page-hero-inner">
+            <h1 class="page-hero-title swiss-fade-up" data-scroll-animation-target="item">
+                Conseils, <em>décryptages</em>,<br>retours terrain.
+            </h1>
+            <p class="page-hero-description swiss-fade-up" data-scroll-animation-target="item" data-delay="100">
+                Tout ce qu'on apprend en créant des sites qui convertissent — partagé sans filtre, pour vous aider à réussir en ligne.
+            </p>
+        </div>
+    </section>
+
+    {% if articles is empty %}
+        <section class="blog-empty">
+            <div class="blog-container">
+                <p>Aucun article pour le moment. Revenez bientôt !</p>
+            </div>
+        </section>
+    {% else %}
+
+        {# Article vedette #}
+        {% if featured %}
+        <section class="blog-featured">
+            <div class="blog-container">
+                <a href="{{ path('app_blog_show', {slug: featured.slug}) }}" class="blog-featured-card swiss-fade-up" data-scroll-animation-target="item">
+                    <div class="blog-featured-image">
+                        {% if featured.coverImage %}
+                            <img src="{{ featured.coverImage }}" alt="{{ featured.title }}">
+                        {% else %}
+                            <div class="blog-image-placeholder blog-image-placeholder--{{ featured.category|lower|replace({' ': '-', 'é': 'e', 'è': 'e', 'ê': 'e', 'ô': 'o'}) }}"></div>
+                        {% endif %}
+                        <span class="blog-badge blog-badge--featured">À la une</span>
+                    </div>
+                    <div class="blog-featured-body">
+                        <span class="blog-category-badge">{{ featured.category }}</span>
+                        <h2 class="blog-featured-title">{{ featured.title }}</h2>
+                        <p class="blog-featured-excerpt">{{ featured.excerpt }}</p>
+                        <div class="blog-meta">
+                            <span class="blog-meta-date">{{ featured.publishedAt|date('d/m/Y') }}</span>
+                            <span class="blog-meta-sep">·</span>
+                            <span class="blog-meta-read">{{ featured.readTime }} min de lecture</span>
+                        </div>
+                        <span class="blog-link">Lire l'article →</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+        {% endif %}
+
+        {# Grille d'articles #}
+        {% if rest is not empty %}
+        <section class="blog-grid-section">
+            <div class="blog-container">
+                <div class="blog-grid">
+                    {% for article in rest %}
+                    <article class="blog-card swiss-fade-up" data-scroll-animation-target="item" data-delay="{{ (loop.index0 % 3) * 100 }}">
+                        <a href="{{ path('app_blog_show', {slug: article.slug}) }}" class="blog-card-image-link">
+                            <div class="blog-card-image">
+                                {% if article.coverImage %}
+                                    <img src="{{ article.coverImage }}" alt="{{ article.title }}">
+                                {% else %}
+                                    <div class="blog-image-placeholder"></div>
+                                {% endif %}
+                            </div>
+                        </a>
+                        <div class="blog-card-body">
+                            <span class="blog-category-badge">{{ article.category }}</span>
+                            <h3 class="blog-card-title">
+                                <a href="{{ path('app_blog_show', {slug: article.slug}) }}">{{ article.title }}</a>
+                            </h3>
+                            <p class="blog-card-excerpt">{{ article.excerpt|slice(0, 120) }}{% if article.excerpt|length > 120 %}...{% endif %}</p>
+                            <div class="blog-meta">
+                                <span class="blog-meta-date">{{ article.publishedAt|date('d/m/Y') }}</span>
+                                <span class="blog-meta-sep">·</span>
+                                <span class="blog-meta-read">{{ article.readTime }} min</span>
+                            </div>
+                        </div>
+                    </article>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        {% endif %}
+
+    {% endif %}
+
+    {# CTA newsletter / contact #}
+    <section class="blog-cta swiss-fade-up" data-scroll-animation-target="item">
+        <div class="blog-container">
+            <div class="blog-cta-inner">
+                <h2 class="blog-cta-title">Un projet en tête ?</h2>
+                <p class="blog-cta-text">On répond sous 24h et le premier appel est gratuit.</p>
+                <a href="{{ path('app_contact') }}" class="btn btn-primary">Démarrons ensemble</a>
+            </div>
+        </div>
+    </section>
+
+</div>
+{% endblock %}
