@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Admin;
 
+use App\Entity\Article;
 use App\Entity\Category;
 use App\Entity\Client;
 use App\Entity\ContactMessage;
@@ -83,6 +84,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Contenu');
         yield MenuItem::linkToCrud('Messages', 'fa fa-envelope', ContactMessage::class);
         yield MenuItem::linkToCrud('Réalisations', 'fa fa-images', Realisation::class);
+        yield MenuItem::linkToCrud('Articles Blog', 'fa fa-newspaper', Article::class);
         yield MenuItem::linkToCrud('Catégories', 'fa fa-folder', Category::class);
         yield MenuItem::section('');
         yield MenuItem::linkToRoute('Mode maintenance', 'fa fa-tools', 'admin_maintenance');

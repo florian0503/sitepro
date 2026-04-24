@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ article.title }} - Blog EntryWeb{% endblock %}
+
+{% block body %}
+<div data-controller="scroll-animation">
+
+    {# Hero article #}
+    <section class="blog-show-hero">
+        <div class="blog-container">
+            <div class="blog-show-meta swiss-fade-up" data-scroll-animation-target="item">
+                <a href="{{ path('app_blog') }}" class="blog-back-link">← Blog</a>
+                <span class="blog-category-badge">{{ article.category }}</span>
+            </div>
+            <h1 class="blog-show-title swiss-fade-up" data-scroll-animation-target="item" data-delay="100">
+                {{ article.title }}
+            </h1>
+            <p class="blog-show-excerpt swiss-fade-up" data-scroll-animation-target="item" data-delay="150">
+                {{ article.excerpt }}
+            </p>
+            <div class="blog-meta blog-show-info swiss-fade-up" data-scroll-animation-target="item" data-delay="200">
+                <span class="blog-meta-date">{{ article.publishedAt|date('d/m/Y') }}</span>
+                <span class="blog-meta-sep">·</span>
+                <span class="blog-meta-read">{{ article.readTime }} min de lecture</span>
+            </div>
+        </div>
+    </section>
+
+    {% if article.coverImage %}
+    <section class="blog-show-cover swiss-fade-up" data-scroll-animation-target="item">
+        <div class="blog-container">
+            <div class="blog-show-cover-img">
+                <img src="{{ article.coverImage }}" alt="{{ article.title }}">
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    {# Contenu #}
+    <section class="blog-show-content">
+        <div class="blog-container">
+            <div class="blog-show-body swiss-fade-up" data-scroll-animation-target="item">
+                {{ article.content|article_content }}
+            </div>
+        </div>
+    </section>
+
+    {# Articles liés #}
+    {% if related is not empty %}
+    <section class="blog-related">
+        <div class="blog-container">
+            <h2 class="blog-related-title swiss-fade-up" data-scroll-animation-target="item">Dans la même catégorie</h2>
+            <div class="blog-grid blog-grid--3">
+                {% for rel in related %}
+                <article class="blog-card swiss-fade-up" data-scroll-animation-target="item" data-delay="{{ loop.index0 * 100 }}">
+                    <a href="{{ path('app_blog_show', {slug: rel.slug}) }}" class="blog-card-image-link">
+                        <div class="blog-card-image">
+                            {% if rel.coverImage %}
+                                <img src="{{ rel.coverImage }}" alt="{{ rel.title }}">
+                            {% else %}
+                                <div class="blog-image-placeholder"></div>
+                            {% endif %}
+                        </div>
+                    </a>
+                    <div class="blog-card-body">
+                        <span class="blog-category-badge">{{ rel.category }}</span>
+                        <h3 class="blog-card-title">
+                            <a href="{{ path('app_blog_show', {slug: rel.slug}) }}">{{ rel.title }}</a>
+                        </h3>
+                        <div class="blog-meta">
+                            <span class="blog-meta-date">{{ rel.publishedAt|date('d/m/Y') }}</span>
+                            <span class="blog-meta-sep">·</span>
+                            <span class="blog-meta-read">{{ rel.readTime }} min</span>
+                        </div>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    {# CTA #}
+    <section class="blog-cta swiss-fade-up" data-scroll-animation-target="item">
+        <div class="blog-container">
+            <div class="blog-cta-inner">
+                <h2 class="blog-cta-title">Prêt à passer à l'action ?</h2>
+                <p class="blog-cta-text">Un appel découverte gratuit de 30 minutes pour parler de votre projet.</p>
+                <a href="{{ path('app_contact') }}" class="btn btn-primary">Démarrons ensemble</a>
+            </div>
+        </div>
+    </section>
+
+</div>
+{% endblock %}
