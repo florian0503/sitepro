@@ -260,6 +260,74 @@
         </div>
     </section>
 
+    <section class="newsletter-section swiss-fade-up" data-scroll-animation-target="item" id="newsletter">
+        <div class="newsletter-container">
+            <div class="newsletter-badge">Guide Gratuit</div>
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h2 class="newsletter-title">
+                        Téléchargez gratuitement :<br>
+                        <span class="newsletter-title-highlight">Les 10 erreurs qui font fuir vos clients en ligne</span>
+                    </h2>
+                    <ul class="newsletter-benefits">
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Checklist complète des erreurs les plus fréquentes
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Des conseils concrets pour corriger chaque point
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Reçu immédiatement par email, 100% gratuit
+                        </li>
+                    </ul>
+                </div>
+                <div class="newsletter-form-wrapper">
+                    {% for message in app.flashes('newsletter_success') %}
+                        {% if message == 'pdf_sent' %}
+                            <div class="newsletter-success">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                                <p>C'est parti ! Vérifiez votre boîte mail.</p>
+                            </div>
+                        {% elseif message == 'already_subscribed' %}
+                            <div class="newsletter-success">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                                <p>Vous êtes déjà inscrit ! Le guide vous a déjà été envoyé.</p>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    {% if app.flashes('newsletter_success')|length == 0 %}
+                        {% for error in app.flashes('newsletter_error') %}
+                            <div class="newsletter-error">{{ error }}</div>
+                        {% endfor %}
+                        <form class="newsletter-form" action="{{ path('app_newsletter_subscribe') }}" method="POST">
+                            <input type="hidden" name="_token" value="{{ csrf_token('newsletter_form') }}">
+                            <label class="newsletter-label" for="newsletter-email">Votre adresse email</label>
+                            <div class="newsletter-input-group">
+                                <input
+                                    type="email"
+                                    id="newsletter-email"
+                                    name="email"
+                                    class="newsletter-input"
+                                    placeholder="vous@example.com"
+                                    required
+                                    autocomplete="email"
+                                >
+                                <button type="submit" class="newsletter-btn">
+                                    Recevoir le guide
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                </button>
+                            </div>
+                            <p class="newsletter-privacy">Pas de spam. Désinscription en 1 clic.</p>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="cta swiss-scale" data-scroll-animation-target="item">
         <div class="cta-container">
             <h2 class="cta-title">Prêt à lancer votre site web ?</h2>

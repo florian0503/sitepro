@@ -5,10 +5,13 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\ContactMessage;
+use App\Entity\NewsletterSubscriber;
 use App\Entity\Parrainage;
 use App\Repository\CategoryRepository;
+use App\Repository\NewsletterSubscriberRepository;
 use App\Repository\ParrainageRepository;
 use App\Repository\RealisationRepository;
+use App\Service\LeadMagnetPdfService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
@@ -17,6 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
+use Symfony\Component\Mime\Part\DataPart;
 use Symfony\Component\Routing\Attribute\Route;
 
 final class MainController extends AbstractController
@@ -229,6 +233,90 @@ final class MainController extends AbstractController
             'selectedSubscription' => $selectedSubscription,
             'preselectedBudget' => $preselectedBudget,
         ]);
+    }
+
+    #[Route('/newsletter/inscription', name: 'app_newsletter_subscribe', methods: ['POST'])]
+    public function newsletterSubscribe(
+        Request $request,
+        EntityManagerInterface $entityManager,
+        NewsletterSubscriberRepository $subscriberRepository,
+        MailerInterface $mailer,
+        LeadMagnetPdfService $pdfService,
+        #[Autowire('%env(CONTACT_EMAIL)%')]
+        string $contactEmail = 'contact@entryweb.fr',
+    ): Response {
+        if (!$this->isCsrfTokenValid('newsletter_form', $request->request->getString('_token'))) {
+            $this->addFlash('newsletter_error', 'Jeton invalide, veuillez réessayer.');
+
+            return $this->redirectToRoute('app_home', ['#' => 'newsletter']);
+        }
+
+        $email = trim($request->request->getString('email'));
+
+        if (false === filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $this->addFlash('newsletter_error', 'Adresse email invalide.');
+
+            return $this->redirectToRoute('app_home', ['#' => 'newsletter']);
+        }
+
+        $existing = $subscriberRepository->findByEmail($email);
+        if (null !== $existing) {
+            $this->addFlash('newsletter_success', 'already_subscribed');
+
+            return $this->redirectToRoute('app_home', ['#' => 'newsletter']);
+        }
+
+        $subscriber = new NewsletterSubscriber();
+        $subscriber->setEmail($email);
+        $entityManager->persist($subscriber);
+
+        $pdfContent = $pdfService->generate();
+        $safeEmail = htmlspecialchars($email, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+
+        $htmlContent = <<<HTML
+        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff;">
+            <div style="background: #0066ff; padding: 32px; text-align: center;">
+                <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 600;">EntryWeb</h1>
+                <p style="color: #cce0ff; margin: 8px 0 0; font-size: 14px;">Votre guide gratuit est arrivé !</p>
+            </div>
+            <div style="padding: 40px 32px;">
+                <h2 style="font-size: 20px; color: #1a1a2e; margin: 0 0 16px;">Voici votre checklist 🎉</h2>
+                <p style="font-size: 15px; color: #555; line-height: 1.7; margin: 0 0 20px;">
+                    Merci pour votre intérêt ! Vous trouverez en pièce jointe le guide <strong>"Les 10 erreurs qui font fuir vos clients en ligne"</strong>.
+                </p>
+                <p style="font-size: 15px; color: #555; line-height: 1.7; margin: 0 0 32px;">
+                    Prenez le temps de parcourir chaque point et de vérifier votre site actuel. Si vous identifiez plusieurs de ces erreurs, nous sommes là pour vous aider.
+                </p>
+                <div style="text-align: center;">
+                    <a href="https://entryweb.fr/contact" style="display: inline-block; padding: 14px 32px; background: #0066ff; color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px;">Obtenir mon devis gratuit</a>
+                </div>
+            </div>
+            <div style="padding: 24px 32px; background: #f8f9fa; border-top: 1px solid #eee; text-align: center;">
+                <p style="font-size: 12px; color: #aaa; margin: 0;">EntryWeb · entryweb.fr</p>
+            </div>
+        </div>
+        HTML;
+
+        $mail = (new Email())
+            ->from($contactEmail)
+            ->to($email)
+            ->subject('Votre guide gratuit EntryWeb — Les 10 erreurs qui font fuir vos clients')
+            ->html($htmlContent)
+            ->text("Merci ! Votre guide \"Les 10 erreurs qui font fuir vos clients en ligne\" est en pièce jointe.")
+            ->addPart(new DataPart($pdfContent, 'guide-entryweb-10-erreurs.pdf', 'application/pdf'));
+
+        try {
+            $mailer->send($mail);
+            $subscriber->setPdfSent(true);
+        } catch (TransportExceptionInterface) {
+            // PDF send failed but we still save the subscriber
+        }
+
+        $entityManager->flush();
+
+        $this->addFlash('newsletter_success', 'pdf_sent');
+
+        return $this->redirectToRoute('app_home', ['#' => 'newsletter']);
     }
 
     #[Route('/faq', name: 'app_faq')]

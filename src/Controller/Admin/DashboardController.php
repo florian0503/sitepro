@@ -9,6 +9,7 @@ use App\Entity\Category;
 use App\Entity\Client;
 use App\Entity\ContactMessage;
 use App\Entity\Devis;
+use App\Entity\NewsletterSubscriber;
 use App\Entity\Realisation;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -83,6 +84,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Tous les devis', 'fa fa-file-invoice', Devis::class);
         yield MenuItem::section('Contenu');
         yield MenuItem::linkToCrud('Messages', 'fa fa-envelope', ContactMessage::class);
+        yield MenuItem::linkToCrud('Newsletter', 'fa fa-paper-plane', NewsletterSubscriber::class);
         yield MenuItem::linkToCrud('Réalisations', 'fa fa-images', Realisation::class);
         yield MenuItem::linkToCrud('Articles Blog', 'fa fa-newspaper', Article::class);
         yield MenuItem::linkToCrud('Catégories', 'fa fa-folder', Category::class);
