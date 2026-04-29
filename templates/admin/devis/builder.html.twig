@@ -96,6 +96,28 @@
                 </div>
             </div>
 
+            <div class="card mb-4">
+                <div class="card-header bg-white">
+                    <h5 class="card-title mb-0"><i class="fa fa-rotate me-2"></i>Abonnement choisi <span class="text-danger">*</span></h5>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        {% for index, subscription in subscriptions %}
+                        <div class="col-md-4">
+                            <label class="offer-option subscription-option rounded p-3 d-block h-100" id="subscription-label-{{ index }}">
+                                <input type="radio" name="selected_subscription" value="{{ index }}" data-subscription-price="{{ subscription.price }}" data-subscription-name="{{ subscription.name }}">
+                                <div class="d-flex justify-content-between align-items-start mb-1">
+                                    <strong>{{ subscription.name }}</strong>
+                                    <span class="badge bg-primary ms-2 text-nowrap">{{ subscription.price|number_format(0, ',', ' ') }} € HT/mois</span>
+                                </div>
+                                <div class="text-muted small">{{ subscription.description }}</div>
+                            </label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
             <h4 class="mb-3"><i class="fa fa-list-check me-2"></i>Prestations complémentaires</h4>
 
             {% for category in categories %}
