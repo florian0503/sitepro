@@ -284,7 +284,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="newsletter-form-wrapper">
+                <div class="newsletter-form-wrapper" data-controller="newsletter-form" data-newsletter-form-target="wrapper">
                     {% set successMessages = app.flashes('newsletter_success') %}
                     {% set errorMessages = app.flashes('newsletter_error') %}
                     {% if successMessages|length > 0 %}
@@ -306,7 +306,7 @@
                         {% for error in errorMessages %}
                             <div class="newsletter-error">{{ error }}</div>
                         {% endfor %}
-                        <form class="newsletter-form" action="{{ path('app_newsletter_subscribe') }}" method="POST">
+                        <form class="newsletter-form" action="{{ path('app_newsletter_subscribe') }}" method="POST" data-newsletter-form-target="form" data-action="submit->newsletter-form#submit">
                             <input type="hidden" name="_token" value="{{ csrf_token('newsletter_form') }}">
                             <label class="newsletter-label" for="newsletter-email">Votre adresse email</label>
                             <div class="newsletter-input-group">

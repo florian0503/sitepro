@@ -15,6 +15,7 @@ use App\Service\LeadMagnetPdfService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
@@ -245,7 +246,12 @@ final class MainController extends AbstractController
         #[Autowire('%env(CONTACT_EMAIL)%')]
         string $contactEmail = 'contact@entryweb.fr',
     ): Response {
+        $isAjax = $request->headers->get('X-Requested-With') === 'XMLHttpRequest';
+
         if (!$this->isCsrfTokenValid('newsletter_form', $request->request->getString('_token'))) {
+            if ($isAjax) {
+                return new JsonResponse(['status' => 'error', 'message' => 'Jeton invalide, veuillez réessayer.']);
+            }
             $this->addFlash('newsletter_error', 'Jeton invalide, veuillez réessayer.');
 
             return $this->redirectToRoute('app_home', ['_fragment' => 'newsletter']);
@@ -254,6 +260,9 @@ final class MainController extends AbstractController
         $email = trim($request->request->getString('email'));
 
         if (false === filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            if ($isAjax) {
+                return new JsonResponse(['status' => 'error', 'message' => 'Adresse email invalide.']);
+            }
             $this->addFlash('newsletter_error', 'Adresse email invalide.');
 
             return $this->redirectToRoute('app_home', ['_fragment' => 'newsletter']);
@@ -261,6 +270,13 @@ final class MainController extends AbstractController
 
         $existing = $subscriberRepository->findByEmail($email);
         if (null !== $existing) {
+            if ($isAjax) {
+                return new JsonResponse([
+                    'status' => 'success',
+                    'title' => 'Vous êtes déjà inscrit !',
+                    'message' => 'Le guide vous a déjà été envoyé. Consultez votre boîte mail.',
+                ]);
+            }
             $this->addFlash('newsletter_success', 'already_subscribed');
 
             return $this->redirectToRoute('app_home', ['_fragment' => 'newsletter']);
@@ -365,6 +381,14 @@ final class MainController extends AbstractController
         }
 
         $entityManager->flush();
+
+        if ($isAjax) {
+            return new JsonResponse([
+                'status' => 'success',
+                'title' => 'Inscription confirmée !',
+                'message' => 'Votre guide + un mail de bienvenue viennent de vous être envoyés. Vérifiez votre boîte mail (et vos spams si besoin).',
+            ]);
+        }
 
         $this->addFlash('newsletter_success', 'pdf_sent');
 
