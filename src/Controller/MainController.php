@@ -246,7 +246,7 @@ final class MainController extends AbstractController
         #[Autowire('%env(CONTACT_EMAIL)%')]
         string $contactEmail = 'contact@entryweb.fr',
     ): Response {
-        $isAjax = $request->headers->get('X-Requested-With') === 'XMLHttpRequest';
+        $isAjax = 'XMLHttpRequest' === $request->headers->get('X-Requested-With');
 
         if (!$this->isCsrfTokenValid('newsletter_form', $request->request->getString('_token'))) {
             if ($isAjax) {
@@ -318,7 +318,7 @@ final class MainController extends AbstractController
             ->to($email)
             ->subject('Votre guide gratuit EntryWeb — Les 10 erreurs qui font fuir vos clients')
             ->html($htmlContent)
-            ->text("Merci ! Votre guide \"Les 10 erreurs qui font fuir vos clients en ligne\" est en pièce jointe.")
+            ->text('Merci ! Votre guide "Les 10 erreurs qui font fuir vos clients en ligne" est en pièce jointe.')
             ->addPart(new DataPart($pdfContent, 'guide-entryweb-10-erreurs.pdf', 'application/pdf'));
 
         try {
