@@ -10,7 +10,9 @@ use App\Entity\Client;
 use App\Entity\ContactMessage;
 use App\Entity\Devis;
 use App\Entity\NewsletterSubscriber;
+use App\Entity\Prospect;
 use App\Entity\Realisation;
+use App\Entity\VilleProspection;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -77,6 +79,9 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        yield MenuItem::section('Prospection');
+        yield MenuItem::linkToCrud('Villes', 'fa fa-map-marker', VilleProspection::class);
+        yield MenuItem::linkToCrud('Prospects', 'fa fa-binoculars', Prospect::class);
         yield MenuItem::section('Clients');
         yield MenuItem::linkToCrud('Base de données clients', 'fa fa-users', Client::class);
         yield MenuItem::section('Devis');
