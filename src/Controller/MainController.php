@@ -248,7 +248,7 @@ final class MainController extends AbstractController
         if (!$this->isCsrfTokenValid('newsletter_form', $request->request->getString('_token'))) {
             $this->addFlash('newsletter_error', 'Jeton invalide, veuillez réessayer.');
 
-            return $this->redirectToRoute('app_home', ['#' => 'newsletter']);
+            return $this->redirectToRoute('app_home', ['_fragment' => 'newsletter']);
         }
 
         $email = trim($request->request->getString('email'));
@@ -256,14 +256,14 @@ final class MainController extends AbstractController
         if (false === filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $this->addFlash('newsletter_error', 'Adresse email invalide.');
 
-            return $this->redirectToRoute('app_home', ['#' => 'newsletter']);
+            return $this->redirectToRoute('app_home', ['_fragment' => 'newsletter']);
         }
 
         $existing = $subscriberRepository->findByEmail($email);
         if (null !== $existing) {
             $this->addFlash('newsletter_success', 'already_subscribed');
 
-            return $this->redirectToRoute('app_home', ['#' => 'newsletter']);
+            return $this->redirectToRoute('app_home', ['_fragment' => 'newsletter']);
         }
 
         $subscriber = new NewsletterSubscriber();
@@ -368,7 +368,7 @@ final class MainController extends AbstractController
 
         $this->addFlash('newsletter_success', 'pdf_sent');
 
-        return $this->redirectToRoute('app_home', ['#' => 'newsletter']);
+        return $this->redirectToRoute('app_home', ['_fragment' => 'newsletter']);
     }
 
     #[Route('/faq', name: 'app_faq')]

@@ -285,21 +285,25 @@
                     </ul>
                 </div>
                 <div class="newsletter-form-wrapper">
-                    {% for message in app.flashes('newsletter_success') %}
-                        {% if message == 'pdf_sent' %}
+                    {% set successMessages = app.flashes('newsletter_success') %}
+                    {% set errorMessages = app.flashes('newsletter_error') %}
+                    {% if successMessages|length > 0 %}
+                        {% set msg = successMessages[0] %}
+                        {% if msg == 'pdf_sent' %}
                             <div class="newsletter-success">
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                                <p>C'est parti ! Vérifiez votre boîte mail.</p>
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                                <p><strong>Inscription confirmée !</strong></p>
+                                <p class="newsletter-success-sub">Votre guide + un mail de bienvenue viennent de vous être envoyés. Vérifiez votre boîte mail (et vos spams si besoin).</p>
                             </div>
-                        {% elseif message == 'already_subscribed' %}
+                        {% elseif msg == 'already_subscribed' %}
                             <div class="newsletter-success">
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                                <p>Vous êtes déjà inscrit ! Le guide vous a déjà été envoyé.</p>
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                                <p><strong>Vous êtes déjà inscrit !</strong></p>
+                                <p class="newsletter-success-sub">Le guide vous a déjà été envoyé. Consultez votre boîte mail.</p>
                             </div>
                         {% endif %}
-                    {% endfor %}
-                    {% if app.flashes('newsletter_success')|length == 0 %}
-                        {% for error in app.flashes('newsletter_error') %}
+                    {% else %}
+                        {% for error in errorMessages %}
                             <div class="newsletter-error">{{ error }}</div>
                         {% endfor %}
                         <form class="newsletter-form" action="{{ path('app_newsletter_subscribe') }}" method="POST">
@@ -323,6 +327,7 @@
                             <p class="newsletter-privacy">Pas de spam. Désinscription en 1 clic.</p>
                         </form>
                     {% endif %}
+
                 </div>
             </div>
         </div>

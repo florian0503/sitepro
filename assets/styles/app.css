@@ -1742,6 +1742,14 @@ body {
     margin: 0;
 }
 
+.newsletter-success-sub {
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    color: #666 !important;
+    margin-top: 8px !important;
+    line-height: 1.5;
+}
+
 .newsletter-error {
     background: #fff0f0;
     border: 1px solid #ffd0d0;
