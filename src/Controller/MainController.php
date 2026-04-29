@@ -340,8 +340,8 @@ final class MainController extends AbstractController
                 </div>
                 <p style="font-size: 14px; color: #888; line-height: 1.6; margin: 0; border-top: 1px solid #eee; padding-top: 24px;">
                     À très vite,<br>
-                    <strong style="color: #1a1a2e;">Florian Dimbert</strong><br>
-                    Co-fondateur, EntryWeb
+                    <strong style="color: #1a1a2e;">Florian &amp; Émilien</strong><br>
+                    Co-fondateurs, EntryWeb
                 </p>
             </div>
             <div style="padding: 24px 32px; background: #f8f9fa; border-top: 1px solid #eee; text-align: center;">
@@ -356,7 +356,7 @@ final class MainController extends AbstractController
             ->replyTo($contactEmail)
             ->subject('Bienvenue chez EntryWeb !')
             ->html($welcomeHtml)
-            ->text("Bonjour et bienvenue chez EntryWeb !\n\nJe suis Florian, co-fondateur. Vous recevrez via cette newsletter nos conseils, articles et offres exclusives.\n\nÀ très vite,\nFlorian Dimbert, EntryWeb");
+            ->text("Bonjour et bienvenue chez EntryWeb !\n\nJe suis Florian, co-fondateur. Vous recevrez via cette newsletter nos conseils, articles et offres exclusives.\n\nÀ très vite,\nFlorian & Émilien, EntryWeb");
 
         try {
             $mailer->send($mailWelcome);
