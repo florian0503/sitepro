@@ -28,6 +28,7 @@ class DevisBuilderController extends AbstractController
     ): Response {
         $categories = DevisGrid::getCategories();
         $offers = DevisGrid::getOffers();
+        $subscriptions = DevisGrid::getSubscriptions();
 
         if ($request->isMethod('POST')) {
             if (!$this->isCsrfTokenValid('devis_builder', $request->request->get('_token'))) {
@@ -55,6 +56,18 @@ class DevisBuilderController extends AbstractController
                 $offerItem->setPrice($offer['price'] ?? 0.0);
                 $offerItem->setIsMonthly(false);
                 $devis->addItem($offerItem);
+            }
+
+            $selectedSubscriptionIndex = $request->request->get('selected_subscription');
+            if (null !== $selectedSubscriptionIndex && isset($subscriptions[(int) $selectedSubscriptionIndex])) {
+                $subscription = $subscriptions[(int) $selectedSubscriptionIndex];
+                $subItem = new DevisItem();
+                $subItem->setCategoryName('Abonnement');
+                $subItem->setItemName($subscription['name']);
+                $subItem->setDescription($subscription['description']);
+                $subItem->setPrice($subscription['price']);
+                $subItem->setIsMonthly(true);
+                $devis->addItem($subItem);
             }
 
             /** @var array<string> $selectedItems */
@@ -91,6 +104,7 @@ class DevisBuilderController extends AbstractController
         return $this->render('admin/devis/builder.html.twig', [
             'categories' => $categories,
             'offers' => $offers,
+            'subscriptions' => $subscriptions,
         ]);
     }
 }

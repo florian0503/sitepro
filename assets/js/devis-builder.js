@@ -4,11 +4,15 @@ const totalMonthlyEl = document.getElementById('total-monthly');
 const monthlySection = document.getElementById('monthly-section');
 const categorySubtotals = document.querySelectorAll('.category-subtotal');
 const selectedListEl = document.getElementById('selected-items-list');
-const offerLabels = document.querySelectorAll('.offer-option');
+const offerLabels = document.querySelectorAll('.offer-option:not(.subscription-option)');
 const offerRadios = document.querySelectorAll('input[name="selected_offer"]');
+const subscriptionLabels = document.querySelectorAll('.subscription-option');
+const subscriptionRadios = document.querySelectorAll('input[name="selected_subscription"]');
 
 let selectedOfferPrice = 0;
 let selectedOfferName = '';
+let selectedSubscriptionPrice = 0;
+let selectedSubscriptionName = '';
 
 function formatPrice(n) {
     return n.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -16,12 +20,16 @@ function formatPrice(n) {
 
 function recalculate() {
     let ht = selectedOfferPrice;
-    let monthly = 0;
+    let monthly = selectedSubscriptionPrice;
     const catTotals = {};
     let selectedHtml = '';
 
     if (selectedOfferName) {
         selectedHtml += '<div class="d-flex justify-content-between small mb-1 fw-bold text-primary"><span>' + selectedOfferName + '</span><span>' + (selectedOfferPrice > 0 ? formatPrice(selectedOfferPrice) + ' \u20ac' : 'Sur devis') + '</span></div>';
+    }
+
+    if (selectedSubscriptionName) {
+        selectedHtml += '<div class="d-flex justify-content-between small mb-1 fw-bold text-primary"><span>' + selectedSubscriptionName + '</span><span>' + formatPrice(selectedSubscriptionPrice) + ' \u20ac/mois</span></div>';
     }
 
     checkboxes.forEach(function(cb) {
@@ -66,6 +74,18 @@ offerLabels.forEach(function(label) {
         radio.checked = true;
         selectedOfferPrice = parseFloat(radio.dataset.offerPrice) || 0;
         selectedOfferName = radio.dataset.offerName;
+        recalculate();
+    });
+});
+
+subscriptionLabels.forEach(function(label) {
+    label.addEventListener('click', function() {
+        subscriptionLabels.forEach(l => l.classList.remove('selected'));
+        this.classList.add('selected');
+        const radio = this.querySelector('input[type=radio]');
+        radio.checked = true;
+        selectedSubscriptionPrice = parseFloat(radio.dataset.subscriptionPrice) || 0;
+        selectedSubscriptionName = radio.dataset.subscriptionName;
         recalculate();
     });
 });

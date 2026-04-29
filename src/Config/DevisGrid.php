@@ -26,6 +26,30 @@ final class DevisGrid
     }
 
     /**
+     * @return array<int, array{name: string, description: string, price: float}>
+     */
+    public static function getSubscriptions(): array
+    {
+        return [
+            [
+                'name' => 'Starter',
+                'description' => 'Hébergement, nom de domaine et maintenance de base inclus.',
+                'price' => 49.0,
+            ],
+            [
+                'name' => 'Confort',
+                'description' => 'Hébergement prioritaire, mises à jour régulières et support réactif.',
+                'price' => 79.0,
+            ],
+            [
+                'name' => 'Premium',
+                'description' => 'Hébergement haute dispo, maintenance premium et support dédié.',
+                'price' => 99.0,
+            ],
+        ];
+    }
+
+    /**
      * @return array<int, array{name: string, items: array<int, array{name: string, description: string, price: float, isMonthly: bool}>}>
      */
     public static function getCategories(): array
