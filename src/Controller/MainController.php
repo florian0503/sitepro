@@ -297,7 +297,7 @@ final class MainController extends AbstractController
         </div>
         HTML;
 
-        $mail = (new Email())
+        $mailPdf = (new Email())
             ->from($contactEmail)
             ->to($email)
             ->subject('Votre guide gratuit EntryWeb — Les 10 erreurs qui font fuir vos clients')
@@ -306,10 +306,62 @@ final class MainController extends AbstractController
             ->addPart(new DataPart($pdfContent, 'guide-entryweb-10-erreurs.pdf', 'application/pdf'));
 
         try {
-            $mailer->send($mail);
+            $mailer->send($mailPdf);
             $subscriber->setPdfSent(true);
         } catch (TransportExceptionInterface) {
             // PDF send failed but we still save the subscriber
+        }
+
+        $welcomeHtml = <<<HTML
+        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff;">
+            <div style="background: #0066ff; padding: 32px; text-align: center;">
+                <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 600;">EntryWeb</h1>
+                <p style="color: #cce0ff; margin: 8px 0 0; font-size: 14px;">Bienvenue dans la famille !</p>
+            </div>
+            <div style="padding: 40px 32px;">
+                <h2 style="font-size: 22px; color: #1a1a2e; margin: 0 0 20px; line-height: 1.3;">Bonjour, je suis ravi(e) de vous accueillir.</h2>
+                <p style="font-size: 15px; color: #555; line-height: 1.8; margin: 0 0 16px;">
+                    Je suis <strong>Florian</strong>, co-fondateur d'EntryWeb. Vous venez de rejoindre une communauté d'entrepreneurs qui ont décidé de prendre leur présence en ligne au sérieux — sans se ruiner.
+                </p>
+                <p style="font-size: 15px; color: #555; line-height: 1.8; margin: 0 0 16px;">
+                    Via cette newsletter, vous recevrez régulièrement :
+                </p>
+                <ul style="font-size: 15px; color: #555; line-height: 1.8; padding-left: 20px; margin: 0 0 24px;">
+                    <li>Des conseils concrets pour améliorer votre visibilité en ligne</li>
+                    <li>Nos derniers articles de blog dès leur publication</li>
+                    <li>Des offres exclusives réservées aux abonnés</li>
+                </ul>
+                <p style="font-size: 15px; color: #555; line-height: 1.8; margin: 0 0 32px;">
+                    En attendant, n'hésitez pas à jeter un œil à nos formules. Un projet en tête ? On en discute ensemble, sans engagement.
+                </p>
+                <div style="text-align: center; margin-bottom: 24px;">
+                    <a href="https://entryweb.fr/offres" style="display: inline-block; padding: 14px 32px; background: #0066ff; color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px; margin-right: 12px;">Voir les offres</a>
+                    <a href="https://entryweb.fr/contact" style="display: inline-block; padding: 14px 32px; background: #f0f4ff; color: #0066ff; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px;">Prendre contact</a>
+                </div>
+                <p style="font-size: 14px; color: #888; line-height: 1.6; margin: 0; border-top: 1px solid #eee; padding-top: 24px;">
+                    À très vite,<br>
+                    <strong style="color: #1a1a2e;">Florian Dimbert</strong><br>
+                    Co-fondateur, EntryWeb
+                </p>
+            </div>
+            <div style="padding: 24px 32px; background: #f8f9fa; border-top: 1px solid #eee; text-align: center;">
+                <p style="font-size: 12px; color: #aaa; margin: 0;">EntryWeb · entryweb.fr</p>
+            </div>
+        </div>
+        HTML;
+
+        $mailWelcome = (new Email())
+            ->from($contactEmail)
+            ->to($email)
+            ->replyTo($contactEmail)
+            ->subject('Bienvenue chez EntryWeb !')
+            ->html($welcomeHtml)
+            ->text("Bonjour et bienvenue chez EntryWeb !\n\nJe suis Florian, co-fondateur. Vous recevrez via cette newsletter nos conseils, articles et offres exclusives.\n\nÀ très vite,\nFlorian Dimbert, EntryWeb");
+
+        try {
+            $mailer->send($mailWelcome);
+        } catch (TransportExceptionInterface) {
+            // welcome send failed silently
         }
 
         $entityManager->flush();
