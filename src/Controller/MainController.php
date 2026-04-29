@@ -5,18 +5,23 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\ContactMessage;
+use App\Entity\NewsletterSubscriber;
 use App\Entity\Parrainage;
 use App\Repository\CategoryRepository;
+use App\Repository\NewsletterSubscriberRepository;
 use App\Repository\ParrainageRepository;
 use App\Repository\RealisationRepository;
+use App\Service\LeadMagnetPdfService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
+use Symfony\Component\Mime\Part\DataPart;
 use Symfony\Component\Routing\Attribute\Route;
 
 final class MainController extends AbstractController
@@ -229,6 +234,152 @@ final class MainController extends AbstractController
             'selectedSubscription' => $selectedSubscription,
             'preselectedBudget' => $preselectedBudget,
         ]);
+    }
+
+    #[Route('/newsletter/inscription', name: 'app_newsletter_subscribe', methods: ['POST'])]
+    public function newsletterSubscribe(
+        Request $request,
+        EntityManagerInterface $entityManager,
+        NewsletterSubscriberRepository $subscriberRepository,
+        MailerInterface $mailer,
+        LeadMagnetPdfService $pdfService,
+        #[Autowire('%env(CONTACT_EMAIL)%')]
+        string $contactEmail = 'contact@entryweb.fr',
+    ): Response {
+        $isAjax = 'XMLHttpRequest' === $request->headers->get('X-Requested-With');
+
+        if (!$this->isCsrfTokenValid('newsletter_form', $request->request->getString('_token'))) {
+            if ($isAjax) {
+                return new JsonResponse(['status' => 'error', 'message' => 'Jeton invalide, veuillez réessayer.']);
+            }
+            $this->addFlash('newsletter_error', 'Jeton invalide, veuillez réessayer.');
+
+            return $this->redirectToRoute('app_home', ['_fragment' => 'newsletter']);
+        }
+
+        $email = trim($request->request->getString('email'));
+
+        if (false === filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            if ($isAjax) {
+                return new JsonResponse(['status' => 'error', 'message' => 'Adresse email invalide.']);
+            }
+            $this->addFlash('newsletter_error', 'Adresse email invalide.');
+
+            return $this->redirectToRoute('app_home', ['_fragment' => 'newsletter']);
+        }
+
+        $existing = $subscriberRepository->findByEmail($email);
+        if (null !== $existing) {
+            if ($isAjax) {
+                return new JsonResponse([
+                    'status' => 'success',
+                    'title' => 'Vous êtes déjà inscrit !',
+                    'message' => 'Le guide vous a déjà été envoyé. Consultez votre boîte mail.',
+                ]);
+            }
+            $this->addFlash('newsletter_success', 'already_subscribed');
+
+            return $this->redirectToRoute('app_home', ['_fragment' => 'newsletter']);
+        }
+
+        $subscriber = new NewsletterSubscriber();
+        $subscriber->setEmail($email);
+        $entityManager->persist($subscriber);
+
+        $pdfContent = $pdfService->generate();
+        $safeEmail = htmlspecialchars($email, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+
+        $htmlContent = <<<HTML
+        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff;">
+            <div style="background: #0066ff; padding: 32px; text-align: center;">
+                <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 600;">EntryWeb</h1>
+                <p style="color: #cce0ff; margin: 8px 0 0; font-size: 14px;">Votre guide gratuit est arrivé !</p>
+            </div>
+            <div style="padding: 40px 32px;">
+                <h2 style="font-size: 20px; color: #1a1a2e; margin: 0 0 16px;">Voici votre checklist 🎉</h2>
+                <p style="font-size: 15px; color: #555; line-height: 1.7; margin: 0 0 20px;">
+                    Merci pour votre intérêt ! Vous trouverez en pièce jointe le guide <strong>"Les 10 erreurs qui font fuir vos clients en ligne"</strong>.
+                </p>
+                <p style="font-size: 15px; color: #555; line-height: 1.7; margin: 0 0 32px;">
+                    Prenez le temps de parcourir chaque point et de vérifier votre site actuel. Si vous identifiez plusieurs de ces erreurs, nous sommes là pour vous aider.
+                </p>
+                <div style="text-align: center;">
+                    <a href="https://entryweb.fr/contact" style="display: inline-block; padding: 14px 32px; background: #0066ff; color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px;">Obtenir mon devis gratuit</a>
+                </div>
+            </div>
+            <div style="padding: 24px 32px; background: #f8f9fa; border-top: 1px solid #eee; text-align: center;">
+                <p style="font-size: 12px; color: #aaa; margin: 0;">EntryWeb · entryweb.fr</p>
+            </div>
+        </div>
+        HTML;
+
+        $mailPdf = (new Email())
+            ->from($contactEmail)
+            ->to($email)
+            ->subject('Votre guide gratuit EntryWeb — Les 10 erreurs qui font fuir vos clients')
+            ->html($htmlContent)
+            ->text('Merci ! Votre guide "Les 10 erreurs qui font fuir vos clients en ligne" est en pièce jointe.')
+            ->addPart(new DataPart($pdfContent, 'guide-entryweb-10-erreurs.pdf', 'application/pdf'));
+
+        try {
+            $mailer->send($mailPdf);
+            $subscriber->setPdfSent(true);
+        } catch (TransportExceptionInterface) {
+            // PDF send failed but we still save the subscriber
+        }
+
+        $welcomeHtml = <<<HTML
+        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff;">
+            <div style="background: #0066ff; padding: 32px; text-align: center;">
+                <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 600;">EntryWeb</h1>
+                <p style="color: #cce0ff; margin: 8px 0 0; font-size: 14px;">Un mot de nous</p>
+            </div>
+            <div style="padding: 40px 32px;">
+                <h2 style="font-size: 22px; color: #1a1a2e; margin: 0 0 20px; line-height: 1.3;">Bonjour !</h2>
+                <p style="font-size: 15px; color: #555; line-height: 1.8; margin: 0 0 16px;">
+                    Nous sommes <strong>Florian et Émilien</strong>, co-fondateurs d'EntryWeb. Merci de nous avoir rejoints.
+                </p>
+                <p style="font-size: 15px; color: #555; line-height: 1.8; margin: 0 0 16px;">
+                    On a créé EntryWeb parce qu'on voyait trop d'artisans et d'entrepreneurs avec des sites trop chers, trop complexes, et qui ne leur ressemblent pas. Notre mission : vous donner les mêmes outils que les grandes structures, avec un budget adapté à la réalité d'une petite entreprise.
+                </p>
+                <p style="font-size: 15px; color: #555; line-height: 1.8; margin: 0 0 32px;">
+                    De temps en temps, on partage des conseils concrets sur la visibilité en ligne et nos nouveaux articles. Pas de masse, juste ce qui peut vraiment vous être utile.
+                </p>
+                <p style="font-size: 14px; color: #888; line-height: 1.6; margin: 0; border-top: 1px solid #eee; padding-top: 24px;">
+                    À très vite,<br>
+                    <strong style="color: #1a1a2e;">Florian &amp; Émilien</strong><br>
+                    Co-fondateurs, EntryWeb · <a href="https://entryweb.fr" style="color: #0066ff; text-decoration: none;">entryweb.fr</a>
+                </p>
+            </div>
+        </div>
+        HTML;
+
+        $mailWelcome = (new Email())
+            ->from($contactEmail)
+            ->to($email)
+            ->subject('Un mot de Florian & Émilien — EntryWeb')
+            ->html($welcomeHtml)
+            ->text("Bonjour,\n\nNous sommes Florian et Émilien, co-fondateurs d'EntryWeb. Merci de nous avoir rejoints.\n\nOn a créé EntryWeb parce qu'on voyait trop d'artisans avec des sites trop chers et trop complexes. Notre mission : vous donner les mêmes outils que les grandes structures, avec un budget adapté.\n\nDe temps en temps, on partage des conseils concrets et nos nouveaux articles. Pas de masse, juste ce qui peut vous être utile.\n\nÀ très vite,\nFlorian & Émilien\nCo-fondateurs, EntryWeb — entryweb.fr");
+
+        try {
+            $mailer->send($mailWelcome);
+        } catch (TransportExceptionInterface) {
+            // welcome send failed silently
+        }
+
+        $entityManager->flush();
+
+        if ($isAjax) {
+            return new JsonResponse([
+                'status' => 'success',
+                'title' => 'Inscription confirmée !',
+                'message' => 'Votre guide + un mail de bienvenue viennent de vous être envoyés. Vérifiez votre boîte mail (et vos spams si besoin).',
+            ]);
+        }
+
+        $this->addFlash('newsletter_success', 'pdf_sent');
+
+        return $this->redirectToRoute('app_home', ['_fragment' => 'newsletter']);
     }
 
     #[Route('/faq', name: 'app_faq')]

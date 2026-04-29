@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Entity\Article;
+use App\Service\NewsletterMailerService;
+use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -25,6 +27,11 @@ use EasyCorp\Bundle\EasyAdminBundle\Filter\ChoiceFilter;
  */
 class ArticleCrudController extends AbstractCrudController
 {
+    public function __construct(
+        private readonly NewsletterMailerService $newsletterMailer,
+    ) {
+    }
+
     public const CATEGORIES = [
         'Conseils' => 'Conseils',
         'Actualité' => 'Actualité',
@@ -96,5 +103,32 @@ class ArticleCrudController extends AbstractCrudController
             ->setColumns(12)
             ->setNumOfRows(20)
             ->hideOnIndex();
+    }
+
+    public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
+    {
+        $originalData = $entityManager->getUnitOfWork()->getOriginalEntityData($entityInstance);
+        $wasPublished = $originalData['isPublished'] ?? false;
+
+        parent::updateEntity($entityManager, $entityInstance);
+
+        if (!$wasPublished && $entityInstance->isPublished()) {
+            $sent = $this->newsletterMailer->sendNewArticleNotification($entityInstance);
+            if ($sent > 0) {
+                $this->addFlash('success', "Newsletter envoyée à {$sent} abonné(s).");
+            }
+        }
+    }
+
+    public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
+    {
+        parent::persistEntity($entityManager, $entityInstance);
+
+        if ($entityInstance->isPublished()) {
+            $sent = $this->newsletterMailer->sendNewArticleNotification($entityInstance);
+            if ($sent > 0) {
+                $this->addFlash('success', "Newsletter envoyée à {$sent} abonné(s).");
+            }
+        }
     }
 }

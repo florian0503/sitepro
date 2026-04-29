@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Helvetica, Arial, sans-serif; color: #1a1a2e; background: #fff; }
+
+        .cover {
+            background: #0066ff;
+            padding: 60px 50px 50px;
+            min-height: 200px;
+        }
+        .cover-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 24px;
+        }
+        .cover-title {
+            color: #fff;
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+        .cover-title span { color: #ffd700; }
+        .cover-subtitle {
+            color: rgba(255,255,255,0.85);
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        .cover-brand {
+            margin-top: 28px;
+            color: rgba(255,255,255,0.6);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .content { padding: 40px 50px; }
+
+        .intro {
+            background: #f0f4ff;
+            border-left: 4px solid #0066ff;
+            padding: 18px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 36px;
+        }
+        .intro p {
+            font-size: 13px;
+            line-height: 1.7;
+            color: #444;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0066ff;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e8f0ff;
+        }
+
+        .checklist { margin-bottom: 36px; }
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 14px 16px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            background: #f9f9f9;
+            border: 1px solid #eee;
+        }
+        .check-item:nth-child(odd) { background: #fff; }
+        .check-icon {
+            width: 22px;
+            height: 22px;
+            border: 2px solid #0066ff;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-right: 14px;
+            margin-top: 1px;
+        }
+        .check-icon.checked {
+            background: #0066ff;
+        }
+        .check-text { flex: 1; }
+        .check-text strong {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 3px;
+        }
+        .check-text span {
+            font-size: 11px;
+            color: #888;
+            line-height: 1.5;
+        }
+
+        .tip-box {
+            background: #fff8e1;
+            border: 1px solid #ffd54f;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 36px;
+        }
+        .tip-box .tip-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: #f57f17;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .tip-box p {
+            font-size: 12px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .cta-box {
+            background: #0066ff;
+            border-radius: 12px;
+            padding: 28px 30px;
+            text-align: center;
+        }
+        .cta-box h3 {
+            color: #fff;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .cta-box p {
+            color: rgba(255,255,255,0.85);
+            font-size: 12px;
+            margin-bottom: 18px;
+            line-height: 1.5;
+        }
+        .cta-btn {
+            display: inline-block;
+            background: #fff;
+            color: #0066ff;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 12px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+
+        .footer {
+            padding: 20px 50px;
+            border-top: 1px solid #eee;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 10px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+<div class="cover">
+    <div class="cover-badge">Guide Gratuit</div>
+    <div class="cover-title">
+        Les <span>10 erreurs</span> qui font<br>
+        fuir vos clients en ligne
+    </div>
+    <div class="cover-subtitle">
+        La checklist complète pour avoir un site web<br>
+        qui convertit vos visiteurs en clients.
+    </div>
+    <div class="cover-brand">EntryWeb — entryweb.fr</div>
+</div>
+
+<div class="content">
+
+    <div class="intro">
+        <p>
+            Vous avez un site web mais peu de contacts ? Vous n'êtes pas seul.
+            90% des sites de TPE/PME perdent leurs visiteurs à cause des mêmes erreurs répétées.
+            Ce guide vous permet de les identifier et de les corriger en moins d'une heure.
+        </p>
+    </div>
+
+    <div class="section-title">Partie 1 — Première impression (0 à 5 secondes)</div>
+    <div class="checklist">
+        <div class="check-item">
+            <div class="check-icon"></div>
+            <div class="check-text">
+                <strong>Erreur #1 — Pas de proposition de valeur claire</strong>
+                <span>Un visiteur doit comprendre en 3 secondes ce que vous faites, pour qui, et pourquoi vous. Si ce n'est pas dans votre titre principal, vous perdez 70% de vos visiteurs.</span>
+            </div>
+        </div>
+        <div class="check-item">
+            <div class="check-icon"></div>
+            <div class="check-text">
+                <strong>Erreur #2 — Un design vieilli ou peu professionnel</strong>
+                <span>94% des premières impressions sont liées au design. Un site qui date de 5+ ans envoie le signal que votre activité n'est plus à jour.</span>
+            </div>
+        </div>
+        <div class="check-item">
+            <div class="check-icon"></div>
+            <div class="check-text">
+                <strong>Erreur #3 — Temps de chargement supérieur à 3 secondes</strong>
+                <span>Chaque seconde de délai supplémentaire réduit les conversions de 7%. Vérifiez votre score sur PageSpeed Insights.</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-title">Partie 2 — Confiance &amp; Crédibilité</div>
+    <div class="checklist">
+        <div class="check-item">
+            <div class="check-icon"></div>
+            <div class="check-text">
+                <strong>Erreur #4 — Aucun témoignage client visible</strong>
+                <span>Les avis sont le facteur #1 de décision en ligne. Même 2 ou 3 témoignages authentiques changent tout.</span>
+            </div>
+        </div>
+        <div class="check-item">
+            <div class="check-icon"></div>
+            <div class="check-text">
+                <strong>Erreur #5 — Pas de visage humain sur le site</strong>
+                <span>Les sites avec une photo du fondateur ou de l'équipe convertissent 35% mieux. Les gens achètent à des personnes, pas à des logos.</span>
+            </div>
+        </div>
+        <div class="check-item">
+            <div class="check-icon"></div>
+            <div class="check-text">
+                <strong>Erreur #6 — Mentions légales absentes ou incomplètes</strong>
+                <span>Obligatoires légalement. Leur absence peut faire fuir les clients professionnels qui vérifient la légitimité de leur prestataire.</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="tip-box">
+        <div class="tip-title">Astuce Pro</div>
+        <p>Ajoutez un bandeau avec le nombre de clients accompagnés, les années d'expérience ou un logo presse/partenaire. Ces signaux de crédibilité ("social proof") doublent la confiance instantanément.</p>
+    </div>
+
+    <div class="section-title">Partie 3 — Conversion &amp; Contact</div>
+    <div class="checklist">
+        <div class="check-item">
+            <div class="check-icon"></div>
+            <div class="check-text">
+                <strong>Erreur #7 — Pas d'appel à l'action (CTA) visible</strong>
+                <span>Chaque page doit avoir UN bouton principal clair : "Demander un devis", "Prendre RDV", "Me contacter". Sans ça, le visiteur ne sait pas quoi faire.</span>
+            </div>
+        </div>
+        <div class="check-item">
+            <div class="check-icon"></div>
+            <div class="check-text">
+                <strong>Erreur #8 — Formulaire de contact trop long</strong>
+                <span>Au-delà de 4 champs, le taux de remplissage chute de 50%. Demandez uniquement le nom, l'email et le besoin.</span>
+            </div>
+        </div>
+        <div class="check-item">
+            <div class="check-icon"></div>
+            <div class="check-text">
+                <strong>Erreur #9 — Site non adapté mobile</strong>
+                <span>60% du trafic web est mobile. Si votre site est difficile à utiliser sur téléphone, vous perdez la majorité de vos visiteurs.</span>
+            </div>
+        </div>
+        <div class="check-item">
+            <div class="check-icon"></div>
+            <div class="check-text">
+                <strong>Erreur #10 — Pas de référencement naturel (SEO)</strong>
+                <span>Sans balises title, descriptions et contenu optimisé, votre site est invisible sur Google. Les clients ne peuvent pas vous trouver s'ils ne connaissent pas déjà votre nom.</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="cta-box">
+        <h3>Votre site fait ces erreurs ?</h3>
+        <p>EntryWeb crée votre site web professionnel clé en main, optimisé pour convertir.<br>
+        Devis gratuit, sans engagement, livraison en 15 jours.</p>
+        <a href="https://entryweb.fr/contact" class="cta-btn">Obtenir mon devis gratuit</a>
+    </div>
+
+</div>
+
+<div class="footer">
+    <p>© EntryWeb — entryweb.fr — Ce guide est fourni à titre informatif. Reproduction interdite sans autorisation.</p>
+</div>
+
+</body>
+</html>
