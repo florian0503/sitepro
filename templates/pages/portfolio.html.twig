@@ -28,9 +28,9 @@
                     <article class="realisations-card swiss-fade-up" data-category="{{ realisation.category.slug }}" data-scroll-animation-target="item" data-delay="{{ ((loop.index0 % 4) * 100) }}" data-realisations-filter-target="card">
                         <div class="realisations-card-image">
                             {% if realisation.imageName %}
-                                <img src="{{ asset('uploads/realisations/' ~ realisation.imageName) }}" alt="{{ realisation.title }}">
+                                <img src="{{ asset('uploads/realisations/' ~ realisation.imageName) }}" alt="{{ realisation.title }}" class="img-reveal">
                             {% else %}
-                                <img src="https://via.placeholder.com/600x400?text={{ realisation.title|url_encode }}" alt="{{ realisation.title }}">
+                                <img src="https://via.placeholder.com/600x400?text={{ realisation.title|url_encode }}" alt="{{ realisation.title }}" class="img-reveal">
                             {% endif %}
                         </div>
                         <div class="realisations-card-body">
