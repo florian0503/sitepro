@@ -332,36 +332,24 @@ final class MainController extends AbstractController
         <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff;">
             <div style="background: #0066ff; padding: 32px; text-align: center;">
                 <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 600;">EntryWeb</h1>
-                <p style="color: #cce0ff; margin: 8px 0 0; font-size: 14px;">Bienvenue dans la famille !</p>
+                <p style="color: #cce0ff; margin: 8px 0 0; font-size: 14px;">Un mot de nous</p>
             </div>
             <div style="padding: 40px 32px;">
-                <h2 style="font-size: 22px; color: #1a1a2e; margin: 0 0 20px; line-height: 1.3;">Bonjour, je suis ravi(e) de vous accueillir.</h2>
+                <h2 style="font-size: 22px; color: #1a1a2e; margin: 0 0 20px; line-height: 1.3;">Bonjour !</h2>
                 <p style="font-size: 15px; color: #555; line-height: 1.8; margin: 0 0 16px;">
-                    Je suis <strong>Florian</strong>, co-fondateur d'EntryWeb. Vous venez de rejoindre une communauté d'entrepreneurs qui ont décidé de prendre leur présence en ligne au sérieux — sans se ruiner.
+                    Nous sommes <strong>Florian et Émilien</strong>, co-fondateurs d'EntryWeb. Merci de nous avoir rejoints.
                 </p>
                 <p style="font-size: 15px; color: #555; line-height: 1.8; margin: 0 0 16px;">
-                    Via cette newsletter, vous recevrez régulièrement :
+                    On a créé EntryWeb parce qu'on voyait trop d'artisans et d'entrepreneurs avec des sites trop chers, trop complexes, et qui ne leur ressemblent pas. Notre mission : vous donner les mêmes outils que les grandes structures, avec un budget adapté à la réalité d'une petite entreprise.
                 </p>
-                <ul style="font-size: 15px; color: #555; line-height: 1.8; padding-left: 20px; margin: 0 0 24px;">
-                    <li>Des conseils concrets pour améliorer votre visibilité en ligne</li>
-                    <li>Nos derniers articles de blog dès leur publication</li>
-                    <li>Des offres exclusives réservées aux abonnés</li>
-                </ul>
                 <p style="font-size: 15px; color: #555; line-height: 1.8; margin: 0 0 32px;">
-                    En attendant, n'hésitez pas à jeter un œil à nos formules. Un projet en tête ? On en discute ensemble, sans engagement.
+                    De temps en temps, on partage des conseils concrets sur la visibilité en ligne et nos nouveaux articles. Pas de masse, juste ce qui peut vraiment vous être utile.
                 </p>
-                <div style="text-align: center; margin-bottom: 24px;">
-                    <a href="https://entryweb.fr/offres" style="display: inline-block; padding: 14px 32px; background: #0066ff; color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px; margin-right: 12px;">Voir les offres</a>
-                    <a href="https://entryweb.fr/contact" style="display: inline-block; padding: 14px 32px; background: #f0f4ff; color: #0066ff; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px;">Prendre contact</a>
-                </div>
                 <p style="font-size: 14px; color: #888; line-height: 1.6; margin: 0; border-top: 1px solid #eee; padding-top: 24px;">
                     À très vite,<br>
                     <strong style="color: #1a1a2e;">Florian &amp; Émilien</strong><br>
-                    Co-fondateurs, EntryWeb
+                    Co-fondateurs, EntryWeb · <a href="https://entryweb.fr" style="color: #0066ff; text-decoration: none;">entryweb.fr</a>
                 </p>
-            </div>
-            <div style="padding: 24px 32px; background: #f8f9fa; border-top: 1px solid #eee; text-align: center;">
-                <p style="font-size: 12px; color: #aaa; margin: 0;">EntryWeb · entryweb.fr</p>
             </div>
         </div>
         HTML;
@@ -369,10 +357,9 @@ final class MainController extends AbstractController
         $mailWelcome = (new Email())
             ->from($contactEmail)
             ->to($email)
-            ->replyTo($contactEmail)
-            ->subject('Bienvenue chez EntryWeb !')
+            ->subject('Un mot de Florian & Émilien — EntryWeb')
             ->html($welcomeHtml)
-            ->text("Bonjour et bienvenue chez EntryWeb !\n\nJe suis Florian, co-fondateur. Vous recevrez via cette newsletter nos conseils, articles et offres exclusives.\n\nÀ très vite,\nFlorian & Émilien, EntryWeb");
+            ->text("Bonjour,\n\nNous sommes Florian et Émilien, co-fondateurs d'EntryWeb. Merci de nous avoir rejoints.\n\nOn a créé EntryWeb parce qu'on voyait trop d'artisans avec des sites trop chers et trop complexes. Notre mission : vous donner les mêmes outils que les grandes structures, avec un budget adapté.\n\nDe temps en temps, on partage des conseils concrets et nos nouveaux articles. Pas de masse, juste ce qui peut vous être utile.\n\nÀ très vite,\nFlorian & Émilien\nCo-fondateurs, EntryWeb — entryweb.fr");
 
         try {
             $mailer->send($mailWelcome);
