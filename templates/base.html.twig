@@ -13,7 +13,47 @@
         <meta name="twitter:card" content="summary">
         <link rel="canonical" href="{{ app.request.uri }}">
         <title>{% block title %}EntryWeb — Création de sites web professionnels{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "ProfessionalService",
+            "name": "EntryWeb",
+            "url": "https://entryweb.fr",
+            "logo": "https://entryweb.fr/images/logo.png",
+            "image": "https://entryweb.fr/images/logo.png",
+            "description": "Agence de création de sites web professionnels clé en main pour entrepreneurs, artisans et TPE.",
+            "telephone": "+33661617965",
+            "email": "contact@entryweb.fr",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Lyon",
+                "addressRegion": "Auvergne-Rhône-Alpes",
+                "postalCode": "69000",
+                "addressCountry": "FR"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 45.7640,
+                "longitude": 4.8357
+            },
+            "areaServed": {
+                "@type": "Country",
+                "name": "France"
+            },
+            "priceRange": "€€",
+            "openingHoursSpecification": [
+                {
+                    "@type": "OpeningHoursSpecification",
+                    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+                    "opens": "09:00",
+                    "closes": "18:00"
+                }
+            ],
+            "sameAs": []
+        }
+        </script>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230066ff'/><text x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='700' font-size='20' fill='white'>E</text></svg>">
+        <link rel="apple-touch-icon" href="{{ asset('images/logo.png') }}">
         {% block stylesheets %}
         {% endblock %}
 
