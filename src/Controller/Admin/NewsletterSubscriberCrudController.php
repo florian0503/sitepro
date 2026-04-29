@@ -23,6 +23,9 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mime\Part\DataPart;
 
+/**
+ * @extends AbstractCrudController<NewsletterSubscriber>
+ */
 #[AdminCrud(routePath: '/newsletter', routeName: 'admin_newsletter')]
 class NewsletterSubscriberCrudController extends AbstractCrudController
 {
@@ -76,6 +79,10 @@ class NewsletterSubscriberCrudController extends AbstractCrudController
         parent::persistEntity($entityManager, $entityInstance);
 
         $email = $entityInstance->getEmail();
+        if (null === $email) {
+            return;
+        }
+
         $pdfContent = $this->pdfService->generate();
 
         $htmlPdf = <<<HTML
