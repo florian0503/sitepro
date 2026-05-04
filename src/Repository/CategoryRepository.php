@@ -24,7 +24,8 @@ class CategoryRepository extends ServiceEntityRepository
     public function findAllOrderedByName(): array
     {
         return $this->createQueryBuilder('c')
-            ->orderBy('c.name', 'ASC')
+            ->orderBy('c.position', 'ASC')
+            ->addOrderBy('c.name', 'ASC')
             ->getQuery()
             ->getResult();
     }

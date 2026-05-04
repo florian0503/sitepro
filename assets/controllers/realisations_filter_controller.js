@@ -1,11 +1,18 @@
 import { Controller } from '@hotwired/stimulus';
 
 export default class extends Controller {
-    static targets = ['filterBtn', 'card', 'loadMoreBtn'];
+    static targets = ['filterBtn', 'card', 'loadMoreBtn', 'emptyState'];
 
     connect() {
         this.visibleCount = this.getInitialVisibleCount();
-        this.updateVisibility('all');
+        // If no cards at all, show the empty state immediately
+        if (this.cardTargets.length === 0) {
+            if (this.hasEmptyStateTarget) {
+                this.emptyStateTarget.style.display = '';
+            }
+        } else {
+            this.updateVisibility('all');
+        }
         window.addEventListener('resize', this.handleResize.bind(this));
     }
 
@@ -77,6 +84,10 @@ export default class extends Controller {
                 card.style.display = 'none';
             }
         });
+
+        if (this.hasEmptyStateTarget) {
+            this.emptyStateTarget.style.display = totalMatching === 0 ? '' : 'none';
+        }
 
         if (this.hasLoadMoreBtnTarget) {
             if (displayedCount >= totalMatching) {

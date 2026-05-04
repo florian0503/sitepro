@@ -46,11 +46,15 @@
                             {% endif %}
                         </div>
                     </article>
-                {% else %}
-                    <div class="realisations-empty">
-                        <p>Aucune réalisation pour le moment.</p>
-                    </div>
                 {% endfor %}
+
+                <div class="realisations-empty" data-realisations-filter-target="emptyState" style="display: none;">
+                    {% if realisations|length == 0 %}
+                        <p>Nos réalisations arrivent bientôt.</p>
+                    {% else %}
+                        <p>Aucune réalisation dans cette catégorie pour le moment.</p>
+                    {% endif %}
+                </div>
             </div>
 
             {% if realisations|length > 2 %}

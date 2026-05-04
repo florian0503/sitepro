@@ -23,6 +23,9 @@ class Category
     #[ORM\Column(length: 150, unique: true)]
     private ?string $slug = null;
 
+    #[ORM\Column]
+    private int $position = 99;
+
     /**
      * @var Collection<int, Realisation>
      */
@@ -88,6 +91,18 @@ class Category
                 $realisation->setCategory(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPosition(): int
+    {
+        return $this->position;
+    }
+
+    public function setPosition(int $position): static
+    {
+        $this->position = $position;
 
         return $this;
     }
