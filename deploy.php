@@ -70,6 +70,7 @@ task('deploy:symlink_public', function () {
 // DEPLOIEMENT
 // ============================================================================
 
-after('deploy:vendors', 'deploy:assets');
+after('deploy:vendors', 'deploy:migrate');
+after('deploy:migrate', 'deploy:assets');
 after('deploy:symlink', 'deploy:symlink_public');
 after('deploy:failed', 'deploy:unlock');
