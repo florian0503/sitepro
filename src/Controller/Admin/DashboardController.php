@@ -73,7 +73,7 @@ class DashboardController extends AbstractDashboardController
     {
         return Dashboard::new()
             ->setTitle('EntryWeb Admin')
-            ->setFaviconPath('favicon.ico');
+            ->setFaviconPath('favicon-32.png');
     }
 
     public function configureMenuItems(): iterable
